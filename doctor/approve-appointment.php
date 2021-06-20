@@ -1,6 +1,37 @@
+
+<?php 
+
+
+if(isset($_POST['approve'])){
+ $comment = $_POST['comment'];
+ session_start();
+ $_SESSION['comment'] = $comment;
+  if($comment){
+    echo "<script>window.location.href = 'mail.php';</script>";
+ }
+  else{
+    echo "<script>alert('Comment Required!');</script>";
+}
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <style>
+  .button {
+        padding: 15px 100px;
+        margin: 10px 4px;
+        color: #eee;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        text-decoration: none;
+        display: inline-block;
+        border: 1px solid;
+      }
+  </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -17,6 +48,7 @@
     <!-- Admin Styling -->
     <link rel="stylesheet" href="../ckk/admin-nav.css" />
     <link rel="stylesheet" href="../ckk/admin.css" />
+    
 
     <title>Admin Section - Manage Admin</title>
   </head>
@@ -46,7 +78,7 @@
       <div class="left-sidebar">
       <ul>
       <li><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="approve-appointment.php">Approve Apointment</a></li>
+        <li><a class="approve" href="approve-appointment.php">Approve Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php">Update Profile</a></li>
         </ul>
@@ -79,8 +111,13 @@
                 <td>aafporan@gmail.com</td>
                 <td>Male</td>
                 <td>03/30/2021</td>
-                <td>9:25 PM</td>
-                <td><a style="color:green;" href="mail.php" class="approve">Approve</a></td>
+                <td>
+<form action="" method="post"> 
+                
+                <textarea name="comment" class="textarea" ></textarea></td>
+                <td>
+                <button name="approve button">Appove</button>
+                </td>
                 <td><a style="color:red;" href="#" class="delete">Decline</a></td>
               </tr>
             </tbody>
@@ -89,7 +126,7 @@
       </div>
       
 
-
+</form>
     </div>
 
     <!-- ajax -->

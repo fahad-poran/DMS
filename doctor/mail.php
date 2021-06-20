@@ -31,13 +31,13 @@ $mail->addAddress($m,$name); // Add a recipient
 // Attachement
 // $mail->addAttachment('upload/file.pdf');
 // $mail->addAttachment('upload/image.png', 'image 1'); // Optional name
-
+session_start();
 // Content
 // $token =rand(10,9999);
 // $_SESSION['key']=$token;
 $mail->isHTML(true); // Set email format to HTML
 $mail->Subject = 'Approval';
-$mail->Body = '<h2>Assalamualikum '.$name.",</h2><br>"."<h3>You are approved </h3>";
+$mail->Body = '<h2>Assalamualikum '.$_SESSION['comment'].",</h2><br>MR/Ms".$name."<h3>You are approved </h3>";
 // $mail->AltBody = 'A test email fromshihabuddinshakil9@gmail.com'; // Plain text for non-HTML mail clients
 
 $mail->send();
