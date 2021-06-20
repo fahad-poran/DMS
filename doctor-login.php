@@ -16,10 +16,10 @@ $db = new Database();
       echo "<script>alert('Login succesful');</script>";
       echo "<script>window.location.href = 'doctor/dashboard.php';</script>";
     }
-    else{
-      echo "<script>alert('Database Empty!');</script>";
-      echo "<script>window.location.href = 'doctor-login.php';</script>";
-    }
+    // else{
+    //   echo "<script>alert('Database Empty!');</script>";
+    //   echo "<script>window.location.href = 'doctor-login.php';</script>";
+    // }
   }
   else 
   $login = $db->loginRecord($_POST,"patients");
@@ -28,10 +28,10 @@ $db = new Database();
     echo "<script>alert('Login succesful');</script>";
     echo "<script>window.location.href = 'patient/dashboard.php';</script>";  //it could also be done by using header!
   }
-  else{
-    echo "<script>alert('Worng Username or password!');</script>";
-    echo "<script>window.location.href = 'login.php';</script>";  //CALLING OWN PAGE
-  }
+  // else{
+  //   echo "<script>alert('Worng Username or password!');</script>";
+  //   echo "<script>window.location.href = 'login.php';</script>";  //CALLING OWN PAGE
+  // }
 }
 
 ?>

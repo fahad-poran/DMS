@@ -4,7 +4,7 @@
         private $user = 'root';
         private $password = '';
         private $dbname = 'hms';
-        private $connection;
+        public $connection;
         public $errors = array();
         //public $success = array();
         public function __construct()
@@ -30,6 +30,7 @@
             $gender = $_POST['gender'];
             $phone = $_POST['phone'];
             $specialization = $_POST['DoctorSpecialization'];
+            $fees = $_POST['fees'];
             }
 
             
@@ -39,6 +40,7 @@
             }
             else
             {
+                
                 if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
                     array_push($this->errors," Username: Only letter allowed");
                 }
@@ -49,6 +51,19 @@
                 if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
                     array_push($this->errors," Email: Invalid email format");
                 }
+
+                if($table=="doctors")
+                {
+                    if(empty($fees))
+                    {
+                        array_push($this->errors,"Fees must not be empty");
+                    }
+                    if(empty($specialization))
+                    {
+                        array_push($this->errors,"Specialization must not be empty");
+                    }
+                }
+                
     
                 if(strlen($password)<6){
                     array_push($this->errors," Password: Password is too short");
@@ -66,18 +81,18 @@
 
             if(count($this->errors)==0)
             {
-                // $emailQuery = "SELECT FROM $table WHERE email = '$email'";
-                // $emailsql = $this->connection->query($emailQuery);
-                // $emailCount = $emailsql->num_rows;
-                // if($emailCount>0)
-                // {
-                //     array_push($this->errors,"Email already exits");
-                // }
-                // else{
+                $sql = "SELECT * FROM $table WHERE email='$email' ";
+                $logged = $this->connection->query($sql);
+                $email_count = $logged->num_rows;
+                if($email_count>0)
+                {
+                    array_push($this->errors,"Email already exits");
+                }
+                else{
                     //$password = md5($password);//encript password
                     if($table=="doctors")
                     {
-                        $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization) VALUES('$uName','$email','$password','$phone','$gender','$specialization')";
+                        $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization,fees) VALUES('$uName','$email','$password','$phone','$gender','$specialization','$fees')";
                     }
                     else{
                         $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
@@ -86,15 +101,15 @@
                     $create = $this->connection->query($sql);
                     if($create)
                     {
-                        session_start();
-                        $_SESSION['email'] = $email;
-                        $_SESSION['password'] = $password;
+                        //session_start();
+                        //$_SESSION['email'] = $email;
+                        //$_SESSION['password'] = $password;
                     return true;
                     }
                     else{
                         return false;
                     }
-                //}
+                }
                 
                 // echo "<script>alert('Registration succesful');</script>";
                 // echo "<script>window.location.href = 'login.php';</script>";
@@ -106,13 +121,9 @@
         {
             $email = $_POST['email'];
             $password = $_POST['password'];
-            $role = $_POST['role']; 
-            
-           
 
             if(empty($email)||empty($password))
             {
-                echo $role;
                 array_push($this->errors," Fields must not be empty");
             }
 
@@ -126,6 +137,13 @@
                     $email_pass = $logged->fetch_assoc();
                     $db_pass = $email_pass['password'];
                     $_SESSION['username'] = $email_pass['username'];
+                    $_SESSION['email'] = $email_pass['email']; //for appointment purpose
+                    if($table=="patients")
+                    {
+                        $_SESSION['address'] = $email_pass['address']; //for appointment purpose
+                        $_SESSION['phone'] = $email_pass['phone']; //for appointment purpose
+                    }
+                    $_SESSION['id'] = $email_pass['id']; //for appointment purpose
                     //$user_type = $email_pass['user_type'];
                     if($db_pass==$password)
                     {
@@ -222,6 +240,62 @@
                 return $data;
             }
         }
+        // public function searchRecord($table)
+        // {
+        //     $search = isset($_POST['query']);
+        //     $sql = "SELECT * FROM $table WHERE username LIKE '%{$search}%'";
+        //     $result = $this->connection->query($sql);
+        //     if($result->num_rows>0)
+        //     {
+        //         while($row = $result->fetch_assoc())
+        //         {
+        //            $data[] = $row;  
+        //         }
+        //         return $data;
+        //     }
+        // }
+        public function displaySingleRecord($table,$currentUser)
+        {
+            if($table=="patients" || $table=="pharmacists")
+            {
+                $sql = "SELECT * FROM $table WHERE id='$currentUser'";
+            }
+            else{
+                 $sql = "SELECT username,email,password,specialization,phone,gender FROM $table WHERE id='$currentUser'";
+            }
+            
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+        }
+        // public function ajaxSearchSingleRecord($table,$user)
+        // {
+        //     if($user!=""){
+        //     if($table=="medicine")
+        //     {
+        //         $sql = "SELECT * FROM $table WHERE mname LIKE '%$user%'";
+        //     }else{
+        //         $sql = "SELECT * FROM $table WHERE username LIKE '%$user%'";
+        //     }
+            
+
+        //     $result = $this->connection->query($sql);
+        //         if($result->num_rows>0)
+        //         {
+        //             while($row = $result->fetch_assoc())
+        //             {
+        //             $data[] = $row;  
+        //             }
+        //             return $data;
+        //         }
+        //     }
+        // }
 
         public function displayRecordById($editid,$table)
         {
@@ -244,13 +318,21 @@
         /////////Update Record/////
         public function updateRecord($data,$table)
         {
+            $currentUser = $_POST['hid'];
             $uName = $_POST['username'];
             $password = $_POST['password'];
             $phone = $_POST['phone'];
             $gender = $_POST['gender'];
-            $editid = $_POST['hid'];
             if($table=="patients" || $table=="pharmacists"){  $address = $_POST['address']; }
-            else { $specialization = $_POST['DoctorSpecialization'];}
+            else 
+            { 
+                $specialization = $_POST['DoctorSpecialization'];
+                $date = $_POST['date'];
+                $day = $_POST['day'];
+                $stime = $_POST['stime'];
+                $etime = $_POST['etime'];
+                $status = $_POST['status'];
+            }
 
             if(empty($uName)||empty($password))
             {
@@ -281,10 +363,67 @@
                 //$password = md5($password);//encript password
                 if($table=="patients" || $table=="pharmacists")
                 {
-                    $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$editid'";
+                    $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$currentUser'";
                 }
-                else { //it means doctor
-                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$editid'";
+                else {
+                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender',date='$date',day='$day',stime='$stime',etime='$etime',status='$status' WHERE id='$currentUser'";
+                }
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        public function updateSingleRecord($data,$table,$currentUser)
+        {
+            $uName = $_POST['username'];
+            $password = $_POST['password'];
+            $phone = $_POST['phone'];
+            $gender = $_POST['gender'];
+            if($table=="patients" || $table=="pharmacists"){  $address = $_POST['address']; }
+            else 
+            { 
+                $specialization = $_POST['DoctorSpecialization'];
+            }
+
+            if(empty($uName)||empty($password))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+            else
+            {
+                if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
+                    array_push($this->errors," Username: Only letter allowed");
+                }
+                else if((strlen($uName)<4)){
+                    array_push($this->errors," Username: Name is too short");
+                }
+    
+                if(strlen($password)<6){
+                    array_push($this->errors," Password: Password is too short");
+                }
+                else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
+                    array_push($this->errors," Password: the password does not meet the requirements");
+                }
+
+            }
+
+           // var_dump($data);
+
+            if(count($this->errors)==0)
+            {
+                //$password = md5($password);//encript password
+                if($table=="patients" || $table=="pharmacists")
+                {
+                    $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$currentUser'";
+                }
+                else {
+                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$currentUser'";
                 }
 
                 $result = $this->connection->query($sql);
@@ -311,6 +450,287 @@
                 return false;
             }
         }
+
+        //book appointment
+        public function bookAppointment($data,$table,$currentUser)
+        {
+            $uName = $_POST['username'];
+            $specialization = $_POST['specialization'];
+            $fees = $_POST['fees'];
+            $date = $_POST['date'];
+            $day = $_POST['day'];
+            $reason=$_POST['reason'];
+            $editid = $_POST['hid'];
+            $status = "Pending";
+           // var_dump($data);
+
+                //$password = md5($password);//encript password
+                $sql = "INSERT INTO $table(username,specialization,fees,date,day,reason,status,uid,d_id) VALUES('$uName','$specialization','$fees','$date','$day','$reason','$status','$currentUser','$editid')";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
+        }
+
+        public function displayAppointment($table,$currentUser)
+        {
+            $sql = "SELECT * FROM $table WHERE uid = '$currentUser'";
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+        }
+
+        //filter
+
+            // Fetch Standard
+
+        public function fetch_std()
+        {
+            $data = [];
+
+            $sql = "SELECT DISTINCT `specialization` FROM `doctors`";
+            $result = $this->connection->query($sql);
+            if($result){
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row;
+                }
+            }
+
+            return $data;
+        }
+
+          // Fetch Result
+
+        public function fetch_res()
+        {
+            $data = [];
+
+            $sql = "SELECT DISTINCT `gender` FROM `doctors`";
+            $result = $this->connection->query($sql);
+            if($result){
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row;
+                }
+            }
+
+            return $data;
+        }
+
+        public function displayApproved($currentUser)
+        {
+            $sql = "SELECT b.id,p.username,p.gender,b.date,b.day,b.reason,b.status FROM bookappoint b INNER JOIN patients p ON b.uid = p.id WHERE b.d_id='$currentUser'";
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+        }
+
+        public function updateApprovedStatus($data,$table)
+        {
+            $status = "Approved";
+            $comment = $_POST['comment'];
+            $id=$_POST['id'];
+
+            $sql = "UPDATE $table SET status='$status', comment='$comment' WHERE id='$id'";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+        }
+        public function updateDoneStatus($data,$table)
+        {
+            $status = "Done";
+            // $comment = $_POST['comment'];
+            $id=$_POST['id'];
+
+            $sql = "UPDATE $table SET status='$status' WHERE id='$id'";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+        }
+
+        public function updateDeclineStatus($data,$table)
+        {
+            $status = "Declined";
+            $comment = $_POST['comment'];
+            $id=$_POST['id'];
+
+            $sql = "UPDATE $table SET status='$status', comment='$comment' WHERE id='$id'";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+        }
+        
+
+        /////add mcine//////
+        public function addMedicine($data,$table)
+        {
+            $Name = $_POST['mName'];
+            $generic = $_POST['generic'];
+            $type = $_POST['mType'];
+            $quantity = $_POST['quantity'];
+            $unitPrice = $_POST['unitPrice'];
+            $file=$_FILES['file'];
+            $file_name=$_FILES['file']['name'];
+            $file_tmp=$_FILES['file']['tmp_name'];
+            $file_type=$_FILES['file'] ['type'];
+ 
+            $file_destination = "../pharmacist/upload-images/".$file_name;
+            move_uploaded_file($file_tmp,$file_destination);
+ 
+            $file_ext = explode('.',$file_name);
+            $file_ext_check=strtolower(end($file_ext));
+            $valid_file_ext = array('png','jpg','jpeg');
+            
+            
+            if(empty($Name)||empty($generic)||empty($type)||empty($quantity)||empty($unitPrice)||empty($file_name))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+
+            else
+            {
+                if(!preg_match("/[0-9]/",$quantity)){
+                    array_push($this->errors," Quantity: Only numeric number allowed");
+                }
+                
+
+                if(!preg_match("/[0-9]/",$unitPrice)){
+                    array_push($this->errors," Price: Only numeric number allowed");
+                }
+                
+            }
+    
+                
+ 
+            if(count($this->errors)==0)
+            {
+                if(in_array($file_ext_check,$valid_file_ext)){
+                $sql = "SELECT * FROM $table WHERE mName='$Name' ";
+                $logged = $this->connection->query($sql);
+                $Name_count = $logged->num_rows;
+                if($Name_count>0)
+                {
+                    array_push($this->errors,"Medicine already exits");
+                }
+                else{
+                    //$password = md5($password);//encript password
+                    
+                        $sql = "INSERT INTO $table(mName,generic,mType,quantity,unitPrice,image) VALUES('$Name','$generic','$type','$quantity','$unitPrice','$file_destination')";
+                    
+                   //  else{
+                   //      $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
+                   //  }
+ 
+                    $create = $this->connection->query($sql);
+                    if($create)
+                    {
+                        //session_start();
+                        //$_SESSION['email'] = $email;
+                        //$_SESSION['password'] = $password;
+                    return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            }else{
+                array_push($this->errors,"Invalid image Format");
+            }
+                
+                // echo "<script>alert('Registration succesful');</script>";
+                // echo "<script>window.location.href = 'login.php';</script>";
+            }
+        }
+
+        public function updateMedicine($data,$table)
+        {
+            $Name = $_POST['mName'];
+            $generic = $_POST['generic'];
+            $type = $_POST['mType'];
+            $quantity = $_POST['quantity'];
+            $unitPrice = $_POST['unitPrice'];
+            $editid=$_POST['hid'];
+ 
+            //$editid = $_POST['hid'];
+ 
+            if(empty($quantity)||empty($unitPrice))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+ 
+            
+            else{
+                
+ 
+                if(count($this->errors)==0)
+                {
+                    
+                    $sql = "UPDATE $table SET mName='$Name',generic='$generic',mType='$type',quantity='$quantity',unitPrice='$unitPrice' WHERE id='$editid'";
+ 
+                    $result = $this->connection->query($sql);
+                    if($result)
+                    {
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                
+                }
+            }
+           
+ 
+           
+        }
+
+       public function invoice($printid)
+       {
+        $sql = "SELECT b.id,p.username,p.gender,p.email,p.address,d.stime,d.etime,b.date,b.day,b.fees,b.reason,b.status,b.uid FROM bookappoint b INNER JOIN patients p ON b.uid = p.id INNER JOIN doctors d ON b.d_id=d.id WHERE b.id='$printid'";
+        $result = $this->connection->query($sql);
+        if($result->num_rows>0)
+        {
+            while($row = $result->fetch_assoc())
+            {
+               $data[] = $row;  
+            }
+            return $data;
+        }
+       }
 
     }
 ?>

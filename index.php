@@ -32,8 +32,8 @@
                 <a class="nav-link" href="#">Contact</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Login as
+                <a class="nav-link dropdown-toggle" href="doctor-login.php" id="navbarDropdown" role="button" >
+                  Login
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="doctor-login.php">Doctor</a></li>

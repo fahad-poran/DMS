@@ -82,18 +82,7 @@
               </tr>
             </tbody>
             <tbody>
-            <?php
-// the message
-$to = "aafporan@gmail.com";
-$subject = "Test Mail";
-$message = "Hello Patient ";
-$from = "aafporan9@gmai.com;";
-
-// send email to , subject , heder
-mail($to,$subject,$message,$headers);
-echo "mail sent";
-
-?>
+            
             
             </tbody>
           </table>

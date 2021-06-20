@@ -1,26 +1,24 @@
-<?php include "../controls/db.php" ?>
+<?php include "../controls/Database.php" ?>
 <?php
-  if(isset($_POST['submit']))
-  {
-    $doctorSpecialization = $_POST['doctorSpecialization'];
-    if($doctorSpecialization=="NULL"){
-      $error_msg['doctorSpecialization'] = "Doctor specialization required";
-    }
-    $doctorName = $_POST['doctorName'];
-    if($doctorName=="NULL"){
-      $error_msg['doctorName'] = "Doctor Name required";
-    }
-    $date = $_POST['date'];
-    if(empty($date))
-    {
-      $error_msg['date'] = "Date required";
-    }
-    $time = $_POST['time'];
-    if(empty($time))
-    {
-      $error_msg['time'] ="Time required";
-    }
-  }
+ 
+ session_start();
+ 
+ $db = new Database();
+ if(!isset($_SESSION['username'])){
+   header("Location:../views/login.php");
+ }
+$currentUser = $_SESSION['id'];
+if(isset($_POST['book'])){
+$update =  $db->bookAppointment($_POST,"bookappoint",$currentUser);
+
+//to print the alert massage we need to store the db into the variable
+if($update){
+  echo "<script>alert('Appointment Booked Successfully');</script>";
+  echo "<script>window.location.href = 'appointment-history.php';</script>";
+}
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -82,19 +80,34 @@
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Book Appointment</h2>
+  
 
-          <form action="book-appointment.php" method="post">
+<?php
+  $editid = $_SESSION['id'];
+  $myrecord = $db ->displayRecordById($editid,"doctors");
+
+?>
+
+          <form action="book-appointment.php" method="POST">
           <div>
               <label>Doctor Specialization</label>
-              <select name="doctorSpecialization" class="text-input">
-                <option value="NULL">--Select Specialization--</option>
-                <option value="Neurology">Neurology</option>
-                <option value="Pathology">Pathology</option>
-                <option value="Pediatrics">Pediatrics</option>
-              </select>
+<select name="doctorSpecialization" class="text-input">
+<option disabled selected>-- Select Dotor Category --</option>
+              <?php
+         // Using database connection file here
+        include "../controls/db.php";
+      
+        $records = mysqli_query($db, "SELECT specialization FROM doctors");  // Use select query here 
+
+        while($data = mysqli_fetch_array($records))
+        {
+            echo "<option value='". $data['specialization'] ."'>" .$data['specialization'] ."</option>";  // displaying data in option menu
+        }	
+    ?>  
+</select>
               <?php 
                 if(isset($error_msg['doctorSpecialization']))
-                {
+                {   
                   echo"<span class='error1'>".$error_msg['doctorSpecialization']."</span>";
                 }
               ?>
@@ -102,13 +115,20 @@
             <div>
               <label>Doctor Name</label>
               <select name="doctorName" class="text-input">
-                <option value="NULL">--Select Doctor--</option>
-                <option value="Hridoy">Dr.Hridoy</option>
-                <option value="Mahi">Dr.Mahi</option>
-                <option value="Nabil">Dr.Nabil</option>
-                <option value="fahad">Dr.Fahad</option>
-              </select>
-              <?php 
+                <option disabled selected>--Select Doctor--</option>
+                <?php
+         // Using database connection file here
+        include "../controls/db.php";
+      
+        $records = mysqli_query($db, "SELECT username FROM doctors");  // Use select query here 
+
+        while($data = mysqli_fetch_array($records))
+        {
+            echo "<option value='". $data['username'] ."'>" .$data['username'] ."</option>";  // displaying data in option menu
+        }	
+    ?> 
+</select>
+              <?php    
                 if(isset($error_msg['doctorName']))
                 {
                   echo"<span class='error1'>".$error_msg['doctorName']."</span>";
@@ -125,6 +145,12 @@
                   echo"<span class='error1'>".$error_msg['date']."</span>";
                 }
               ?>
+
+<div>
+                  <label>Fees</label>
+                  <input type="text" name="fees" value="<?php echo $myrecord['fees']; ?>"  class="text-input" readonly/>
+            </div>
+
             <div>
               <label>Time</label>
               <input type="time" name="time" class="text-input" />

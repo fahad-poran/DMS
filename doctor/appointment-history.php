@@ -77,7 +77,7 @@
                 <td>Male</td>
                 <td>03/30/2021</td>
                 <td>9:25 PM</td>
-                <td><a href="#" class="delete">Delete</a></td>
+                <td><a href="#" class="fas fa-font den">Delete</a></td>
               </tr>
             </tbody>
           </table>

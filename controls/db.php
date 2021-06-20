@@ -1,14 +1,10 @@
-<?php 
-    $db_host = "localhost";
-    $db_user = "root";
-    $db_password = "";
-    $db_name = "hms";
+<?php
 
-    $connection = new mysqli($db_host,$db_user,$db_password,$db_name);
-    if($connection->connect_error){
-        die("connection failed".$connection->connect_error); //print massage and exit
-    }
-    // else{
-    //     echo "Connected";
-    // }
+$db = mysqli_connect("localhost","root","","hms");
+
+if(!$db)
+{
+    die("Connection failed: " . mysqli_connect_error());
+}
+
 ?>

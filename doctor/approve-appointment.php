@@ -61,30 +61,55 @@
           <table>
             <thead>
               <th>SN</th>
-              <th>Patient Name</th>
-              <th>Email</th>
+              <th>Patient Name</th>    
               <th>Gender</th>
               <th>Date</th>
-              <th>Time</th>
+              <th>Symptoms</th>
+              <th>Comment</th>
               <th colspan="2">Action</th>
             </thead>
             <tbody>
-              <tr>
+            <?php 
+            
+            
+            ?>   
+              <tr id = "dummy">
                 <td>1</td>
                 <td>Fahad</td>
                 <td>aafporan@gmail.com</td>
                 <td>Male</td>
                 <td>03/30/2021</td>
                 <td>9:25 PM</td>
-                <td><a  href="mail.php" class="delete">Approve</a></td>
-                <td><a href="#" class="delete">Decline</a></td>
+                <td><a style="color:green;" href="mail.php" class="approve">Approve</a></td>
+                <td><a style="color:red;" href="#" class="delete">Decline</a></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <!-- // Admin Content -->
+      
+
+
     </div>
+
+    <!-- ajax -->
+    <script>
+function showUser(str) {
+  if (str == "") {
+    document.getElementById("dummy").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElemebn ntById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET","getuser.php?q="+str,true);
+    xmlhttp.send();
+  }
+}
+</script>
     <!-- // Page Wrapper -->
   </body>
 </html>
