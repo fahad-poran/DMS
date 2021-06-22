@@ -118,9 +118,10 @@
      <center><img src="images/icons8-search-100.png" width="150px">
                 <h4>Search Doctor By Category</h4>
                 
-               <p class="text-justify"><select name="ctl00$ContentPlaceHolder1$DropDownList1" id="ContentPlaceHolder1_DropDownList1" onchange="filter()">
-<option value="0">Gestrology</option>
-<option value="0">Eye</option>
+               <p class="text-justify">
+               
+               <select onchange="filter()" class="selectbox" id="select_std">
+            </select>
 
 </select></p></center> 
         </div>

@@ -18,7 +18,7 @@ if(isset($_POST['approve'])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <style>
+  <!-- <style>
   .button {
         padding: 15px 100px;
         margin: 10px 4px;
@@ -31,7 +31,7 @@ if(isset($_POST['approve'])){
         display: inline-block;
         border: 1px solid;
       }
-  </style>
+  </style> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -116,7 +116,7 @@ if(isset($_POST['approve'])){
                 
                 <textarea name="comment" class="textarea" ></textarea></td>
                 <td>
-                <button name="approve button">Appove</button>
+                <button name="approve">Appove</button>
                 </td>
                 <td><a style="color:red;" href="#" class="delete">Decline</a></td>
               </tr>
