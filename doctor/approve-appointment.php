@@ -1,19 +1,28 @@
+<?php include "../controls/Database.php" ?>
 
 <?php 
-
+ session_start();
+ $db = new Database();
+if(!isset($_SESSION['username']))
+{ header("Location:../views/doctor-login.php");}
+$currentUser = $_SESSION['id'];
 
 if(isset($_POST['approve'])){
  $comment = $_POST['comment'];
- session_start();
+
  $_SESSION['comment'] = $comment;
   if($comment){
+    $update = $db ->updateApprovedStatus($_POST,"bookappoint"); //name of the table -> bookappopint
     echo "<script>window.location.href = 'mail.php';</script>";
- }
+  }
   else{
     echo "<script>alert('Comment Required!');</script>";
 }
 }
-
+if(isset($_POST['decline'])){
+  $update= $db->updateDeclineStatus($_POST,"bookappoint");
+}//most imp line,, 
+$data = $db->displayApproved($currentUser);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,61 +100,55 @@ if(isset($_POST['approve'])){
           <h2 class="page-title">Approve Apointment</h2>
 
           <table>
-            <thead>
-              <th>SN</th>
-              <th>Patient Name</th>    
-              <th>Gender</th>
-              <th>Date</th>
-              <th>Symptoms</th>
-              <th>Comment</th>
-              <th colspan="2">Action</th>
-            </thead>
+          <thead>
+          <th>SNo.</th>
+          <th>Patient Name</th>
+          <th>Gender</th>
+          <th>Date</th>
+          <th>Symptoms</th>
+          <th>Status</th>
+          <th>Comment</th>
+          <th colspan = "2" class="th-action">Action</th>
             <tbody>
             <?php 
-            
+            $no = 1;
+            if($data){
+              foreach($data as $value){
+                //as default setting value of status to pending
+                if(value['status'] == 'Pending')
+              {
             
             ?>   
-              <tr id = "dummy">
-                <td>1</td>
-                <td>Fahad</td>
-                <td>aafporan@gmail.com</td>
-                <td>Male</td>
-                <td>03/30/2021</td>
+              <tr>
+                <td><?php echo $sno++ ?></td>
+                <td><?php echo $value['username']?></td>
+                <td><?php echo $value['gender']?></td><?php echo $value['date']?></td>
+                <td><?php echo $value['reason']?></td>
+                <?php if($value['status']=='Approved') { 
+                ?>
+                <td class = "status-1"><?php echo $value['status'] ?></td>
+
+
                 <td>
 <form action="" method="post"> 
                 
                 <textarea name="comment" class="textarea" ></textarea></td>
                 <td>
-                <button name="approve">Appove</button>
+                <button name="approve" class="approve btn btn-success btn-big">Appove</button>
                 </td>
-                <td><a style="color:red;" href="#" class="delete">Decline</a></td>
+                <td><a href="#" class="decline-link btn-delete btn-big">Decline</a></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
       
-
+<?php } ?>
 </form>
     </div>
 
     <!-- ajax -->
-    <script>
-function showUser(str) {
-  if (str == "") {
-    document.getElementById("dummy").innerHTML = "";
-    return;
-  } else {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElemebn ntById("txtHint").innerHTML = this.responseText;
-      }
-    };
-    xmlhttp.open("GET","getuser.php?q="+str,true);
-    xmlhttp.send();
-  }
-}
+    <script src="../js/main.js">
 </script>
     <!-- // Page Wrapper -->
   </body>
