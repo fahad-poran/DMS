@@ -5,10 +5,10 @@ $db = new Database();
   // $users = new Users();
   if(isset($_POST['submit'])){
   $create = $db->insertRecord($_POST,"patients");
-    if($create)
+    if($create) // if insertion database is ok then create will recieve some data !!
     {
       echo "<script>alert('Registration succesfull');</script>";
-      echo "<script>window.location.href = 'login.php';</script>";
+      echo "<script>window.location.href = 'doctor-login.php';</script>";
     }
     // else{
     //   echo "<script>alert('Something went wrong.Please try again');</script>";
@@ -149,7 +149,7 @@ $db = new Database();
       <div class="navigation">
         <nav class="menu">
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Service</a></li>
             <li><a href="#">Contact Us</a></li>
@@ -169,7 +169,7 @@ $db = new Database();
   <div class="auth-content">
 
  <form action="register.php" method="post">
-  <h2 class="form-title">Register</h2>
+  <h2 class="form-title">Register As User/Patient</h2>
   <?php 
     // if(isset($error_msg))
     //    {
@@ -233,7 +233,7 @@ $db = new Database();
   <div>
     <button type="submit" name="submit" class="btn btn-big">Register</button>
   </div>
-  <p>Already a member? <a href="login.php">Sign In</a></p>
+  <p>Already a member? <a href="doctor-login.php">Sign In</a></p>
 </form>
 
 </div>

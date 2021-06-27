@@ -1,6 +1,3 @@
-//only displays from doctors table!!
-//data added from load.php 
-
 <?php include "../controls/Database.php" ?>
 
 <?php 
@@ -57,7 +54,7 @@
               <a href="dashboard.php"><?php echo $_SESSION['username'];?></a>
               <ul>
                 <li><a href="../controls/logout.php">Logout</a></li>
-              </ul>  
+              </ul>
             </li>
           </ul>
         </nav>
@@ -69,8 +66,6 @@
       <!-- Left Sidebar -->
       <div class="left-sidebar">
         <ul>
-          
-        <li><a href="dashboard.php">Dashboard</a></li>
           <li><a href="book-appointment.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
@@ -140,7 +135,7 @@
             document.getElementById("select_std").innerHTML = this.status;
           }
           };
-          xhttp.open("GET", "/DMS/patient/fetch_std.php", true);
+          xhttp.open("GET", "/HospitalManagementSystem/patient/fetch_std.php", true);
         
           xhttp.send();
           
@@ -159,7 +154,7 @@
             document.getElementById("select_res").innerHTML = this.status;
           }
           };
-          xhttp.open("GET", "/DMS/patient/fetch_res.php", true);
+          xhttp.open("GET", "/HospitalManagementSystem/patient/fetch_res.php", true);
         
           xhttp.send();
     }
@@ -177,7 +172,7 @@
             document.getElementById("table-data").innerHTML = this.status;
           }
           };
-          xhttp.open("GET", "/DMS/patient/load.php", true);
+          xhttp.open("GET", "/HospitalManagementSystem/patient/load.php", true);
         
           xhttp.send();
           
@@ -198,7 +193,7 @@
             document.getElementById("table-data").innerHTML = this.status;
           }
           };
-          xhttp.open("POST", "/DMS/patient/records.php", true);
+          xhttp.open("POST", "/HospitalManagementSystem/patient/records.php", true);
           xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xhttp.send("select_std="+spec + "&select_res="+gen);
 }

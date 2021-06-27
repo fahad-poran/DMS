@@ -1,3 +1,9 @@
+
+<?php 
+if(isset($_POST['button'])){
+  header("Location: register.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,14 +45,14 @@
                   <li><a class="dropdown-item" href="doctor-login.php">Doctor</a></li>
                   <li><a class="dropdown-item" href="login.php">Patient</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="views/admin-login.php">Admin Login</a></li>
+                  <li><a class="dropdown-item" href="views/admin-login.php">Admin Login</a></li>   
                 </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" >Login</a>
               </li>
             </ul>
-            <form class="d-flex">
+            <form class="d-flex" >
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -96,7 +102,7 @@
       </div>
 
 <!-- end of priview slider -->
-<br>   <br>   
+<br>   <br>   <form action="#" method="post">
 <section>
     <div class="container">
         <div class="row">
@@ -131,11 +137,11 @@
                 
                <p class="text-justify"></p><h4>TextBox &amp; Button</h4><p></p></center> 
 <center>
-<p class="text-justify"></p><h4> <button type="button" class="btn btn-warning">Rating</button>
+<p class="text-justify"></p><h4> <button  type="button" class="btn btn-warning" onclick="location.href='register.php'">Register</button>
                   <button type="button" class="btn btn-info">Feed Back</button></h4><p></p></center> 
                                            
                 
-                 
+                  </form> 
 
         </div>
             

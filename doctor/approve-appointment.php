@@ -110,40 +110,56 @@ $data = $db->displayApproved($currentUser);
           <th>Comment</th>
           <th colspan = "2" class="th-action">Action</th>
             <tbody>
-            <?php 
-            $no = 1;
-            if($data){
-              foreach($data as $value){
-                //as default setting value of status to pending
-                if(value['status'] == 'Pending')
+            <?php
+              $sno=1;
+              if($data){
+              foreach($data as $value)
               {
-            
-            ?>   
-              <tr>
+                if($value['status']=='Pending')
+                {
+            ?>
+                 <tr>
                 <td><?php echo $sno++ ?></td>
-                <td><?php echo $value['username']?></td>
-                <td><?php echo $value['gender']?></td><?php echo $value['date']?></td>
-                <td><?php echo $value['reason']?></td>
-                <?php if($value['status']=='Approved') { 
-                ?>
-                <td class = "status-1"><?php echo $value['status'] ?></td>
-
-
+                <td><?php echo $value['username'] ?></td>
+                <td><?php echo $value['gender'] ?></td>
+                <td><?php echo $value['date'] ?></td>
+                <td><?php echo $value['reason'] ?></td>
+                <?php
+                if($value['status']=='Approved')
+                { ?>
+                <td class="status-1"><?php echo $value['status'] ?></td>
+               <?php } else{?>
+                <td class="status-2"><?php echo $value['status'] ?></td>
+                <?php } ?>
+                <td> <form action="" method="post"> 
+                <textarea name="comment" class="textarea" ></textarea> </td>
+                <input type="hidden" name="id" value="<?php echo $value['id'];?>">
                 <td>
-<form action="" method="post"> 
-                
-                <textarea name="comment" class="textarea" ></textarea></td>
-                <td>
-                <button name="approve" class="approve btn btn-success btn-big">Appove</button>
+                  <?php
+                  if($value['status']=='Pending'){
+                    print '<button type="submit" name="approve" class="approve btn-update btn-big">Approve</button>';}
+                  else{
+                      print '<button type="submit" name="approve" class="approve-link btn-update btn-big">Approve</button>';
+                    }?>
                 </td>
-                <td><a href="#" class="decline-link btn-delete btn-big">Decline</a></td>
+                <td>
+                  <?php
+                  if($value['status']=='Pending'){
+                    print '<button type="submit" name="decline" class="decline btn-delete btn-big">Decline</button>';}
+                    else{
+                      print '<button type="submit" name="decline" class="decline-link btn-delete btn-big">Decline</button>';
+                    }
+                  ?>
+                </td>
+                </form>
               </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      
-<?php } ?>
+              <?php } } }
+              else{
+              ?>
+              <tr>
+                <td colspan="8" class="no-record">No records found</td>
+              </tr>
+              <?php } ?>
 </form>
     </div>
 
