@@ -108,7 +108,7 @@
             document.getElementById("table-data").innerHTML = this.status;
           }
           };
-          xhttp.open("GET", "/HospitalManagementSystem/doctor/load.php", true);
+          xhttp.open("GET", "/DMS/doctor/load.php", true);
         
           xhttp.send();
           
