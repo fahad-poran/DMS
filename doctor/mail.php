@@ -22,8 +22,8 @@ $mail->Password = 'Dummy@1234'; // SMTP password
 //$mail->Port = 587; // TCP port to connect to
 //$_SESSION['mail']=$_POST['email'];
 $m="aafporan8@gmail.com";
-$name="Mr. Fahad";
-// echo"i am mail";
+$name="Mr. Fahad";  
+// echo"i am mail";   
 //Recipients
 $mail->setFrom('poransha404@gmail.com', 'DoctorManagement');
 $mail->addAddress($m,$name); // Add a recipient

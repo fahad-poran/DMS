@@ -1,3 +1,18 @@
+<?php include "../controls/Database.php" ?>
+
+<?php 
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../views/login.php");
+  }
+  $currentUser = $_SESSION['id'];
+
+
+  $data = $db->displayAppointment("bookappoint",$currentUser);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,7 +45,7 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="dashboard.php"><?php echo $_SESSION['username'];?></a>
               <ul>
                 <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
@@ -39,16 +54,15 @@
         </nav>
       </div>
     </header>
-
+    <?php $uid = $_SESSION['id']; ?>
     <!-- Admin Page Wrapper -->
     <div class="admin-wrapper">
       <!-- Left Sidebar -->
       <div class="left-sidebar">
       <ul>
-      <li><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="book-appointment.php">Book Apointment</a></li>
+        <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
-          <li><a href="update-profile.php">Update Profile</a></li>
+          <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -65,25 +79,58 @@
               <th>Specialization</th>
               <th>Fees</th>
               <th>Date</th>
-              <th>Time</th>
+              <th>Day</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Comment</th>
+              <th colspan="2"class="th-action">Action</th>
             </thead>
             <tbody>
+            <?php
+              $sno=1;
+              if($data){
+              foreach($data as $value)
+              {
+            ?>
               <tr>
-                <td>1</td>
-                <td>Dr.Fahad</td>
-                <td>Neurology</td>
-                <td>500</td>
-                <td>03/30/2021</td>
-                <td>9:25 PM</td>
-                <td>Pending</td>
-                <td><a href="#" class="delete">delete</a></td>
+                <td><?php echo $sno++ ?></td>
+                <td><?php echo $value['username'] ?></td>
+                <td><?php echo $value['specialization'] ?></td>
+                <td><?php echo $value['fees'] ?></td>
+                <td><?php echo $value['date'] ?></td>
+                <td><?php echo $value['day'] ?></td>
+                <?php
+                if($value['status']=='Approved')
+                { ?>
+                <td class="status-1"><?php echo $value['status'] ?></td>
+               <?php } else{?>
+                <td class="status-2"><?php echo $value['status'] ?></td>
+                <?php } ?>
+                <td class="status"><?php echo $value['comment']?></td>
+                <td>
+                  <?php
+                    if($value['status']=='Approved'){
+                      print '<a class="btn-delete btn-big disabled-link">Delete</a>';}
+                else{
+                  // $_SESSION['id'] = $value['id'];
+                  // echo $_SESSION['id'];
+                  // print '<a href="echo.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>';
+
+                   echo '<a onclick="return confirm(`Are You Sure Want to delete?`)" href="delete.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>';
+                  } ?></td>
+                <td>
+                  <?php if($value['status']=='Approved'){ 
+                   print '<a href="invoice.php?printid='.$value['id'].'" class="btn-update btn-big">Print</a>'; }
+                  else{
+                    print '<a class="btn-update btn-big disabled-link">Print</a>';
+                  }?></td>
               </tr>
-            </tbody>
-            <tbody>
-            
-            
+              <?php } }
+              else{
+              ?>
+              <tr>
+                <td colspan="8" class="no-record">No records found</td>
+              </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>

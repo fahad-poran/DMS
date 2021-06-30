@@ -254,6 +254,33 @@
         //         return $data;
         //     }
         // }
+        public function income($table,$currentUser){
+            $sql = "SELECT * FROM $table WHERE id= '$currentUser'";
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+
+        }
+        public function displayBookAppoint($table,$name){
+            $sql = "SELECT * FROM $table WHERE username= '$name'";
+            
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+        }
+        
         public function displaySingleRecord($table,$currentUser)
         {
             if($table=="patients" || $table=="pharmacists")

@@ -66,7 +66,7 @@
       <!-- Left Sidebar -->
       <div class="left-sidebar">
         <ul>
-          <li><a href="book-appointment.php">Book Apointment</a></li>
+          <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
         </ul>
@@ -135,7 +135,7 @@
             document.getElementById("select_std").innerHTML = this.status;
           }
           };
-          xhttp.open("GET", "/HospitalManagementSystem/patient/fetch_std.php", true);
+          xhttp.open("GET", "/DMS/patient/fetch_std.php", true);
         
           xhttp.send();
           
@@ -154,7 +154,7 @@
             document.getElementById("select_res").innerHTML = this.status;
           }
           };
-          xhttp.open("GET", "/HospitalManagementSystem/patient/fetch_res.php", true);
+          xhttp.open("GET", "/DMS/patient/fetch_res.php", true);
         
           xhttp.send();
     }
@@ -172,7 +172,7 @@
             document.getElementById("table-data").innerHTML = this.status;
           }
           };
-          xhttp.open("GET", "/HospitalManagementSystem/patient/load.php", true);
+          xhttp.open("GET", "/DMS/patient/load.php", true);
         
           xhttp.send();
           
@@ -193,7 +193,7 @@
             document.getElementById("table-data").innerHTML = this.status;
           }
           };
-          xhttp.open("POST", "/HospitalManagementSystem/patient/records.php", true);
+          xhttp.open("POST", "/DMS/patient/records.php", true);
           xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xhttp.send("select_std="+spec + "&select_res="+gen);
 }

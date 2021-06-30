@@ -3,6 +3,12 @@
 <?php 
   session_start();
   $db = new Database();
+  $currentUser = $_SESSION['id'];
+$money = $db->income('doctors',$currentUser);
+
+$name = $_SESSION['username'];
+$status = $db->displayBookAppoint('bookappoint',$name);
+
   if(!isset($_SESSION['username']))
   {
     header("Location:../login.php");
@@ -73,6 +79,21 @@
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
+
+         <!-- echo json_encode($money); -->
+        
+        <h3 class="income">Net Income </h3>
+<!-- //Alhamdulillah going to the right direction -->
+        <h4 class = "money"><?php 
+        foreach ($status as $value){
+          $result = 0;
+          if ($value['status'] == 'Done'){
+          $result += (int)$value['fees'];
+          
+          // echo json_encode($status);  
+          echo $result;}
+        }
+        ?></h4>
         </div>
       </div>
      <script>

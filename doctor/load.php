@@ -4,7 +4,7 @@
     $db = new Database();
     $currentUser = $_SESSION['id'];
     $data=$db->displayApproved($currentUser);
- 
+
     $sno=1;
 //$output="";
 if($data)

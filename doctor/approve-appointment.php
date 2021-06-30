@@ -5,7 +5,7 @@
  $db = new Database();
 if(!isset($_SESSION['username']))
 { header("Location:../views/doctor-login.php");}
-$currentUser = $_SESSION['id'];
+$currentUser = $_SESSION['id']; 
 
 if(isset($_POST['approve'])){
  $comment = $_POST['comment'];

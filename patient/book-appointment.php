@@ -1,22 +1,23 @@
-//only displays from doctors table!!
-//data added from load.php 
-
 <?php include "../controls/Database.php" ?>
 
 <?php 
-  //session_start();
   session_start();
   $db = new Database();
   if(!isset($_SESSION['username']))
   {
-    header("Location:../login.php");
+    header("Location:../views/login.php");
   }
-  // if(!isset($_SESSION['username']))
-  // {
-  //   header("Location:../login.php");
-  // }
 
-  
+  $currentUser = $_SESSION['id'];
+  if(isset($_POST['book']))
+{
+  $update = $db->bookAppointment($_POST,"bookappoint",$currentUser);
+  if($update)
+  {
+    echo "<script>alert('Appointment Booked succesfully');</script>";
+    echo "<script>window.location.href = 'appointment-history.php';</script>";
+  }
+}
 
 ?>
 
@@ -32,8 +33,6 @@
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" type="text/css" -->
-        <!-- href="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.css" /> -->
 
     <!-- Custom Styling -->
     <!-- <link rel="stylesheet" href="../../css/style.css"> -->
@@ -42,7 +41,8 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Book Appointment</title>
+    <link rel="icon" href="../images/hms.svg">
   </head>
 
   <body>
@@ -57,7 +57,7 @@
               <a href="dashboard.php"><?php echo $_SESSION['username'];?></a>
               <ul>
                 <li><a href="../controls/logout.php">Logout</a></li>
-              </ul>  
+              </ul>
             </li>
           </ul>
         </nav>
@@ -69,9 +69,7 @@
       <!-- Left Sidebar -->
       <div class="left-sidebar">
         <ul>
-          
-        <li><a href="dashboard.php">Dashboard</a></li>
-          <li><a href="book-appointment.php">Book Apointment</a></li>
+        <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
         </ul>
@@ -80,128 +78,127 @@
 
       <!-- Admin Content -->
       <div class="admin-content">
-        <div class="select-group">
-          <div class="select1" >
-            <label>Doctor Specialization</label>
-            <select onchange="filter()" class="selectbox" id="select_std">
-            </select>
-          </div>
-          <div class="select2" >
-            <label>Gender</label>
-            <select  class="selectbox" id="select_res">
-            </select>
-          </div>
-          
-        </div>
-        <div class="filter-group">
-            <button class="btn btn-big" onclick="filter()">Filter</button>
-            <button class="btn btn-big" onclick="location.reload()">Reset</button>
-        </div>
-
         <div class="content">
           <h2 class="page-title">Book Appointment</h2>
 
-          <table >
-            <thead>
-              <th>Sn</th>
-              <th>Username</th>
-              <!-- <th>Email</th> -->
-              <th>Specialization</th>
-              <th>Fees</th>
-              <th>Gender</th>  
-              <th>Date</th>  
-              <th>Day</th>  
-              <th>Start Time</th>  
-              <th>End Time</th>  
-              <th>Status</th>  
-              <th colspan="2" class="th-action">Action</th>
-            </thead>
-            <tbody id="table-data">
-              
-            </tbody>
-          </table>
+          <?php
+            $editid = $_REQUEST['bookid'];
+            $myrecord = $db->displayRecordById($editid,"doctors");
+            include "../controls/errors.php";
+          ?>
+
+          <form action="" method="POST">
+          <div>
+              <?php
+                // $sql = "SELECT DISTINCT specialization FROM doctors"; //distinct for remove duplicate
+                // $result = $db->connection->query($sql);
+              ?>
+              <label>Doctor Specialization</label>
+              <input type="text" name="specialization" value="<?php echo $myrecord['specialization']; ?>"  class="text-input" readonly/>
+              <!-- <select name="DoctorSpecialization" class="text-input" id="ds"> -->
+                <!-- <option value="NULL">--Select Specialization--</option> -->
+                
+                <?php
+                  // while($row = $result->fetch_assoc())
+                  // { ?>
+                    <!-- <option value="<?php// echo $row['specialization'];?>"><?php // echo $row['specialization']?></option> -->
+                  <?php
+                  //}
+                ?>
+
+              <!-- </select> -->
+              <?php 
+                // if(isset($error_msg['doctorSpecialization']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['doctorSpecialization']."</span>";
+                // }
+              ?>
+            </div>
+            <div>
+              <label>Doctor Name</label>
+              <!-- <select name="doctorName" class="text-input" >
+                <option value="NULL">--Select Doctor--</option> -->
+                <!-- <option value="Hridoy">Dr.Hridoy</option>
+                <option value="Mahi">Dr.Mahi</option>
+                <option value="Nabil">Dr.Nabil</option>
+                <option value="fahad">Dr.Fahad</option> -->
+              <!-- </select> -->
+              <input type="text" name="username" value="<?php echo $myrecord['username']; ?>"  class="text-input" readonly/>
+              <?php 
+                // if(isset($error_msg['doctorName']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['doctorName']."</span>";
+                // }
+              ?>
+            </div>
+            <div>
+                  <label>Fees</label>
+                  <input type="text" name="fees" value="<?php echo $myrecord['fees']; ?>"  class="text-input" readonly/>
+            </div>
+            <div>
+              <label>Date</label>
+              <input type="text" name="date" class="text-input" value="<?php echo $myrecord['date']; ?>" readonly/>
+            </div>
+            <?php 
+                // if(isset($error_msg['date']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['date']."</span>";
+                // }
+              ?>
+            <div>
+              <label>Day</label>
+              <input type="text" name="day" class="text-input" value="<?php echo $myrecord['day']; ?>" readonly/>
+            </div>
+            <?php 
+                // if(isset($error_msg['time']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['time']."</span>";
+                // }
+              ?>
+              <div>
+                <label for="">Reason for Appointment</label>
+                <textarea name="reason" id="" cols="30" rows="10" class="reasontext"></textarea>
+              </div>
+            <div>
+              <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
+              <button type="submit" name="book" class="btn btn-big">Book Appointment</button>
+            </div>
+          </form>
         </div>
       </div>
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script src="../js/jquery.min.js"></script>
-  
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function fetch_std(){
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("select_std").innerHTML = this.responseText;
-            }
-          else
-          {
-            document.getElementById("select_std").innerHTML = this.status;
-          }
-          };
-          xhttp.open("GET", "/DMS/patient/fetch_std.php", true);
-        
-          xhttp.send();
-          
-        }
-        fetch_std()
+      // $(document).ready(function(){
+      //   function loadData(type,catid)
+      //   {
+      //     $.ajax({
+      //       url:"load.php",
+      //       type:"POST",
+      //       data:{type:type, id:catid},
+      //       success:function(data)
+      //       {
+      //         if(type=="dname")
+      //         {
+      //           $("#dn").html(data);
+      //         }
+      //        else{
+      //           $("#ds").append(data);
+      //         }
+              
+      //       }
+      //     });
+      //   }
+      //   loadData();
 
-      // Fetch Result
-      function fetch_res() {
-        var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("select_res").innerHTML = this.responseText;
-            }
-          else
-          {
-            document.getElementById("select_res").innerHTML = this.status;
-          }
-          };
-          xhttp.open("GET", "/DMS/patient/fetch_res.php", true);
-        
-          xhttp.send();
-    }
-    fetch_res();
-
-
-    function fetch(){
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("table-data").innerHTML = this.responseText;
-            }
-          else
-          {
-            document.getElementById("table-data").innerHTML = this.status;
-          }
-          };
-          xhttp.open("GET", "/DMS/patient/load.php", true);
-        
-          xhttp.send();
-          
-        }
-        fetch();
-
-    function filter() {
-          var spec=  document.getElementById("select_std").value;
-          var gen=  document.getElementById("select_res").value;
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-// ajax
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("table-data").innerHTML = this.responseText;
-            }
-          else
-          {
-            document.getElementById("table-data").innerHTML = this.status;
-          }
-          };
-          xhttp.open("POST", "/DMS/patient/records.php", true);
-          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          xhttp.send("select_std="+spec + "&select_res="+gen);
-}
+      //   $("#ds").on("change",function(){
+      //     var ds = $("#ds"),val();
+      //     loadData("dname",ds);
+      //   })
+      // });
     </script>
   </body>
 </html>
