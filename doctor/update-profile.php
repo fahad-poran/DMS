@@ -1,77 +1,24 @@
-<?php include "../controls/Database.php"?>
+<?php include "../controls/Database.php" ?>
 
 <?php 
-
-session_start();
-$db = new Database();
-  if(isset($_POST['submit']))
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
   {
-    $update = $db->updateRecord($_POST,"doctors");
-    if($update) //if login successfull
-    {
-      echo "<script>alert('Update succesful');</script>";
-      echo "<script>window.location.href = 'update-profile.php';</script>";  //it could also be done by using header!
-    }
-    else{
-      echo "<script>alert('unsuccessful');</script>";
-      echo "<script>window.location.href = 'update-profile.php';</script>";  //CALLING OWN PAGE
-    }
-
+    header("Location:../views/doctor-login.php");
   }
-  //  if(isset($_POST['submit']))
-  //  {
-  //    $uName = $_POST['username'];
-  //    if(empty($uName)){
-  //      $error_msg['username'] = "Name is required";
-  //    }
-  //    else if((strlen($uName)<6)){
-  //      $error_msg['username'] = "Name is too short";
-  //    }
-  //    else if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
-  //      $error_msg['username'] = "Only letter allowed";
-  //    }
- 
-  //    $email = $_POST['email'];
-  //    if(empty($email)){
-  //      $error_msg['email'] = "Email is required";
-  //    }
-  //    else if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
-  //      $error_msg['email'] = "Invalid email format";
-  //    }
+  $currentUser=$_SESSION['id'];
+  if(isset($_POST['update']))
+  {
+      $update=$db->updateSingleRecord($_POST,"doctors",$currentUser);
+      if($update)
+      {
+          echo "<script>alert('Updated succesfully');</script>";
+  
+          echo "<script>window.location.href = 'update-profile.php';</script>";
+      }
+  }
 
-  //   $doctorSpecialization = $_POST['doctorSpecialization'];
-  //     if($doctorSpecialization=="NULL"){
-  //     $error_msg['doctorSpecialization'] = "Doctor specialization required";
-  //   }
- 
-  //    $phone = $_POST['phone'];
-  //    if(empty($address)){
-  //      $error_msg['phone'] = "Phone number is required";
-  //    }
-  //    else if(!is_numeric($phone)){
-  //      $error_msg['phone'] = "Only number input";
-  //    }
-  //    else if((strlen($phone)!=11)){
-  //      $error_msg['phone'] = "Invalid phone number format";
-  //    }
- 
-  //    $gender = $_POST['gender'];
-  //    if($gender=="NULL"){
-  //      $error_msg['gender'] = "Gender in required";
-  //    }
- 
- 
-  //    $password = $_POST['password'];
-  //    if(empty($password)){
-  //      $error_msg['password'] = "Password is required";
-  //    }
-  //    else if((strlen($password)<6)){
-  //      $error_msg['password'] = "Password is too short";
-  //    }
-  //    else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
-  //      $error_msg['password'] = "the password does not meet the requirements";
-  //    }
-  //  }
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +53,7 @@ $db = new Database();
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="dashboard.php"><?php echo $_SESSION['username'];?></a>
               <ul>
                 <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
@@ -121,10 +68,10 @@ $db = new Database();
       <!-- Left Sidebar -->
       <div class="left-sidebar">
         <ul>
-        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="Dashboard.php">Dashboard</a></li>
           <li><a href="approve-appointment.php">Approve Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
-          <li><a href="update-profile.php">Update Profile</a></li>
+          <li><a href="update-profile.php?editid=<?php echo $currentUser; ?>">Update Profile</a></li>
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -133,85 +80,125 @@ $db = new Database();
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Update Profile</h2>
-
-          <form action="update-profile.php" method="post">
+          <!-- <?php include "../controls/errors.php"; ?> -->
+            <?php  
+              $data = $db->displaySingleRecord("doctors",$currentUser);
+              if($data)
+              {
+                foreach($data as $value)
+                {
+            ?>
+          <form action="update-profile.php" method="post" name="doctorform" onsubmit="return validate()" name="myform" class= "form">
             <div>
               <label>Username</label>
-              <input type="text" name="username" class="text-input" />
-              <?php 
-                if(isset($error_msg['username']))
-                {
-                  echo"<span class='error1'>".$error_msg['username']."</span>";
-                }
-              ?>
-            </div>  
-            <div>
-              <!-- <label>Email</label>
-              <input type="email" name="email" class="text-input" /> -->
-              <?php 
-                if(isset($error_msg['email']))
-                {
-                  echo"<span class='error1'>".$error_msg['email']."</span>";
-                }
-              ?>
+              <input type="text" name="username" value="<?php echo $value['username']; ?>"  class="text-input" />
             </div>
             <div>
-              <label>Select Specialization</label>
-              <select name="doctorSpecialization" class="text-input">
+              <label>Email</label>
+              <input type="email" name="email" value="<?php echo $value['email']; ?>" class="text-input" />
+            </div>
+            <div>
+              <label>Update Specialization</label>
+              <!-- <select name="DoctorSpecialization" class="text-input">
                 <option value="NULL">--Select Specialization--</option>
-                <option value="Neurology">Neurology</option>
-                <option value="Pathology">Pathology</option>
-                <option value="Pediatrics">Pediatrics</option>
-              </select>
-              <?php 
-                if(isset($error_msg['doctorSpecialization']))
-                {
-                  echo"<span class='error1'>".$error_msg['doctorSpecialization']."</span>";
-                }
-              ?>
+                <option value="Neurology"
+                <?php
+                  if($value['specialization']=="Neurology")
+                  {
+                    echo "selected";
+                  }
+                ?>
+                >Neurology</option>
+                
+                <option value="Pathology"
+                <?php
+                  if($value['specialization']=="Pathology")
+                  {
+                    echo "selected";
+                  }
+                ?>
+                >Pathology</option>
+                <option value="Pediatrics"
+                <?php
+                  if($value['specialization']=="Pediatrics")
+                  {
+                    echo "selected";
+                  }
+                ?>
+                >Pediatrics</option>
+              </select> -->
+              <input type="text" name="DoctorSpecialization" class="text-input" value="<?php echo $value['specialization']; ?>">
             </div>
             <div>
               <label>Phone Number</label>
-              <input type="text" name="phone" class="text-input" />
-              <?php 
-                if(isset($error_msg['phone']))
-                {
-                  echo"<span class='error1'>".$error_msg['phone']."</span>";
-                }
-              ?>
+              <input type="text" name="phone" value="<?php echo $value['phone']; ?>" class="text-input" />
             </div>
             <div>
               <label>Gender</label>
               <select name="gender" class="text-input">
-                <option value="NULL">--Select Gender--</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="NULL">-- Select Gender --</option>
+                <option value="Male"
+                <?php
+                  if($value['gender']=="Male")
+                  {
+                    echo "selected";
+                  }
+                ?>
+                >Male</option>
+                <option value="Female"
+                <?php
+                  if($value['gender']=="Female")
+                  {
+                    echo "selected";
+                  }
+                ?>
+                >Female</option>
               </select>
-              <?php 
-                if(isset($error_msg['gender']))
-                {
-                  echo"<span class='error1'>".$error_msg['gender']."</span>";
-                }
-              ?>
             </div>
             <div>
-              <label>Update Password</label>
-              <input type="password" name="password" class="text-input" />
-              <?php 
-                if(isset($error_msg['password']))
-                {
-                  echo"<span class='error1'>".$error_msg['password']."</span>";
-                }
-              ?>
+              <label>Password</label>
+              <input type="text" name="password" value="<?php echo $value['password']; ?>" class="text-input" />
             </div>
             <div>
-              <button type="submit" name="submit" class="btn btn-big">Update</button>
+              <button type="submit" name="update" class="btn btn-big">Update</button>
             </div>
           </form>
+          <?php } } ?>
         </div>
       </div>
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <script src="../js/main.js"></script>
+    <script>
+ function validate() {
+ var name = document.forms["myform"]["username"].value;
+ if(name==""){
+ alert("Please enter the name");
+ return false;
+ }
+ 
+ if(name.length < 4)
+ {
+   alert("atleast 4 charecter");
+   return false;
+ }
+else{
+ var re = /^[a-zA-Z ]*$/;
+ var x=re.test(name);
+ if(x){
+ }
+ else{
+ alert("Only letter allowed");
+ return false;
+ } 
+ } 
+ var phone = document.forms["myform"]["phone"].value;
+ if(phone.length != 11){
+ alert("Phone number not valid");
+ return false;
+ } 
+}
+    </script>
   </body>
 </html>

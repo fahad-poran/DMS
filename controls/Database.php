@@ -268,7 +268,12 @@
 
         }
         public function displayBookAppoint($table,$name){
-            $sql = "SELECT * FROM $table WHERE username= '$name'";
+            $sql = "SELECT 
+            SUM(fees) income
+        FROM
+            bookappoint
+        WHERE
+            status = 'Done'";
             
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
@@ -280,7 +285,7 @@
                 return $data;
             }
         }
-        
+
         public function displaySingleRecord($table,$currentUser)
         {
             if($table=="patients" || $table=="pharmacists")

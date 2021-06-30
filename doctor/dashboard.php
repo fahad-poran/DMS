@@ -85,13 +85,23 @@ $status = $db->displayBookAppoint('bookappoint',$name);
         <h3 class="income">Net Income </h3>
 <!-- //Alhamdulillah going to the right direction -->
         <h4 class = "money"><?php 
-        foreach ($status as $value){
-          $result = 0;
-          if ($value['status'] == 'Done'){
-          $result += (int)$value['fees'];
-          
-          // echo json_encode($status);  
-          echo $result;}
+        // foreach ($status as $value){
+        //   $result = (int)0;
+        
+        //   if ($value['status'] == 'Done'){
+        //   //  $val = $value['fees'];
+        //   // $result += (int)$value['fees'];
+        //     $re = $value['fees'];
+        //     settype($re, 'int');
+        //   $result = $result + $re +500;
+        //   settype($result, 'int');
+        //   // echo json_encode($status);  
+        //   echo $result;}
+        // }
+        // echo json_encode($status);
+        foreach($status as $value){
+          $result = $value['income'];
+          echo $result;
         }
         ?></h4>
         </div>
