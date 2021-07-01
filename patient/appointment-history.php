@@ -60,6 +60,7 @@
       <!-- Left Sidebar -->
       <div class="left-sidebar">
       <ul>
+      <li><a href="dashboard.php">Dashboard</a></li>
         <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>

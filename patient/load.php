@@ -24,7 +24,7 @@ foreach($data as $value)
                 <td><?php echo $value['stime'] ?></td>
                 <td><?php echo $value['etime'] ?></td>
                 <td class="status-1"><?php echo $value['status'] ?></td>
-                <td><a href="book-appointment.php?bookid=<?php echo $value['id']?>" class="delete btn-delete btn-big">Book</a></td>
+                <td><a href="book-appointment.php?bookid=<?php echo $value['id']?>"  class="delete btn-delete btn-big">Book</a></td>
               </tr>
               <?php 
                 }

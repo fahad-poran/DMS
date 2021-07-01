@@ -1,14 +1,14 @@
 <?php include"../controls/Database.php" ?>
 
 <?php 
-  session_start();
+  session_start();   
   $db = new Database();
   $currentUser = $_SESSION['id'];
-$money = $db->income('doctors',$currentUser);
+
 
 $name = $_SESSION['username'];
 $status = $db->displayBookAppoint('bookappoint',$name);
-
+$panding = $db->pandingPatient('bookappoint',$name);
   if(!isset($_SESSION['username']))
   {
     header("Location:../login.php");
@@ -81,8 +81,8 @@ $status = $db->displayBookAppoint('bookappoint',$name);
           <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
 
          <!-- echo json_encode($money); -->
-        
-        <h3 class="income">Net Income </h3>
+      <div class ="income">  
+        <h3>Net Income </h3>
 <!-- //Alhamdulillah going to the right direction -->
         <h4 class = "money"><?php 
         // foreach ($status as $value){
@@ -104,6 +104,33 @@ $status = $db->displayBookAppoint('bookappoint',$name);
           echo $result;
         }
         ?></h4>
+        </div>
+        <hr>
+        <div class="pending">
+          <h3>Pending Request </h3>
+            <h4>
+            <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)
+              {
+                if($value['status']=='Pending')
+                {
+                  $no += $sno;
+                  
+                }
+                else{
+                  $no = 0;
+                }
+               
+              }
+              echo $no;
+            }
+            ?>
+            </h4>
+         
+        </div>
         </div>
       </div>
      <script>

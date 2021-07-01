@@ -254,8 +254,14 @@
         //         return $data;
         //     }
         // }
-        public function income($table,$currentUser){
-            $sql = "SELECT * FROM $table WHERE id= '$currentUser'";
+        public function pandingPatient($table,$name){
+            $sql = "SELECT 
+            *
+        FROM
+            bookappoint
+        WHERE
+            username = '$name'";
+
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
             {
@@ -265,15 +271,16 @@
                 }
                 return $data;
             }
-
+    
         }
+
         public function displayBookAppoint($table,$name){
             $sql = "SELECT 
             SUM(fees) income
         FROM
             bookappoint
         WHERE
-            status = 'Done'";
+            status = 'Done' AND username = '$name'";
             
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
@@ -443,7 +450,7 @@
                     array_push($this->errors," Password: the password does not meet the requirements");
                 }
 
-            }
+            }  
 
            // var_dump($data);
 
@@ -752,7 +759,7 @@
 
        public function invoice($printid)
        {
-        $sql = "SELECT b.id,p.username,p.gender,p.email,p.address,d.stime,d.etime,b.date,b.day,b.fees,b.reason,b.status,b.uid FROM bookappoint b INNER JOIN patients p ON b.uid = p.id INNER JOIN doctors d ON b.d_id=d.id WHERE b.id='$printid'";
+        $sql = "SELECT b.id,p.username,p.gender,p.email,p.address,b.comment,b.date,b.day,b.fees,b.reason,b.status,b.uid FROM bookappoint b INNER JOIN patients p ON b.uid = p.id INNER JOIN doctors d ON b.d_id=d.id WHERE b.id='$printid'";
         $result = $this->connection->query($sql);
         if($result->num_rows>0)
         {

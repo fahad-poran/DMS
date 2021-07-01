@@ -81,7 +81,7 @@
               <th>Patient Name</th>
               <th>Gender</th>
               <th>Symptoms</th>
-              <th>Comment</th>
+              <th>Time given</th>
               <th>Status</th>
             
               <th colspan="2" class="th-action">Action</th>

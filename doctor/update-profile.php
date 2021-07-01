@@ -1,8 +1,10 @@
 <?php include "../controls/Database.php" ?>
 
+
 <?php 
   session_start();
   $db = new Database();
+ 
   if(!isset($_SESSION['username']))
   {
     header("Location:../views/doctor-login.php");
@@ -20,6 +22,17 @@
   }
 
 ?>
+<!-- if(strlen($password)<6){
+                    array_push($this->errors," Password: Password is too short");
+                }
+                else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
+                    array_push($this->errors," Password: the password does not meet the requirements");
+                }
+            
+                else if(!($cpassword==$password))
+                {
+                    array_push($this->errors," Password: Password didn't match");
+                } -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +93,8 @@
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Update Profile</h2>
-          <!-- <?php include "../controls/errors.php"; ?> -->
+         
+          <?php include "../controls/errors.php" ?>
             <?php  
               $data = $db->displaySingleRecord("doctors",$currentUser);
               if($data)
@@ -88,14 +102,14 @@
                 foreach($data as $value)
                 {
             ?>
-          <form action="update-profile.php" method="post" name="doctorform" onsubmit="return validate()" name="myform" class= "form">
+          <form action="update-profile.php" method="post"  onsubmit="return validate()" name="myform" class= "form">
             <div>
               <label>Username</label>
-              <input type="text" name="username" value="<?php echo $value['username']; ?>"  class="text-input" />
+              <input readonly type="text" name="username" value="<?php echo $value['username']; ?>"  class="text-input" />
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" value="<?php echo $value['email']; ?>" class="text-input" />
+              <input type="email" name="email" value="<?php echo $value['email']; ?>" class="text-input" readonly/>
             </div>
             <div>
               <label>Update Specialization</label>
@@ -127,7 +141,7 @@
                 ?>
                 >Pediatrics</option>
               </select> -->
-              <input type="text" name="DoctorSpecialization" class="text-input" value="<?php echo $value['specialization']; ?>">
+              <input readonly type="text" name="DoctorSpecialization" class="text-input" value="<?php echo $value['specialization']; ?>">
             </div>
             <div>
               <label>Phone Number</label>
@@ -198,6 +212,11 @@ else{
  alert("Phone number not valid");
  return false;
  } 
+var passowrd = document.forms["myform"]["password"].value;
+if(password.length !=8){
+  alert("Password should be 8 carecter long");
+  return false;
+}
 }
     </script>
   </body>

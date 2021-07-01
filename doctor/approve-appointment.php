@@ -20,6 +20,7 @@ if(isset($_POST['approve'])){
 }
 }
 if(isset($_POST['decline'])){
+ 
   $update= $db->updateDeclineStatus($_POST,"bookappoint");
 }//most imp line,, 
 $data = $db->displayApproved($currentUser);
@@ -145,7 +146,7 @@ $data = $db->displayApproved($currentUser);
                 <td>
                   <?php
                   if($value['status']=='Pending'){
-                    print '<button type="submit" name="decline" class="decline btn-delete btn-big">Decline</button>';}
+                    print '<button onclick="return val()" type="submit" name="decline" class="decline btn-delete btn-big">Decline</button>';}
                     else{
                       print '<button type="submit" name="decline" class="decline-link btn-delete btn-big">Decline</button>';
                     }
@@ -165,6 +166,19 @@ $data = $db->displayApproved($currentUser);
 
     <!-- ajax -->
     <script src="../js/main.js">
+</script>
+<script>  
+function val(){
+  var x = confirm("Apne ki sure?");
+  if (x){
+    return true;
+  }
+  else{
+    return false;
+  }
+
+}
+
 </script>
     <!-- // Page Wrapper -->
   </body>

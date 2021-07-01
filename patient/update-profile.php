@@ -3,6 +3,7 @@
 <?php 
   session_start();
   $db = new Database();
+  $error_msg = $db->errors;
   if(!isset($_SESSION['username']))
   {
     header("Location:../views/login.php");
@@ -65,6 +66,7 @@
       <!-- Left Sidebar -->
       <div class="left-sidebar">
         <ul>
+        <li><a href="dashboard.php">Dashboard</a></li>
           <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li> 
           <li><a href="update-profile.php?editid=<?php echo $currentUser; ?>">Update Profile</a></li>
@@ -76,7 +78,7 @@
       <!-- Admin Content -->
       <div class="admin-content">
         <div class="content">
-          <h2 class="page-title">Update Profile</h2>
+          <h2 class="page-title">Patient Update Profile</h2>
           <h3>Js validation</h3>
             <?php  
               $data = $db->displaySingleRecord("patients",$currentUser);
@@ -85,7 +87,7 @@
                 foreach($data as $value)
                 {
             ?>
-          <form action="update-profile.php" method="post" onsubmit="return validate()" name="myform" class="form">
+          <form action="update-profile.php" method="post" onsubmit="return validate()" name="myform" class="form" required>
             <div>
               <label>Username</label>
               <input type="text" name="username"  class="text-input" value="<?php echo $value['username']; ?>"/>
@@ -108,7 +110,7 @@
             </div>
             <div>
               <label>Address</label>
-              <input type="text" name="address" class="text-input" value="<?php echo $value['address']; ?>"/>
+              <input type="text" name="address" class="text-input" value="<?php echo $value['address']; ?>" required/>
               <?php 
                 // if(isset($error_msg['address']))
                 // {
@@ -129,7 +131,7 @@
             <div>
               <label>Gender</label>
               <select name="gender" class="text-input">
-                <option value="NULL">-- Select Gender --</option>
+                <option value="NULL" disabled selected>-- Select Gender --</option>
                 <option value="Male"
                 <?php
                   if($value['gender']=="Male")
@@ -156,12 +158,12 @@
             </div>
             <div>
               <label>Password</label>
-              <input type="text" name="password" class="text-input" value="<?php echo $value['password']; ?>"/>
+              <input type="text" name="password" class="text-input" value="<?php echo $value['password']; ?>" required/>
               <?php 
-                // if(isset($error_msg['password']))
-                // {
-                //   echo"<span class='error1'>".$error_msg['password']."</span>";
-                // }
+                if(isset($error_msg['password']))
+                {
+                  echo"<span class='error1'>".$error_msg['password']."</span>";
+                }
               ?>
             </div>
             <div>
@@ -202,6 +204,11 @@ else{
  alert("Phone number not valid");
  return false;
  } 
+// var pass = document.forms["myform"]["password"].value;
+// if(pass.length >= 6){
+// alert("Password should be 6 carecter long");
+//   return false;
+// }
 }
     </script>
   </body>

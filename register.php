@@ -179,7 +179,7 @@ $db = new Database();
     include "controls/errors.php";
     $db = new Database();
   ?>
-  <?php
+  <?php  
     // if(isset($_GET['msg']))
     // {
     //   echo"<span class='error'>".$_GET['msg']."</span>";
