@@ -201,7 +201,7 @@ else{
  } 
  var phone = document.forms["myform"]["phone"].value;
  if(phone.length != 11){
- alert("Phone number not valid");
+ alert("Phone number Should be 11 Degit valid");
  return false;
  } 
 // var pass = document.forms["myform"]["password"].value;

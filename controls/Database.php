@@ -206,13 +206,15 @@
                     }
                     else{
                         array_push($this->errors,"Incorrect Password");
+                        return false;
                        // echo "Incorrect";
                     }
                     
                 }
                 else{
-                    array_push($this->errors,"Email not found");
+                    // array_push($this->errors,"Email not found");
                     //echo "email not found";
+                    return false;
                 }
                 
             }

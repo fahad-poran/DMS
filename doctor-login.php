@@ -7,33 +7,34 @@ $db = new Database();
 
   if(isset($_POST['submit']))
   {
-    if($_POST['role'] == 'Doctor'){
 
     $login = $db->loginRecord($_POST,"doctors");
-    if($login)
+    if($login == True)
     {
       
-      echo "<script>alert('Login succesful');</script>";
+      // echo "<script>alert('Login succesful');</script>";
       echo "<script>window.location.href = 'doctor/dashboard.php';</script>";
     }
     // else{
     //   echo "<script>alert('Database Empty!');</script>";
     //   echo "<script>window.location.href = 'doctor-login.php';</script>";
     // }
-  }
-  else 
+
+if($login == False){
   $login = $db->loginRecord($_POST,"patients");
   if($login) //if login successfull
   {
-    echo "<script>alert('Login succesful');</script>";
+    // echo "<script>alert('Login succesful');</script>";
     echo "<script>window.location.href = 'patient/dashboard.php';</script>";  //it could also be done by using header!
   }
-  // else{
-  //   echo "<script>alert('Worng Username or password!');</script>";
-  //   echo "<script>window.location.href = 'login.php';</script>";  //CALLING OWN PAGE
-  // }
+  else{
+    echo "<script>alert('Worng Username or password!');</script>";
+    echo "<script>window.location.href = 'doctor-login.php';</script>";  //CALLING OWN PAGE
+  }
 }
+  
 
+}
 ?>
 
 <!DOCTYPE html>
@@ -80,14 +81,14 @@ $db = new Database();
   <!-- <div class="msg error">
     <li>Username required</li>
   </div> -->
-<div>Role:
+<!-- <div>Role:
 <select name="role" id="role" onchange="myFunction()">
 
 <option value="Doctor">Doctor</option>
 <option value="User">User</option>
 
 </select>
-</div>
+</div> -->
   <div>
     <label>Email</label>
     <input type="text" name="email" class="text-input">

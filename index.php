@@ -126,9 +126,13 @@ if(isset($_POST['button'])){
                 
                <p class="text-justify">
                
-               <select onchange="filter()" class="selectbox" id="select_std">
+               <select onclick="catagory()" class="selectbox" id="select_std">
+           
+               <option value="1">Ridowan Ahad</option>
+               <option value="2">Fahim Uddin</option>
+               <option value="3">Rabeya Oishi</option>
             </select>
-
+  <h3 id="cat"></h3>
 </select></p></center> 
         </div>
               <div class="col-md-4"> 
@@ -387,6 +391,15 @@ if(isset($_POST['button'])){
             </div>
             
         </footer>
-      
+      <script>
+      function catagory(){
+        var x = document.getElementById("select_std").value;
+        var about;
+        if(x==1){
+          about = "A Neurologist \n PHD from Lahore Medical Collage \n Scecilist In head Neuron";
+        }
+  document.getElementById("cat").innerHTML = "You selected: " + about;
+      }
+      </script>
 </body>
 </html>
