@@ -6,7 +6,7 @@
   $db = new Database();
   if(!isset($_SESSION['username']))
   {
-    header("Location:../login.php");
+    header("Location:../doctor-login.php");
   }
   // if(!isset($_SESSION['username']))
   // {

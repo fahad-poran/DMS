@@ -6,7 +6,7 @@
   $error_msg = $db->errors;
   if(!isset($_SESSION['username']))
   {
-    header("Location:../views/login.php");
+    header("Location:../views/doctor-login.php");
   }
   $currentUser=$_SESSION['id'];
   if(isset($_POST['update']))
