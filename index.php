@@ -5,10 +5,19 @@ include "controls/Database.php";
 if(isset($_POST['button'])){
   header("Location: register.php");
 }
+$db = new Database();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 <!-- <link rel="icon" href="images/hms.svg">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -42,12 +51,11 @@ if(isset($_POST['button'])){
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+             
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
+             
+              <a class="nav-link active" aria-current="page" href="#" data-toggle="modal" data-target="#service">Service</a>
+            <a class="nav-link active" aria-current="page" href="#" data-toggle="modal" data-target="#contact">Contact Us</a></li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="doctor-login.php" id="navbarDropdown" role="button" >
                   Login
@@ -59,19 +67,31 @@ if(isset($_POST['button'])){
                   <li><a class="dropdown-item" href="views/admin-login.php">Admin Login</a></li>   
                 </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" >Login</a>
-              </li>
+              
             </ul>
             <form class="d-flex" >
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+            <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Quick Check
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#doctors">Schedule</a>
+    <!-- <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a> -->
+  
+  </div>
             </form>
           </div>
         </div>
       </nav>
 
       <!-- end of nav bar -->
+
+      <header class="mkdf-page">
+        <marquee><h2>
+        <a href="https://surokkha.gov.bd/"><font style="font-family: 'Galada', cursive;" color="red">কোভিড-১৯ পরিস্থিতিতে অসুস্থ রোগীদের সেবায় সর্বদা নিয়োজিত </font></a></h2>
+        </marquee>
+        </header>
 
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -81,24 +101,21 @@ if(isset($_POST['button'])){
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="images/IMG_1108.jpg" class="d-block w-100" alt="...">
+            <img src="images/7.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
+              
             </div>
           </div>
           <div class="carousel-item">
-            <img src="images/IMG_1106.jpg" class="d-block w-100" alt="...">
+            <img src="images/5.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Some representative placeholder content for the second slide.</p>
+              
             </div>
           </div>
           <div class="carousel-item">
-            <img src="images/IMG_1107.jpg" class="d-block w-100" alt="...">
+            <img src="images/4.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Some representative placeholder content for the third slide.</p>
+              
             </div>
           </div>
         </div>
@@ -111,6 +128,8 @@ if(isset($_POST['button'])){
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
+<!-- end of priview slider -->
 
 <!-- end of priview slider -->
 <br>   <br>   <form action="#" method="post">
@@ -126,9 +145,9 @@ if(isset($_POST['button'])){
          <div class="row">
             <div class="col-md-4"> 
      <center><img width="130px" src="images/icons8-stumbleupon-100.png">
-                <h4>Pharmacy</h4>
-                
-               <p class="text-justify">Islamic Lectures on various topics. Audio organised by speaker, topics and series. Auto Sleep Feature. 250+ Reciters. Surah Playlists. No Ads. Highlights: Guide Available, Newsletter Available, Donation Option Available.</p></center> 
+                <h3>To Request for an appointment</h3>
+                <h4 id = "register">Register Now!</h4>
+                <p class="text-justify"></p><h4> <button  type="button" class="btn btn-warning" onclick="location.href='register.php'">Register</button></center> 
         </div>
 
               <div class="col-md-4"> 
@@ -143,28 +162,10 @@ if(isset($_POST['button'])){
                <option value="2">Fahim Uddin</option>
                <option value="3">Rabeya Oishi</option>
             </select> -->
-  
+</div> 
 <!-- </select></p></center>  -->
-        </div>
 
-        <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#doctors">Action</a>
-    <!-- <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a> -->
-  
-  </div>
-</div>
 
-  
-<div class="select1" >
-            <label>Doctor Specialization</label>
-            <select onchange="filter()" class="selectbox" id="select_std">
-            </select>
-          </div>
 
 
               <div class="col-md-4"> 
@@ -172,10 +173,17 @@ if(isset($_POST['button'])){
                 <h4>Feedback/Rating</h4>
             
         
-               <p class="text-justify"></p><h4>TextBox &amp; Button</h4><p></p></center> 
+               <p class="text-justify"></p><h4>From Our Patients</h4><p></p></center> 
 <center>
-<p class="text-justify"></p><h4> <button  type="button" class="btn btn-warning" onclick="location.href='register.php'">Register</button>
-                  <button type="button" class="btn btn-info">Feed Back</button></h4><p></p></center> 
+
+                  <a href="#feedback" type='Button' style='
+    padding: 0.5rem 1rem;
+  background: rgb(189, 31, 31);
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 1.08em;
+' >Feed Backs</a></h4><p></p></center> 
                                            
                 
                   </form> 
@@ -197,84 +205,75 @@ if(isset($_POST['button'])){
     <p>Face replenish sea good winged bearing years air divide wasHave night male also</p>
     </div>
     </div>
+    <h2>At a glance</h2>
+<p>Our System Has</p>
+<br>
+<link rel="stylesheet" href="new.css">
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <p><i class="fa fa-user"></i></p>
+      <h3>
+      <?php  $myrecord = $db->displayRecord("doctors");
+      include "controls/errors.php"; 
+      $res = 0; $val = 1;
+      foreach ($myrecord as $value)
+       $res += $val;
+
+       echo $res;
+        ?>
+    </h3>
+      <p>Total Doctors</p>
     </div>
-    <div class="row">
-    <div class="col-sm-6 col-lg-3">
-    <div class="single_blog_item">
-    <div class="single_blog_img">
-    <img id="im" src="images/doc2.jpg" alt="doctor">
-    <div class="social_icon">
-    <a href="#"> <i class="ti-facebook"></i> </a>
-    <a href="#"> <i class="ti-twitter-alt"></i> </a>
-    <a href="#"> <i class="ti-instagram"></i> </a>
-    <a href="#"> <i class="ti-skype"></i> </a>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <p><i class="fa fa-check"></i></p>
+      <h4><?php  $myrecord = $db->displayRecord("bookappoint");
+      include "controls/errors.php"; 
+      $res = 0; $val = 1;
+      foreach ($myrecord as $value){
+       if($value['status']=='Approved')
+        $res += $val;
+      }
+       echo $res;
+        ?></h3>
+      <p><h6>Appointment Approved<h6></p>
     </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <p><i class="fa fa-smile-o"></i></p>
+      <h4><?php  $myrecord = $db->displayRecord("comments");
+      include "controls/errors.php"; 
+      $res = 0; $val = 1;
+      foreach ($myrecord as $value){
+        $res += $val;
+      }
+       echo $res;
+        ?></h4>
+      <p>User Reviews</p>
     </div>
-    <div class="single_text">
-    <div class="single_blog_text">
-    <h3>DR Adam Billiard</h3>
-    <p>Heart specialist</p>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <p><i class="fa fa-coffee"></i></p>
+      <h3><?php  $myrecord = $db->displayRecord("bookappoint");
+      include "controls/errors.php"; 
+      $res = 0; $val = 1;
+      foreach ($myrecord as $value){
+       if($value['status']=='Done')
+        $res += $val;
+      }
+       echo $res;
+        ?></h3>
+      <p>Visited Patients</p>
     </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-sm-6 col-lg-3">
-    <div class="single_blog_item">
-    <div class="single_blog_img">
-    <img id="im" src="images/doc3.jpg" alt="doctor">
-    <div class="social_icon">
-    <a href="#"> <i class="ti-facebook"></i> </a>
-    <a href="#"> <i class="ti-twitter-alt"></i> </a>
-    <a href="#"> <i class="ti-instagram"></i> </a>
-    <a href="#"> <i class="ti-skype"></i> </a>
-    </div>
-    </div>
-    <div class="single_text">
-    <div class="single_blog_text">
-    <h3>DR Adam Billiard</h3>
-    <p>Medicine specialist</p>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-sm-6 col-lg-3">
-    <div class="single_blog_item">
-    <div class="single_blog_img">
-    <img id="im" src="images/doc1.jpg" alt="doctor">
-    <div class="social_icon">
-    <a href="#"> <i class="ti-facebook"></i> </a>
-    <a href="#"> <i class="ti-twitter-alt"></i> </a>
-    <a href="#"> <i class="ti-instagram"></i> </a>
-    <a href="#"> <i class="ti-skype"></i> </a>
-    </div>
-    </div>
-    <div class="single_text">
-    <div class="single_blog_text">
-    <h3>DR Fred Macyard</h3>
-    <p>CHeart specialist</p>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-sm-6 col-lg-3">
-    <div class="single_blog_item">
-    <div class="single_blog_img">
-    <img id="im" src="images/doc2.jpg" alt="doctor">
-    <div class="social_icon">
-    <a href="#"> <i class="ti-facebook"></i> </a>
-    <a href="#"> <i class="ti-twitter-alt"></i> </a>
-    <a href="#"> <i class="ti-instagram"></i> </a>
-    <a href="#"> <i class="ti-skype"></i> </a>
-    </div>
-    </div>
-    <div class="single_text">
-    <div class="single_blog_text">
-    <h3>DR Justin Stuard</h3>
-    <p>Heart specialist</p>
-    </div>
-    </div>
-    </div>
-    </div>
+  </div>
+</div>
     </div>
     </div>
     </section>
@@ -293,27 +292,51 @@ if(isset($_POST['button'])){
   
        <div class="row">
           <div class="col-md-4"> 
-   <center><img src="imgs/sign-up.png" width="150px">
-              <h4>Sign Up</h4>
+   <center><img src="images/icons8-share-100.png" width="150px"><br>
+              <a href="#register" style='
+    padding: 0.5rem 1rem;
+  background: rgb(59, 200, 31);
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 1.08em;
+'>Sign Up now</a>
               
-             <p class="text-justify">Islamic Lectures on various topics. Audio organised by speaker, topics and series. Auto Sleep Feature. 250+ Reciters. Surah Playlists. No Ads. Highlights: Guide Available, Newsletter Available, Donation Option Available.</p></center> 
+             <p class="text-justify"><h3>By signing up</h3> 
+             <h6><li>You can Track your Appointment Histry.<li>Add Symtoms </li> <li>Get Doctors Consults</p></center> </h6>
       </div>
 
             <div class="col-md-4"> 
    <center><img src="images/icons8-clock-100.png" width="150px">
               <h4>Schedule Match</h4>
-              <p>
-
-           
+              <h6>
+                <textarea name="" id="" cols="30" rows="10">
+<?php 
+$myrecord = $db->displayRecord("doctors");
+include "controls/errors.php"; 
+            
+foreach ($myrecord as $value)
+echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$value['etime'].'<br> <br>'; 
+  
+?>
+           </textarea>
            </center> 
       </div>
 
       
             <div class="col-md-4"> 
    <center><img src="images/icons8-info-100.png" width="150px">
-              <h4>Visit Us</h4>
-              
-             <p class="text-justify">Islamic Lectures on various topics. Audio organised by speaker, topics and series. Auto Sleep Feature. 250+ Reciters. Surah Playlists. No Ads. Highlights: Guide Available, Newsletter Available, Donation Option Available.</p></center> 
+              <h4 id="feedback">Your Thoughts</h4>
+             
+            <?php  $myrecord = $db->displayRecord("comments");
+            include "controls/errors.php"; 
+            
+            foreach ($myrecord as $value)
+            echo $value['uid'].' Says '.$value['message'].'<br>'; 
+              ?>
+
+
+            </center> 
       </div>
           
            </div>
@@ -352,112 +375,112 @@ if(isset($_POST['button'])){
 
  
   <br>      <br>   
-        <footer class="bg-dark text-white pt-5 pb-4">
+  <footer class="bg-dark text-white pt-5 pb-4">
 
-            <div class="container text-center text-md-left">
+<div class="container text-center text-md-left">
+
+    <div class="row text-center text-md-left">
+
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">   Doctor Managment</h5>
+            <p>“To serve humanity.” The trust has promised to provide low-cost healthcare services to the people of Bangladesh.</p>
+            
+        </div>
+
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Services</h5>
+        <p>
+            <a href="#" class="text-white" style="text-decoration: none;">Covid-19 Test</a>
+        </p>
+        <p>
+            <a href="#" class="text-white" style="text-decoration: none;">Diagnostic Services</a>
+        </p>
+        <p>
+            <a href="#" class="text-white" style="text-decoration: none;">Cardiac Services</a>
+        </p>
+        <p>
+            <a href="#" class="text-white" style="text-decoration: none;">Dental Checkup</a>
+        </p>
+
+        </div>
+
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Useful links</h5>
+        <p>
+            <a href="https://www.facebook.com/">Facebook</a>
+        </p>
+        <p>
+            <a href="https://www.twitter.com/">Twitter</a>
+            
+        </p>
         
-                <div class="row text-center text-md-left">
+       
+        </div>
+
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact Us</h5>
+            <p>
+                Uttora Clinic
+                EIB Compond, 24/2 Cantonment Rd, Rajshahi 6202
+            </p>
+
+
+
+            <i class="fas fa-envelope mr-3"></i>info@doctormanagment.com
+            </p>
+            <p>
+                <i class="fas fa-phone mr-3"></i>Hotline: +8801904547587
+            </p>
+            <p>
+                <i class="fas fa-print	 mr-3"></i>Emergency: +8801755933719
+            </p>
+        </div>
         
-                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">   Name</h5>
-                        <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                  ital consectetur lorem ipsum dolor sit amet adipisicing elit.</p>
-                        
-                    </div>
-        
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Products</h5>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;"> TheProviders</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;"> Creativity</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;"> SourceFiles</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;"> bootstrap 5 alpha</a>
-                    </p>
-        
-                    </div>
-        
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Useful links</h5>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;"> Your Account</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;"> Become an Affiliates</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">Shipping Rates</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;"> Help</a>
-                    </p>
-                    </div>
-        
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                        <h5 class="text-uppercase mb-4 font-weight-bold text-warning" >Contact</h5>
-                        <p>
-                            <i class="fas fa-home mr-3"></i>New York, NY 2333, US
-                        </p>
-                        <p>
-                            <i class="fas fa-envelope mr-3"></i>theproviders98@gmail.com
-                        </p>
-                        <p>
-                            <i class="fas fa-phone mr-3"></i>+92 3162859445
-                        </p>
-                        <p>
-                            <i class="fas fa-print	 mr-3"></i>+01 335 633 77
-                        </p>
-                    </div>
-                    
-                </div>
-        
-                <hr class="mb-4">
-        
-                <div class="row align-items-center">
-        
-                    <div class="col-md-7 col-lg-8">
-                        <p>	Copyright ©2020 All rights reserved by:
-                            <a href="#" style="text-decoration: none;">
-                                <strong class="text-warning">The Providers</strong>
-                            </a></p>
-                        
-                    </div>
-        
-                    <div class="col-md-5 col-lg-4">
-                        <div class="text-center text-md-right">
-        
-                            <ul class="list-unstyled list-inline">
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-google-plus"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-linkedin-in"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-youtube"></i></a>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-        
+    </div>
+   
+
+    <hr class="mb-4">
+
+    <div class="row align-items-center">
+
+       <!---- <div class="col-md-7 col-lg-8">
+            <p>	Copyright ©2020 All rights reserved by:
+                <a href="#" style="text-decoration: none;">
+                    <strong class="text-warning">The Providers</strong>
+                </a></p>
+            
+        </div>-->
+
+        <div class="col-md-5 col-lg-4">
+            <div class="text-center text-md-right">
+
+                <ul class="list-unstyled list-inline">
+                    <li class="list-inline-item">
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-google-plus"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-youtube"></i></a>
+                    </li>
+                </ul>
+                
             </div>
             
-        </footer>
+        </div>
+        
+    </div>
+
+</div>
+
+</footer>
       <!-- <script>
       function catagory(){
         var x = document.getElementById("select_std").value;

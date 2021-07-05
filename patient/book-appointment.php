@@ -83,7 +83,7 @@
         <div class="content">
           <h2 class="page-title">Book Appointment</h2>
 
-          <?php
+          <?php    
             $editid = $_REQUEST['bookid'];
             $myrecord = $db->displayRecordById($editid,"doctors");
             include "../controls/errors.php";

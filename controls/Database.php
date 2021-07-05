@@ -246,6 +246,10 @@
         // }
         
         ////////Display data//////
+        // public function displayComments($table){
+        //     $sql = "SELECT * FROM $table";
+
+        // }
         public function displayRecord($table)
         {
             $sql = "SELECT * FROM $table";
