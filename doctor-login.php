@@ -1,5 +1,8 @@
-<?php include "controls/Database.php" ?>
-<?php 
+<?php include "controls/Database.php";
+
+?>
+<?php   
+
 session_start();
 
 $db = new Database();
@@ -49,20 +52,26 @@ if($login == False){
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
     <title>Document</title>
   </head>
   <body>
+  <?php include "about.php";?>
     <header class="header-area">
       <div class="title">
         <h1>Doctor Management System</h1>
       </div>
       <div class="navigation">
         <nav class="menu">
+       
           <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="about.php">About Us</a></li>
-            <li><a href="#">Service</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a data-toggle="modal" data-target="#exampleModalLongAbout" href="#">About Us</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#service">Service</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#contact">Contact Us</a></li>
             
           </ul>
         </nav>
@@ -89,6 +98,14 @@ if($login == False){
 
 </select>
 </div> -->
+
+<!-- Button trigger modal -->
+
+
+
+
+<!-- end of contact -->
+
   <div>
     <label>Email</label>
     <input type="text" name="email" class="text-input">
@@ -102,7 +119,7 @@ if($login == False){
   <div>
     <button type="submit" name="submit" class="btn btn-big">Login</button>
   </div>
-
+<h6>Not a member?</h6><a href="register.php">Register Now!</a>
 </form>
 <script>
 function myFunction(){

@@ -60,6 +60,8 @@
           <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php">Update Profile</a></li>
+          <li><a href="feedback.php">Feedback</a></li>
+          
         </ul>
       </div>
       <!-- // Left Sidebar -->

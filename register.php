@@ -1,6 +1,6 @@
 <?php include "controls/Database.php" ?>
 <?php
-
+include "about.php";
 $db = new Database();
   // $users = new Users();
   if(isset($_POST['submit'])){
@@ -148,19 +148,12 @@ $db = new Database();
       </nav> -->
       <div class="navigation">
         <nav class="menu">
-          <ul>
+        <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="about.php">About Us</a></li>
-            <li><a href="service.php">Service</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <!-- <li>
-              <a href="#">Login</a>
-              <ul>
-                <li><a href="#">User</a></li>
-                <li><a href="#">Doctor</a></li>
-                <li><a href="#">Admin</a></li>
-              </ul>
-            </li> -->
+            <li><a data-toggle="modal" data-target="#exampleModalLongAbout" href="#">About Us</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#service">Service</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#contact">Contact Us</a></li>
+            
           </ul>
         </nav>
       </div>

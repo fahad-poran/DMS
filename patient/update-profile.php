@@ -70,7 +70,7 @@
           <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li> 
           <li><a href="update-profile.php?editid=<?php echo $currentUser; ?>">Update Profile</a></li>
-            
+          <li><a href="feedback.php">Feedback</a></li> 
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -80,6 +80,8 @@
         <div class="content">
           <h2 class="page-title">Patient Update Profile</h2>
           <h3>Js validation</h3>
+
+          <?php include "../controls/errors.php" ?>      
             <?php  
               $data = $db->displaySingleRecord("patients",$currentUser);
               if($data)
@@ -127,6 +129,9 @@
                 //   echo"<span class='error1'>".$error_msg['phone']."</span>";
                 // }
               ?>
+            </div>
+            <div>
+           
             </div>
             <div>
               <label>Gender</label>

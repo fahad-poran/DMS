@@ -133,7 +133,7 @@ $data = $db->displayApproved($currentUser);
                 <td class="status-2"><?php echo $value['status'] ?></td>
                 <?php } ?>
                 <td> <form action="" method="post"> 
-                <textarea name="comment" class="textarea" ></textarea> </td>
+                <textarea style="resize:none;" name="comment" class="textarea" ></textarea> </td>
                 <input type="hidden" name="id" value="<?php echo $value['id'];?>">
                 <td>
                   <?php

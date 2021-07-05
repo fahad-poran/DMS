@@ -7,6 +7,9 @@ body {
   font-size: 18px;
   font-family: "B612", sans-serif;
 }
+textarea{
+  resize: none;
+}
 
 .title {
   text-align: center;

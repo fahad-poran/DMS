@@ -1,5 +1,7 @@
 
 <?php 
+include "about.php";
+include "controls/Database.php";
 if(isset($_POST['button'])){
   header("Location: register.php");
 }
@@ -7,7 +9,11 @@ if(isset($_POST['button'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="images/hms.svg">
+<!-- <link rel="icon" href="images/hms.svg">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,9 +24,14 @@ if(isset($_POST['button'])){
   height: 300px;
   object-fit: cover;
 }
+
+.maprouter{
+  text-align: center;
+  padding-left: 70px;
+}
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    
+   
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
@@ -126,19 +137,41 @@ if(isset($_POST['button'])){
                 
                <p class="text-justify">
                
-               <select onclick="catagory()" class="selectbox" id="select_std">
-           
+               <!-- <select onchange="catagory()" class="selectbox" id="select_std"  data-target="#exampleModalCenter">
+           <option value="Select">Select</option>
                <option value="1">Ridowan Ahad</option>
                <option value="2">Fahim Uddin</option>
                <option value="3">Rabeya Oishi</option>
-            </select>
-  <h3 id="cat"></h3>
-</select></p></center> 
+            </select> -->
+  
+<!-- </select></p></center>  -->
         </div>
+
+        <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#doctors">Action</a>
+    <!-- <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a> -->
+  
+  </div>
+</div>
+
+  
+<div class="select1" >
+            <label>Doctor Specialization</label>
+            <select onchange="filter()" class="selectbox" id="select_std">
+            </select>
+          </div>
+
+
               <div class="col-md-4"> 
      <center><img src="images/icons8-document-100.png" width="150px">
                 <h4>Feedback/Rating</h4>
-                
+            
+        
                <p class="text-justify"></p><h4>TextBox &amp; Button</h4><p></p></center> 
 <center>
 <p class="text-justify"></p><h4> <button  type="button" class="btn btn-warning" onclick="location.href='register.php'">Register</button>
@@ -269,9 +302,13 @@ if(isset($_POST['button'])){
             <div class="col-md-4"> 
    <center><img src="images/icons8-clock-100.png" width="150px">
               <h4>Schedule Match</h4>
-              
-             <p class="text-justify">Islamic Lectures on various topics. Audio organised by speaker, topics and series. Auto Sleep Feature. 250+ Reciters. Surah Playlists. No Ads. Highlights: Guide Available, Newsletter Available, Donation Option Available.</p></center> 
+              <p>
+
+           
+           </center> 
       </div>
+
+      
             <div class="col-md-4"> 
    <center><img src="images/icons8-info-100.png" width="150px">
               <h4>Visit Us</h4>
@@ -284,6 +321,36 @@ if(isset($_POST['button'])){
 </section>
 
 <!-- end of 2nd section -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Doctor Name</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <h3 id="cat"></h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- map -->
+
+<div class="maprouter"><div class="gmap_canvas"><iframe width="800 " height="310" id="gmap_canvas" src="https://maps.google.com/maps?q=uttora%20clinic&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:310px;width:1250px;}</style><a href="https://www.embedgooglemap.net">embedgooglemap.net</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:310px;width:1250px;}</style></div></div>
+
+ 
   <br>      <br>   
         <footer class="bg-dark text-white pt-5 pb-4">
 
@@ -391,15 +458,81 @@ if(isset($_POST['button'])){
             </div>
             
         </footer>
-      <script>
+      <!-- <script>
       function catagory(){
         var x = document.getElementById("select_std").value;
         var about;
         if(x==1){
-          about = "A Neurologist \n PHD from Lahore Medical Collage \n Scecilist In head Neuron";
+          // about = "A Neurologist \n PHD from Lahore Medical Collage \n Scecilist In head Neuron";
+          var myWindow = window.open("", "MsgWindow", "width=200, height=100");
+          document.getElementById("cat").innerHTML = ("<img src='img/doc1.png'>");
+    // myWindow.document.write("<img src='img/doc1.png'> This is 'MsgWindow'. I am 200px wide and 100px tall!");
         }
-  document.getElementById("cat").innerHTML = "You selected: " + about;
+        else if(x==2){
+          document.getElementById("cat").innerHTML = ("<img src='img/doc2.png'>");
+        }
+  // document.getElementById("cat").innerHTML = "You selected: " + about;
+  
       }
-      </script>
+      </script> -->
+      <script>
+        function fetch_std(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("select_std").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("select_std").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/DMS/patient/fetch_std.php", true);
+        
+          xhttp.send();
+          
+        }
+        fetch_std()
+
+      // Fetch Result
+
+
+    function fetch(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/DMS/patient/load.php", true);
+        
+          xhttp.send();
+          
+        }
+        fetch();
+
+    function filter() {
+          var spec=  document.getElementById("select_std").value;
+          // var gen=  document.getElementById("select_res").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+// ajax
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("POST", "/DMS/patient/records.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("select_std="+spec);
+}
+    </script>
 </body>
 </html>

@@ -169,6 +169,12 @@
                 >Female</option>
               </select>
             </div>
+            <!-- 2/7/21 -->
+<div>
+              <label>Patient visit Date</label>
+              <input type="text" name="date" value="<?php echo $value['date']; ?>" class="text-input" />
+            </div>
+
             <div>
               <label>Password</label>
               <input type="text" name="password" value="<?php echo $value['password']; ?>" class="text-input" />

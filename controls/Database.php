@@ -115,7 +115,24 @@
                 // echo "<script>window.location.href = 'login.php';</script>";
             }
         }
+        public function insertComment($data,$table){
+            
+            $id = $_POST['uid'];
+            $date = $_POST['date'];
+            $msg = $_POST['message'];
+            
+            
+            $sql = "INSERT INTO `$table`( `uid`, `date`, `message`) VALUES ('$id','$date','$msg')";
 
+            
+            $create = $this->connection->query($sql);
+            if($create)
+            {
+                
+            return true;
+            
+        }
+    }
         /////////////////Login function///////
         public function loginRecord($data,$table)
         {
@@ -302,7 +319,7 @@
                 $sql = "SELECT * FROM $table WHERE id='$currentUser'";
             }
             else{
-                 $sql = "SELECT username,email,password,specialization,phone,gender FROM $table WHERE id='$currentUser'";
+                 $sql = "SELECT username,email,password,specialization,phone,gender,date,day FROM $table WHERE id='$currentUser'";
             }
             
             $result = $this->connection->query($sql);
@@ -426,10 +443,15 @@
             $password = $_POST['password'];
             $phone = $_POST['phone'];
             $gender = $_POST['gender'];
+            // 7/2/21
+            
+            
+
             if($table=="patients" || $table=="pharmacists"){  $address = $_POST['address']; }
             else 
             { 
                 $specialization = $_POST['DoctorSpecialization'];
+                $date = $_POST['date'];
             }
 
             if(empty($uName)||empty($password))
@@ -459,12 +481,12 @@
             if(count($this->errors)==0)
             {
                 //$password = md5($password);//encript password
-                if($table=="patients" || $table=="pharmacists")
+                if($table=="patients")
                 {
                     $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$currentUser'";
                 }
                 else {
-                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$currentUser'";
+                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender', date='$date' WHERE id='$currentUser'";
                 }
 
                 $result = $this->connection->query($sql);
