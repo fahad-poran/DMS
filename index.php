@@ -39,7 +39,8 @@ $db = new Database();
   display:flex;
 }
 .map{
-  width: 50%;
+  width: 30%;
+  padding 10%;
 }
 .video{
   width: 50%
@@ -365,9 +366,9 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
 
 <!-- end of 2nd section -->
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Launch demo modal
-</button>
+</button> -->
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -395,7 +396,7 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
 
 <div class="map"></div>
 
-<div class="maprouter"><div class="gmap_canvas"><iframe width="800 " height="310" id="gmap_canvas" src="https://maps.google.com/maps?q=uttora%20clinic&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:310px;width:1250px;}</style><a href="https://www.embedgooglemap.net">embedgooglemap.net</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:310px;width:1250px;}</style></div></div>
+<div class="maprouter"><div class="gmap_canvas"><iframe width="600 " height="310" id="gmap_canvas" src="https://maps.google.com/maps?q=uttora%20clinic&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br></div></div>
 
 
 <div class="video">

@@ -120,12 +120,10 @@ $panding = $db->pandingPatient('bookappoint',$name);
                   $no += $sno;
                   
                 }
-                else{
-                  $no = 0;
-                }
+                
                
-              }
-              echo $no;
+              }echo $no;
+              
             }
             ?>
             </h4>

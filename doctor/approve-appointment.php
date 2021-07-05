@@ -169,7 +169,7 @@ $data = $db->displayApproved($currentUser);
 </script>
 <script>  
 function val(){
-  var x = confirm("Apne ki sure?");
+  var x = confirm("Are you sure?");
   if (x){
     return true;
   }
