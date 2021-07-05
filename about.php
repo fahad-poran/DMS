@@ -65,7 +65,8 @@
         </button>
       </div>
       <div class="modal-body">
-     <?php echo "Our Hot-Line Number: 16204";?>
+     <?php echo "Our Hot-Line Number: 16204";?> <br>
+    <?php echo "Email: info@doctormanagment.com";?>
 
       </div>
       <div class="modal-footer">

@@ -100,7 +100,7 @@
                 <td><?php echo $value['fees'] ?></td>
                 <td><?php echo $value['date'] ?></td>
                 <td><?php echo $value['day'] ?></td>
-                <?php
+                <?php  
                 if($value['status']=='Approved')
                 { ?>
                 <td class="status-1"><?php echo $value['status'] ?></td>

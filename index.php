@@ -11,7 +11,9 @@ $db = new Database();
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet"> 
@@ -33,11 +35,19 @@ $db = new Database();
   height: 300px;
   object-fit: cover;
 }
-
-.maprouter{
+.flex{
+  display:flex;
+}
+.map{
+  width: 50%;
+}
+.video{
+  width: 50%
+}
+/* .maprouter{
   text-align: center;
   padding-left: 70px;
-}
+} */
     </style>
     
    
@@ -212,7 +222,7 @@ $db = new Database();
 <div class="row">
   <div class="column">
     <div class="card">
-      <p><i class="fa fa-user"></i></p>
+      <p><i class="fa fa-user-md "></i></p>
       <h3>
       <?php  $myrecord = $db->displayRecord("doctors");
       include "controls/errors.php"; 
@@ -245,7 +255,7 @@ $db = new Database();
   
   <div class="column">
     <div class="card">
-      <p><i class="fa fa-smile-o"></i></p>
+      <p><i class="fa fa-comment"></i></p>
       <h4><?php  $myrecord = $db->displayRecord("comments");
       include "controls/errors.php"; 
       $res = 0; $val = 1;
@@ -260,7 +270,7 @@ $db = new Database();
   
   <div class="column">
     <div class="card">
-      <p><i class="fa fa-coffee"></i></p>
+      <p><i class="fa fa-ambulance"></i></p>
       <h3><?php  $myrecord = $db->displayRecord("bookappoint");
       include "controls/errors.php"; 
       $res = 0; $val = 1;
@@ -308,20 +318,30 @@ $db = new Database();
 
             <div class="col-md-4"> 
    <center><img src="images/icons8-clock-100.png" width="150px">
-              <h4>Schedule Match</h4>
-              <h6>
-                <textarea name="" id="" cols="30" rows="10">
+<h4>Schedule Check</h4>
+<h5>For Emargancy</h5><h5 style="color:red;">Covid-19 Consultation</h5>
+   <div class="card border-warning mb-3" style=" max-height: 130px;
+    overflow-y: auto;">
+  <!-- <div class="card-header">Header</div> -->
+  <div class="card-body">
+    
+    <!-- <p class="card-text"> -->
+              
 <?php 
 $myrecord = $db->displayRecord("doctors");
 include "controls/errors.php"; 
             
 foreach ($myrecord as $value)
-echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$value['etime'].'<br> <br>'; 
+if($value['specialization']=='Eye')
+echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$value['etime'].'<br> <hr>'; 
   
 ?>
-           </textarea>
-           </center> 
-      </div>
+         
+           </center> </p>
+  </div>
+
+              
+
 
       
             <div class="col-md-4"> 
@@ -371,8 +391,17 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
 </div>
 <!-- map -->
 
+<section class="flex">
+
+<div class="map"></div>
+
 <div class="maprouter"><div class="gmap_canvas"><iframe width="800 " height="310" id="gmap_canvas" src="https://maps.google.com/maps?q=uttora%20clinic&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:310px;width:1250px;}</style><a href="https://www.embedgooglemap.net">embedgooglemap.net</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:310px;width:1250px;}</style></div></div>
 
+
+<div class="video">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Cf0g4UWSUIw?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</section>
  
   <br>      <br>   
   <footer class="bg-dark text-white pt-5 pb-4">

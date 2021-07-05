@@ -47,3 +47,8 @@ body {
 }
 
 .fa {font-size:50px;}
+
+.scroll {
+    max-height: 100px;
+    overflow-y: auto;
+}

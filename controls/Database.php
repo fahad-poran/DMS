@@ -260,7 +260,7 @@
                 {
                    $data[] = $row;  
                 }
-                return $data;
+                return $data;  
             }
         }
         // public function searchRecord($table)
