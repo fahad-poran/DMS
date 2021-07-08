@@ -21,7 +21,7 @@ $_SESSION['comment'] = $comment;
     $update = $db ->updateApprovedStatus($_POST,"bookappoint"); //name of the table -> bookappopint
     // echo "<script>window.location.href = 'mail.php';</script>";
     include "mail.php";
-  }
+  }  
   else{
     echo "<script>alert('Comment Required!');</script>";
 }

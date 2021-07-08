@@ -9,6 +9,31 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style>
+.content{
+overflow: scroll;
+
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.1rem;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #d3d3d3;
+}
+#table-data{
+  border: 1px solid black;
+}
+.th-action{
+  border: 1px solid black;
+}
+</style>
 </head>
 <body>
 <!-- Modal -->
@@ -78,8 +103,8 @@
 </div>
 </div>
 <!-- end of contact starting of Doctors -->
-<div class="modal fade" id="doctors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="doctors" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Doctors</h5>
@@ -92,8 +117,6 @@
             </select>
         
             <div class="content">
-          <h2 class="page-title">Book Appointment</h2>
-
           <table >
             <thead>
               <th>Sn</th>
@@ -123,7 +146,8 @@
     </div>
   </div>
 </div>
+<!-- Large modal -->
 
-
+  
 </body>
 </html>

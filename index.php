@@ -31,6 +31,10 @@ $db = new Database();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM</title>
     <style>
+    .fa{
+      height:1rem;
+font-size: 1.75em;
+    }
       .thought{
          border: 1px solid none;
          border-radius: 25px;
@@ -93,7 +97,7 @@ $db = new Database();
     Quick Check
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#doctors">Schedule</a>
+    <a class="dropdown-item" href="#">Schedule</a>
     <!-- <a class="dropdown-item" href="#">Another action</a>
     <a class="dropdown-item" href="#">Something else here</a> -->
   
@@ -156,7 +160,8 @@ $db = new Database();
         <div class="row">
             <div class="col-12"> 
                <center> <h2>Our Features</h2>
-                 <p><b>Category Wise Doctor Search</b></p></center>              
+                 <p><b>Category Wise Doctor Search</b></p></center>
+                        
         </div>
     </div>
     
@@ -171,7 +176,8 @@ $db = new Database();
               <div class="col-md-4"> 
      <center><img src="images/icons8-search-100.png" width="150px">
                 <h4>Search Doctor By Category</h4>
-                
+                <h5>Change Dropdown items To find doctor </h5><br>
+                <a class='btn btn-success' data-toggle="modal" data-target="#doctors" href="#">Explore</a>       
                <p class="text-justify">
                
                <!-- <select onchange="catagory()" class="selectbox" id="select_std"  data-target="#exampleModalCenter">
@@ -406,9 +412,9 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
 <div class="maprouter"><div class="gmap_canvas"><iframe width="600 " height="310" id="gmap_canvas" src="https://maps.google.com/maps?q=uttora%20clinic&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br></div></div>
 
 
-<div class="video">
+<!-- <div class="video">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Cf0g4UWSUIw?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+</div> -->
 </section>
  
   <br>      <br>   
@@ -463,13 +469,13 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
 
 
 
-            <i class="fas fa-envelope mr-3"></i>info@doctormanagment.com
+            <i class="fa fa-envelope mr-3"></i>info@doctormanagment.com
             </p>
             <p>
-                <i class="fas fa-phone mr-3"></i>Hotline: +8801904547587
+                <i class="fa fa-phone mr-3"></i>Hotline: +8801904547587
             </p>
             <p>
-                <i class="fas fa-print	 mr-3"></i>Emergency: +8801755933719
+                <i class="fa fa-print	 mr-3"></i>Emergency: +8801755933719
             </p>
         </div>
         
@@ -493,19 +499,19 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
 
                 <ul class="list-unstyled list-inline">
                     <li class="list-inline-item">
-                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fa fa-facebook"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fa fa-twitter"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-google-plus"></i></a>
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fa fa-google-plus"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fas fa-linkedin-in"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fa fa-youtube"></i></a>
                     </li>
                 </ul>
                 

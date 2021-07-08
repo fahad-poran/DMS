@@ -7,7 +7,7 @@ $db = new Database();
 $data = $db->fetch_std();
 
 ?>
-<option disabled selected value="">Select</option>
+<option disabled selected value="">Select Doctor Category</option>
 <?php
 
 if($data)
