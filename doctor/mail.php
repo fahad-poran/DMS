@@ -38,7 +38,7 @@ $mail->addAddress($m,$name); // Add a recipient
 // $_SESSION['key']=$token;
 $mail->isHTML(true); // Set email format to HTML
 $mail->Subject = 'Approval';
-$mail->Body = '<h2>Assalamualikum '.$_SESSION['comment'].",</h2><br>MR/Ms ".$name."<h3>You are approved </h3>";
+$mail->Body = '<h2>Assalamualikum Try To Come At '.$_SESSION['comment'].",</h2><br>MR/Ms ".$name."<h3>Your Appoint Is approved, Please Visit Between Given time </h3>";
 // $mail->AltBody = 'A test email fromshihabuddinshakil9@gmail.com'; // Plain text for non-HTML mail clients
 
 $mail->send();

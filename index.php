@@ -162,7 +162,7 @@ $db = new Database();
     
          <div class="row">
             <div class="col-md-4"> 
-     <center><img width="130px" src="images/icons8-stumbleupon-100.png">
+     <center><img width="130px" src="images/icons8-news-100.png">
                 <h3>To Request for an appointment</h3>
                 <h4 id = "register">Register Now!</h4>
                 <p class="text-justify"></p><h4> <button  type="button" class="btn btn-warning" onclick="location.href='register.php'">Register</button></center> 
@@ -353,7 +353,7 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
 
       
             <div class="col-md-4 thought"> 
-   <center><img src="images/icons8-info-100.png" width="150px">
+   <center><img src="images/icons8-speech-bubble-100.png" width="150px">
               <h4 id="feedback">Your Thoughts</h4>
              
             <?php  $myrecord = $db->displayRecord("comments");
