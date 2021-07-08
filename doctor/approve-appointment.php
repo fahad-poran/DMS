@@ -4,16 +4,19 @@
 
  session_start();
  $db = new Database();
-//  $mail = $db-> displayMail($)
+
 if(!isset($_SESSION['username']))
 { header("Location:../views/doctor-login.php");}
 $currentUser = $_SESSION['id']; 
 
 if(isset($_POST['approve'])){
  $comment = $_POST['comment'];
+$email = $_POST['email'];
+$_SESSION['email'] = $email;
+$_SESSION['pname'] = $_POST['pname'];
+$_SESSION['comment'] = $comment;
 
- $_SESSION['comment'] = $comment;
- $_SESSION['email'] = $mail;
+ 
   if($comment){
     $update = $db ->updateApprovedStatus($_POST,"bookappoint"); //name of the table -> bookappopint
     // echo "<script>window.location.href = 'mail.php';</script>";
@@ -29,7 +32,7 @@ if(isset($_POST['decline'])){
 }//most imp line,, 
 $data = $db->displayApproved($currentUser);
 
-$mail =  $db->displayMail($currentUser);
+// $mail =  $db->displayMail($currentUser);
 
 ?>
 <!DOCTYPE html>
@@ -71,6 +74,7 @@ $mail =  $db->displayMail($currentUser);
   </head>
 
   <body>
+
     <header class="header-area">
       <div class="title">
         <h1>Doctor Management System</h1>
@@ -112,24 +116,17 @@ $mail =  $db->displayMail($currentUser);
           <th>SNo.</th>
           <th>Patient Name</th>
           <th>Gender</th>
-          <th>Date</th>
+          <th>Patients Email</th>
           <th>Symptoms</th>
           <th>Status</th>
           <th>Comment</th>
           <th colspan = "2" class="th-action">Action</th>
             <tbody>
 
-<?php 
-  // if($mail){
-  //   foreach($mail as $m){
-  //     echo "<br>";
-  //     echo $m['email'];
-  //   }
-  // }
 
-?>
 
             <?php
+            
               $sno=1;
               if($data){
               foreach($data as $value)
@@ -137,11 +134,13 @@ $mail =  $db->displayMail($currentUser);
                 if($value['status']=='Pending')
                 {
             ?>
+             <form action="" method="post"> 
                  <tr>
                 <td><?php echo $sno++ ?></td>
                 <td><?php echo $value['username'] ?></td>
                 <td><?php echo $value['gender'] ?></td>
-                <td><?php echo $value['date'] ?></td>
+                <td><?php echo $value['email']; ?></td>
+                <!-- <td><?php echo $value['date'] ?></td> -->
                 <td><?php echo $value['reason'] ?></td>
                 <?php
                 if($value['status']=='Approved')
@@ -150,9 +149,12 @@ $mail =  $db->displayMail($currentUser);
                <?php } else{?>
                 <td class="status-2"><?php echo $value['status'] ?></td>
                 <?php } ?>
-                <td> <form action="" method="post"> 
+                <td> 
+                <!-- form was here -->
                 <textarea style="resize:none;" name="comment" class="textarea" ></textarea> </td>
                 <input type="hidden" name="id" value="<?php echo $value['id'];?>">
+                <input type="hidden" name="email" value="<?php echo $value['email'];?>">
+                <input type="hidden" name="pname" value="<?php echo $value['username'];?>">
                 <td>
                   <?php
                   if($value['status']=='Pending'){
@@ -179,6 +181,17 @@ $mail =  $db->displayMail($currentUser);
                 <td colspan="8" class="no-record">No records found</td>
               </tr>
               <?php } ?>
+
+              <?php 
+  // if($mail){
+  //   foreach($mail as $m){
+  //     echo "<br>";
+  //     echo $m['email'];
+  //   }
+  // }
+  // echo $_SESSION['mail'];
+
+?>
 </form>
     </div>
 

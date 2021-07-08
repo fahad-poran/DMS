@@ -21,8 +21,9 @@ $mail->Password = 'Dummy@1234'; // SMTP password
 //$mail->SMTPSecure = 'tls';//PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption, `PHPMailer::ENCRYPTION_SMTPS` also accepted
 //$mail->Port = 587; // TCP port to connect to
 //$_SESSION['mail']=$_POST['email'];
-$m="aafporan8@gmail.com";
-$name="Mr. Fahad";  
+// $m="aafporan8@gmail.com";
+$m = $_SESSION['email'];
+$name= $_SESSION['pname'];  
 // echo"i am mail";   
 //Recipients
 $mail->setFrom('poransha404@gmail.com', 'DoctorManagement');
@@ -37,13 +38,14 @@ $mail->addAddress($m,$name); // Add a recipient
 // $_SESSION['key']=$token;
 $mail->isHTML(true); // Set email format to HTML
 $mail->Subject = 'Approval';
-$mail->Body = '<h2>Assalamualikum '.$_SESSION['comment'].",</h2><br>MR/Ms".$name."<h3>You are approved </h3>";
+$mail->Body = '<h2>Assalamualikum '.$_SESSION['comment'].",</h2><br>MR/Ms ".$name."<h3>You are approved </h3>";
 // $mail->AltBody = 'A test email fromshihabuddinshakil9@gmail.com'; // Plain text for non-HTML mail clients
 
 $mail->send();
 // echo '<h4>approved mail send</h4>';
 } catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+print "<script>alert('Email Not Sent, Invalid Patient Email!');</script>";
 }
 
 
