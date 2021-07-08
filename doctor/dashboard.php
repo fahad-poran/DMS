@@ -113,7 +113,7 @@ $panding = $db->pandingPatient('bookappoint',$name);
               $sno=1;
               $no = 0;
               if($panding){
-              foreach($panding as $value)
+              foreach($panding as $value)  
               {
                 if($value['status']=='Pending')
                 {

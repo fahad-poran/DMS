@@ -16,7 +16,7 @@ body {
 }
 
 .navigation {
- background-image: linear-gradient(blue,skyblue);   
+ background-image: linear-gradient(tomato,skyblue);   
 }
 .menu ul {
   margin: 0;
@@ -51,7 +51,7 @@ body {
   position: absolute;
   top: 100%;
   left: 0;
-  background-image: linear-gradient(blue,skyblue);
+  background-image: linear-gradient(rgb(163, 163, 181),skyblue);
   width: 260px;
   display: none;
   z-index: 1;

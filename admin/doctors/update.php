@@ -46,7 +46,7 @@ if(isset($_POST['update']))
             <li>
               <a href="#">Dashboard</a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>

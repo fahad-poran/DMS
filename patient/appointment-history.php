@@ -120,7 +120,7 @@
                    echo '<a onclick="return confirm(`Are You Sure Want to delete?`)" href="delete.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>';
                   } ?></td>
                 <td>
-                  <?php if($value['status']=='Approved'){ 
+                  <?php if($value['status']=='Approved' || $value['status']=='Done'){ 
                    print '<a href="invoice.php?printid='.$value['id'].'" class="btn-update btn-big">Print</a>'; }
                   else{
                     print '<a class="btn-update btn-big disabled-link">Print</a>';

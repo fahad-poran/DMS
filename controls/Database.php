@@ -142,7 +142,7 @@
             if(empty($email)||empty($password))
             {
                 array_push($this->errors," Fields must not be empty");
-            }
+            }    
 
             if(count($this->errors)==0)
             {
@@ -593,6 +593,21 @@
             }
 
             return $data;
+        }
+
+        public function displayMail($currentUser){
+            $sql = "SELECT DISTINCT email FROM patients p INNER JOIN bookappoint b ON p.id = b.uid WHERE b.d_id='$currentUser'";
+
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+
         }
 
         public function displayApproved($currentUser)

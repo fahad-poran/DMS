@@ -45,7 +45,7 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="../dashboard.php">Dashboard</a>
               <ul>
                 <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
@@ -62,7 +62,7 @@
         <ul>
           <li><a href="../users/index.php">Manage Patient</a></li>
           <li><a href="index.php">Manage Doctor</a></li>
-          <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li>
+          <li><a href="../home/index.php">Manage Home Page</a></li>
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -102,7 +102,7 @@
                 <td><?php echo $value['phone'] ?></td>
                 <td><?php echo $value['gender'] ?></td>
                 <td><a href="update.php?editid=<?php echo $value['id']; ?>" class="edit btn-update btn-big ">edit</a></td>
-                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
+                <td><a onclick="return confirm('Delete entry?');" href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
               </tr>
               <?php } }
               else{

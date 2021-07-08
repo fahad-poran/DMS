@@ -39,15 +39,15 @@
   <body>
     <header class="header-area">
       <div class="title">
-        <h1>Hospital Management System</h1>
+        <h1>Doctor Management System</h1>
       </div>
       <div class="navigation">
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="../dashboard.php">Dashboard</a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -62,7 +62,7 @@
         <ul>
           <li><a href="index.php">Manage Patient</a></li>
           <li><a href="../doctors/index.php">Manage Doctor</a></li>
-          <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li>
+          <li><a href="../pharmacist/index.php">Manage Home</a></li>
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -102,7 +102,7 @@
                 <td><?php echo $value['phone'] ?></td>
                 <td><?php echo $value['address'] ?></td>
                 <td><a href="update.php?editid=<?php echo $value['id']; ?>" class="edit btn-update btn-big ">edit</a></td>
-                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
+                <td><a onclick="return confirm('Delete entry?');" href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
               </tr>
               <?php } }
               else{

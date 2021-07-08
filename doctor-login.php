@@ -5,7 +5,7 @@
 
 session_start();
 
-$db = new Database();
+$db = new Database();   
 
 
   if(isset($_POST['submit']))
@@ -30,10 +30,16 @@ if($login == False){
     // echo "<script>alert('Login succesful');</script>";
     echo "<script>window.location.href = 'patient/dashboard.php';</script>";  //it could also be done by using header!
   }
-  else{
-    echo "<script>alert('Worng Username or password!');</script>";
-    echo "<script>window.location.href = 'doctor-login.php';</script>";  //CALLING OWN PAGE
+  if(!$login){
+    $login = $db->loginRecord($_POST,"admin");
+    if($login)
+    echo "<script>window.location.href = 'admin/dashboard.php';</script>";
+    else{
+      echo "<script>alert('Worng Username or password!');</script>";
+      echo "<script>window.location.href = 'doctor-login.php';</script>";  //CALLING OWN PAGE
+    }
   }
+  
 }
   
 

@@ -31,7 +31,7 @@ $mail->addAddress($m,$name); // Add a recipient
 // Attachement
 // $mail->addAttachment('upload/file.pdf');
 // $mail->addAttachment('upload/image.png', 'image 1'); // Optional name
-session_start();
+// session_start();
 // Content
 // $token =rand(10,9999);
 // $_SESSION['key']=$token;
@@ -41,7 +41,7 @@ $mail->Body = '<h2>Assalamualikum '.$_SESSION['comment'].",</h2><br>MR/Ms".$name
 // $mail->AltBody = 'A test email fromshihabuddinshakil9@gmail.com'; // Plain text for non-HTML mail clients
 
 $mail->send();
-echo '<h4>approved mail send</h4>';
+// echo '<h4>approved mail send</h4>';
 } catch (Exception $e) {
 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

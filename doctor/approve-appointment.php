@@ -1,8 +1,10 @@
 <?php include "../controls/Database.php" ?>
 
 <?php 
+
  session_start();
  $db = new Database();
+//  $mail = $db-> displayMail($)
 if(!isset($_SESSION['username']))
 { header("Location:../views/doctor-login.php");}
 $currentUser = $_SESSION['id']; 
@@ -11,9 +13,11 @@ if(isset($_POST['approve'])){
  $comment = $_POST['comment'];
 
  $_SESSION['comment'] = $comment;
+ $_SESSION['email'] = $mail;
   if($comment){
     $update = $db ->updateApprovedStatus($_POST,"bookappoint"); //name of the table -> bookappopint
-    echo "<script>window.location.href = 'mail.php';</script>";
+    // echo "<script>window.location.href = 'mail.php';</script>";
+    include "mail.php";
   }
   else{
     echo "<script>alert('Comment Required!');</script>";
@@ -24,6 +28,9 @@ if(isset($_POST['decline'])){
   $update= $db->updateDeclineStatus($_POST,"bookappoint");
 }//most imp line,, 
 $data = $db->displayApproved($currentUser);
+
+$mail =  $db->displayMail($currentUser);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,6 +118,17 @@ $data = $db->displayApproved($currentUser);
           <th>Comment</th>
           <th colspan = "2" class="th-action">Action</th>
             <tbody>
+
+<?php 
+  // if($mail){
+  //   foreach($mail as $m){
+  //     echo "<br>";
+  //     echo $m['email'];
+  //   }
+  // }
+
+?>
+
             <?php
               $sno=1;
               if($data){
