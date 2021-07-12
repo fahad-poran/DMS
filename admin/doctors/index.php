@@ -70,8 +70,8 @@
       <!-- Admin Content -->
       <div class="admin-content">
         <div class="button-group">
-          <a href="create.php" class="btn btn-big">Add Doctor</a>
-          <a href="index.php" class="btn btn-big">Manage Doctor</a>
+          <a href="create.php" style="background-color: rgb(23,155,30);" class="btn btn-big">Add Doctor</a>
+          <!-- <a href="index.php" class="btn btn-delete">Manage Doctor</a> -->
         </div>
 
         <div class="content">

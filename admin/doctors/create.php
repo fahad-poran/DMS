@@ -37,13 +37,13 @@
   <body>
     <header class="header-area">
       <div class="title">
-        <h1>Hospital Management System</h1>
+        <h1>Doctor Management System</h1>
       </div>
       <div class="navigation">
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="index.php">Dashboard</a>
               <ul>
                 <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
@@ -68,7 +68,7 @@
       <!-- Admin Content -->
       <div class="admin-content">
         <div class="button-group">
-          <a href="create.php" class="btn btn-big">Add Doctor</a>
+          <!-- <a href="create.php" class="btn btn-big">Add Doctor</a> -->
           <a href="index.php" class="btn btn-big">Manage Doctor</a>
         </div>
 
@@ -91,20 +91,31 @@
             <div>
               <label>Select Specialization</label>
               <select name="DoctorSpecialization" class="text-input">
-                <option value="NULL">--Select Specialization--</option>
+                <option disabled selected value="NULL">--Select Specialization--</option>
                 <option value="Neurology">Neurology</option>
-                <option value="Pathology">Pathology</option>
+                <option value="Medicine">Medicine</option>
+                <option value="Surgery">Surgery</option>
                 <option value="Pediatrics">Pediatrics</option>
+                <option value="Eye">Eye</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Skin">Skin</option>
+                <option value="Pathology">Pathology</option>
+                <option value="Neurosurgion">Neurosurgion</option>
               </select>
+            </div>
+            <div>
+              <label>Fees</label>
+              <input type="text" name="fees" class="text-input" />
             </div>
             <div>
               <label>Phone Number</label>
               <input type="text" name="phone" class="text-input" />
             </div>
+           
             <div>
               <label>Gender</label>
               <select name="gender" class="text-input">
-                <option value="NULL">--Select Gender--</option>
+                <option disabled selected value="NULL">--Select Gender--</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>

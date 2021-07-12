@@ -297,13 +297,13 @@
     
         }
 
-        public function displayBookAppoint($table,$name){
+        public function displayBookAppoint($table,$currentUser){
             $sql = "SELECT 
             SUM(fees) income
         FROM
             bookappoint
         WHERE
-            status = 'Done' AND username = '$name'";
+            status = 'Done' AND d_id = '$currentUser'";
             
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
@@ -323,7 +323,7 @@
                 $sql = "SELECT * FROM $table WHERE id='$currentUser'";
             }
             else{
-                 $sql = "SELECT username,email,password,specialization,phone,gender,date,day FROM $table WHERE id='$currentUser'";
+                 $sql = "SELECT username,email,password,specialization,phone,gender,date,day,stime,etime,status FROM $table WHERE id='$currentUser'";
             }
             
             $result = $this->connection->query($sql);
@@ -456,6 +456,11 @@
             { 
                 $specialization = $_POST['DoctorSpecialization'];
                 $date = $_POST['date'];
+                $day= $_POST['day'];
+                $stime = $_POST['stime'];
+                $etime = $_POST['etime'];
+                $status = $_POST['status'];
+
             }
 
             if(empty($uName)||empty($password))
@@ -490,7 +495,7 @@
                     $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$currentUser'";
                 }
                 else {
-                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender', date='$date' WHERE id='$currentUser'";
+                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender', date='$date',day='$day',stime='$stime',etime='$etime',status='$status' WHERE id='$currentUser'";
                 }
 
                 $result = $this->connection->query($sql);

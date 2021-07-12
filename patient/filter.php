@@ -85,14 +85,14 @@
           </div>
           <div class="select2" >
             <label>Gender</label>
-            <select  class="selectbox" id="select_res">
+            <select onchange="filter()" class="selectbox" id="select_res">
             </select>
           </div>
           
         </div>
         <div class="filter-group">
-            <button class="btn btn-big" onclick="filter()">Filter</button>
-            <button class="btn btn-big" onclick="location.reload()">Reset</button>
+            <!-- <button class="btn btn-big" onclick="filter()">Filter</button> -->
+            <button style="background-color: rgb(200,22,60)" class="btn btn-big" onclick="location.reload()">Reset</button>
         </div>
 
         <div class="content">

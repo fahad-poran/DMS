@@ -38,7 +38,7 @@ if(isset($_POST['update']))
   <body>
     <header class="header-area">
       <div class="title">
-        <h1>Hospital Management System</h1>
+        <h1>Doctor Management System</h1>
       </div>
       <div class="navigation">
         <nav class="menu">

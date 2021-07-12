@@ -174,6 +174,22 @@
               <label>Patient visit Date</label>
               <input type="text" name="date" value="<?php echo $value['date']; ?>" class="text-input" />
             </div>
+<div>
+              <label>Patient visit Day</label>
+              <input type="text" name="day" value="<?php echo $value['day']; ?>" class="text-input" />
+            </div>
+<div>
+              <label>Patient visit Start Time</label>
+              <input type="text" name="stime" value="<?php echo $value['stime']; ?>" class="text-input" />
+            </div>
+<div>
+              <label>Patient visit End Time</label>
+              <input type="text" name="etime" value="<?php echo $value['etime']; ?>" class="text-input" />
+            </div>
+<div>
+              <label>Status</label>
+              <input type="text" name="status" value="<?php echo $value['status']; ?>" class="text-input" />
+            </div>
 
             <div>
               <label>Password</label>

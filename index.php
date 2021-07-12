@@ -97,7 +97,9 @@ font-size: 1.75em;
     Quick Check
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Schedule</a>
+    <a class="dropdown-item" href="#schedule">Emargancy</a>
+    <a class="dropdown-item" href="#address">Contact</a>
+    <a class="dropdown-item" href="#glance">Glance</a>
     <!-- <a class="dropdown-item" href="#">Another action</a>
     <a class="dropdown-item" href="#">Something else here</a> -->
   
@@ -229,7 +231,7 @@ font-size: 1.75em;
     <p>Face replenish sea good winged bearing years air divide wasHave night male also</p>
     </div>
     </div>
-    <h2>At a glance</h2>
+    <h2 id="glance">At a glance</h2>
 <p>Our System Has</p>
 <br>
 <link rel="stylesheet" href="new.css">
@@ -332,7 +334,7 @@ font-size: 1.75em;
 
             <div class="col-md-4"> 
    <center><img src="images/icons8-clock-100.png" width="150px">
-<h4>Schedule Check</h4>
+<h4 id="schedule">Schedule Check</h4>
 <h5>For Emargancy</h5><h5 style="color:red;">Covid-19 Consultation</h5>
    <div class="card border-warning mb-3" style=" max-height: 130px;
     overflow-y: auto;">
@@ -346,7 +348,7 @@ $myrecord = $db->displayRecord("doctors");
 include "controls/errors.php"; 
             
 foreach ($myrecord as $value)
-if($value['specialization']=='Eye')
+if($value['specialization']=='Medicine')
 echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$value['etime'].'<br> <hr>'; 
   
 ?>
@@ -361,7 +363,7 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
             <div class="col-md-4 thought"> 
    <center><img src="images/icons8-speech-bubble-100.png" width="150px">
               <h4 id="feedback">Your Thoughts</h4>
-             
+        <blockquote>     
             <?php  $myrecord = $db->displayRecord("comments");
             include "controls/errors.php"; 
             
@@ -369,7 +371,7 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
             echo $value['uid'].' Says '.$value['message'].'<br>'; 
               ?>
 
-
+</blockquote>
             </center> 
       </div>
           
@@ -462,7 +464,7 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
 
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
             <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact Us</h5>
-            <p>
+            <p id="address">
                 Uttora Clinic
                 EIB Compond, 24/2 Cantonment Rd, Rajshahi 6202
             </p>

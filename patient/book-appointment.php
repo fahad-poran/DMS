@@ -82,7 +82,7 @@
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Book Appointment</h2>
-
+<a href="filter.php" style="background-color: rgb(255,140,0);" type="button" class="btn">Back</a>
           <?php    
             $editid = $_REQUEST['bookid'];
             $myrecord = $db->displayRecordById($editid,"doctors");
@@ -94,7 +94,7 @@
               <?php
                 // $sql = "SELECT DISTINCT specialization FROM doctors"; //distinct for remove duplicate
                 // $result = $db->connection->query($sql);
-              ?>
+              ?><br>
               <label>Doctor Specialization</label>
               <input type="text" name="specialization" value="<?php echo $myrecord['specialization']; ?>"  class="text-input" readonly/>
               <!-- <select name="DoctorSpecialization" class="text-input" id="ds"> -->

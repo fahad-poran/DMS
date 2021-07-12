@@ -7,7 +7,7 @@
 
 
 $name = $_SESSION['username'];
-$status = $db->displayBookAppoint('bookappoint',$name);
+$status = $db->displayBookAppoint('bookappoint',$currentUser);
 $panding = $db->pandingPatient('bookappoint',$name);
   if(!isset($_SESSION['username']))
   {
@@ -101,7 +101,10 @@ $panding = $db->pandingPatient('bookappoint',$name);
         // echo json_encode($status);
         foreach($status as $value){
           $result = $value['income'];
+          if($result)
           echo $result;
+          else
+          echo "<p style='color: red;'>[No Visited Patient]<p>";
         }
         ?></h4>
         </div>

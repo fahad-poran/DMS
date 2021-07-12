@@ -69,7 +69,7 @@
       <!-- Admin Content -->
       <div class="admin-content">
         <div class="button-group">
-          <a href="create.php" class="btn btn-big">Add Patient</a>
+          <!-- <a href="create.php" class="btn btn-big">Add Patient</a> -->
           <a href="index.php" class="btn btn-big">Manage Patient</a>
         </div>
 

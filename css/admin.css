@@ -17,7 +17,7 @@ a {
 
 .btn {
   padding: 0.5rem 1rem;
-  background: #6211b85c;
+  background: #30be0cb9;
   color: white;
   border: 1px solid transparent;
   border-radius: 0.25rem;
@@ -165,11 +165,11 @@ header {
 .admin-wrapper .left-sidebar ul li a {
   padding: 18px;
   display: block;
-  border-bottom: 1px solid #004044;
+  border-bottom: 1px solid #96cfd3b9;
 }
 
 .admin-wrapper .left-sidebar ul li a:hover {
-  background: #004044;
+  background: #707d7eaf;
 }
 
 .admin-wrapper .admin-content {

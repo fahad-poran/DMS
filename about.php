@@ -115,7 +115,7 @@ td {
       <div class="modal-body">
       <select onchange="filter()" class="selectbox" id="select_std">
             </select>
-        
+        <button style='color: tomato;' class='btn' type="reset" onclick="fetch()">Reset</button>
             <div class="content">
           <table >
             <thead>

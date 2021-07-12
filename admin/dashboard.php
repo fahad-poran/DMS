@@ -7,6 +7,7 @@
   {
     header("Location:../doctor-login.php");
   }
+$patient = $db->displayRecord('bookappoint');
 
 ?>
 <!DOCTYPE html>
@@ -58,7 +59,7 @@
         <ul>
           <li><a href="users/index.php">Manage Patient</a></li>
           <li><a href="doctors/index.php">Manage Doctor</a></li>
-          <li><a href="pharmacist/index.php">Manage Pharmacist</a></li>
+          <!-- <li><a href="pharmacist/index.php">Manage Home</a></li> -->
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -69,23 +70,36 @@
         <div class="content">
         <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
 
-          <!-- <table>
+          <table>
             <thead>
-              <th>SN</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th colspan="2">Action</th>
+              <th>Total Active Doctor</th>
+              <th>Total Visited Patient</th>
+              <!-- <th>Email</th> -->
+              <th colspan="2">Registred Patient</th>
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
-                <td>Hridoy</td>
-                <td>rkhridoy68@gmail.com</td>
-                <td><a href="#" class="edit">edit</a></td>
-                <td><a href="#" class="delete">delete</a></td>
+                <td>9</td>
+                <td><?php 
+                $res = 0; $val=1;
+                  foreach($patient as $values){
+                  if($values['status']=='Done')
+                  $res += $val;
+
+                  }echo $res; ?>
+                </td>
+                <!-- <td>rkhridoy68@gmail.com</td>
+                <td><a href="#" class="edit">edit</a></td> -->
+                <td><?php 
+                $res = 0; $val=1;
+                  foreach($patient as $values){
+                  if($values['status']=='Done')
+                  $res += $val;
+
+                  }echo $res; ?></td>
               </tr>
             </tbody>
-          </table> -->
+          </table>
         </div>
       </div>
       <!-- // Admin Content -->
