@@ -246,10 +246,24 @@
         // }
         
         ////////Display data//////
-        // public function displayComments($table){
-        //     $sql = "SELECT * FROM $table";
+        public function displayStatus($table,$editid,$currentUser)
+        {
+            $sql = "SELECT * FROM $table WHERE uid='$currentUser' AND d_id='$editid'";
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;  
+            }
+        }    
 
-        // }
+
+
+
+
         public function displayRecord($table)
         {
             $sql = "SELECT * FROM $table";

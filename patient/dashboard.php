@@ -46,6 +46,8 @@ $activity = $db->displayAppointment('bookappoint',$currentUser);
   border-radius: 5%;
 }
 .doctor{
+  height: 200px;
+  width: 295px;
   overflow-y: scroll;
 }
 .appoint{
@@ -110,7 +112,7 @@ $myrecord = $db->displayRecord("doctors");
             
 foreach ($myrecord as $value)
 if($value['status']=='Active')
-echo 'Dr.'.$value['username'].' is available now'.'<br><br>'.'Contact number: '.$value['phone'].'<br><br>'.'Or Send Email At: '.$value['email'].'<br> <hr>'; 
+echo 'Dr.'.$value['username'].' is available now'.'<br><br>'.'Contact number: '.$value['phone'].'<br><br>'.'Or Send Email At: '.$value['email'].'<br> <hr><br>'; 
   
 ?>
 </div>
