@@ -7,12 +7,12 @@ body {
   font-size: 18px;
   font-family: "B612", sans-serif;
 }
-
 .title {
   text-align: center;
-  background-color: rgb(39, 36, 36);
+  background-color: rgba(139, 226, 230, 0.795);
   overflow: hidden;
   color: #fff;
+  
 }
 
 

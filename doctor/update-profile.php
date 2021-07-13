@@ -187,8 +187,12 @@
               <input type="text" name="etime" value="<?php echo $value['etime']; ?>" class="text-input" />
             </div>
 <div>
-              <label>Status</label>
-              <input type="text" name="status" value="<?php echo $value['status']; ?>" class="text-input" />
+<label>Status</label>
+              <select name="status" class="text-input">
+                <option disabled selected value="NULL">--Select Status--</option>
+                <option value="Active">Active</option>
+                <option value="Available">Available</option>
+              </select>
             </div>
 
             <div>

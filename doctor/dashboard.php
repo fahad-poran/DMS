@@ -36,6 +36,12 @@ $panding = $db->pandingPatient('bookappoint',$name);
     <link rel="stylesheet" href="../ckk/admin.css" />
 
     <title>Admin Section - Manage Admin</title>
+    <style>
+      section{
+        display: grid;
+     grid-template-columns: repeat(2,1fr);
+      }
+    </style>
   </head>
 
   <body>
@@ -81,7 +87,9 @@ $panding = $db->pandingPatient('bookappoint',$name);
           <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
 
          <!-- echo json_encode($money); -->
-      <div class ="income">  
+ <section>
+   <span>     
+     <div class ="income">  
         <h3>Net Income </h3>
 <!-- //Alhamdulillah going to the right direction -->
         <h4 class = "money"><?php 
@@ -132,7 +140,13 @@ $panding = $db->pandingPatient('bookappoint',$name);
             </h4>
          
         </div>
-        </div>
+        </div></span>
+
+       <span> <div><h3>status
+          </h3>   </div>
+        </span>
+   
+ </section>
       </div>
      <script>
      

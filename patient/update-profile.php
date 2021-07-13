@@ -79,7 +79,7 @@
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Patient Update Profile</h2>
-          <h3>Js validation</h3>
+          <!-- <h3>Js validation</h3> -->
 
           <?php include "../controls/errors.php" ?>      
             <?php  

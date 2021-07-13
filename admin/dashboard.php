@@ -8,7 +8,7 @@
     header("Location:../doctor-login.php");
   }
 $patient = $db->displayRecord('bookappoint');
-
+$doctor = $db->displayRecord('doctors');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,16 +70,26 @@ $patient = $db->displayRecord('bookappoint');
         <div class="content">
         <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
 
+<h2>Patient</h2>
+<br>
           <table>
             <thead>
-              <th>Total Active Doctor</th>
+              <th>Total Registered Patient</th>
               <th>Total Visited Patient</th>
               <!-- <th>Email</th> -->
-              <th colspan="2">Registred Patient</th>
+              <th colspan="2">Approved Patient</th>
             </thead>
             <tbody>
               <tr>
-                <td>9</td>
+                <td>
+                <?php 
+                $res = 0; $val=1;
+                  foreach($patient as $values){
+                  // if($values['status']=='Done')
+                  $res += $val;
+
+                  }echo $res; ?>
+                </td>
                 <td><?php 
                 $res = 0; $val=1;
                   foreach($patient as $values){
@@ -93,13 +103,55 @@ $patient = $db->displayRecord('bookappoint');
                 <td><?php 
                 $res = 0; $val=1;
                   foreach($patient as $values){
-                  if($values['status']=='Done')
+                  if($values['status']=='Approved')
                   $res += $val;
 
                   }echo $res; ?></td>
               </tr>
             </tbody>
           </table>
+
+          <br>
+        <h2>  Doctor</h2>
+          <table>
+            <thead>
+              <th>Total Registered Doctor</th>
+              <th>Total Active Doctor</th>
+              <!-- <th>Email</th> -->
+              <th colspan="2">Available Doctor</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                <?php 
+                $res = 0; $val=1;
+                  foreach($doctor as $values){
+                  // if($values['status']=='Done')
+                  $res += $val;
+
+                  }echo $res; ?>
+                </td>
+                <td><?php 
+                $res = 0; $val=1;
+                  foreach($doctor as $values){
+                  if($values['status']== 'Active')
+                  $res += $val;
+
+                  }echo $res; ?>
+                </td>
+                <!-- <td>rkhridoy68@gmail.com</td>
+                <td><a href="#" class="edit">edit</a></td> -->
+                <td><?php 
+                $res = 0; $val=1;
+                  foreach($doctor as $values){
+                  if($values['status']=='Available')
+                  $res += $val;
+
+                  }echo $res; ?></td>
+              </tr>
+            </tbody>
+          </table>
+
         </div>
       </div>
       <!-- // Admin Content -->

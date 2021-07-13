@@ -43,7 +43,7 @@ if(isset($_POST['update']))
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="../dashboard.php">Dashboard</a>
               <ul>
                 <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
@@ -60,7 +60,7 @@ if(isset($_POST['update']))
         <ul>
           <li><a href="index.php">Manage Patient</a></li>
           <li><a href="../doctors/index.php">Manage Doctor</a></li>
-          <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li>
+          <!-- <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li> -->
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -84,7 +84,7 @@ if(isset($_POST['update']))
             <form action="update.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" value="<?php echo $myrecord['username']; ?>" class="text-input"/>
+              <input required type="text" name="username" value="<?php echo $myrecord['username']; ?>" class="text-input"/>
             </div>
             <div>
               <label>Email</label>
@@ -101,7 +101,7 @@ if(isset($_POST['update']))
             <div>
               <label>Gender</label>
               <select name="gender" class="text-input">
-                <option value="NULL">-- Select Gender --</option>
+                <option disabled selected value="NULL">-- Select Gender --</option>
                 <option value="Male"
                 <?php
                   if($myrecord['gender']=="Male")
@@ -122,7 +122,7 @@ if(isset($_POST['update']))
             </div>
             <div>
               <label>Password</label>
-              <input type="password" name="password" value="<?php echo $myrecord['password']; ?>" class="text-input" />
+              <input required type="password" name="password" value="<?php echo $myrecord['password']; ?>" class="text-input" />
             </div>
             <div>
                 <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">

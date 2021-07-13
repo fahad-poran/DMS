@@ -60,7 +60,7 @@
         <ul>
           <li><a href="../users/index.php">Manage Patient</a></li>
           <li><a href="index.php">Manage Doctor</a></li>
-          <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li>
+          <!-- <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li> -->
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -82,11 +82,11 @@
           <form action="create.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>"  class="text-input" />
+              <input required type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>"  class="text-input" />
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
+              <input required type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
             </div>
             <div>
               <label>Select Specialization</label>
@@ -105,11 +105,11 @@
             </div>
             <div>
               <label>Fees</label>
-              <input type="text" name="fees" class="text-input" />
+              <input required type="text" name="fees" class="text-input" />
             </div>
             <div>
               <label>Phone Number</label>
-              <input type="text" name="phone" class="text-input" />
+              <input required type="text" name="phone" class="text-input" />
             </div>
            
             <div>
@@ -122,11 +122,11 @@
             </div>
             <div>
               <label>Password</label>
-              <input type="password" name="password" class="text-input" />
+              <input required type="password" name="password" class="text-input" />
             </div>
             <div>
               <label>Password Confirmation</label>
-              <input type="password" name="passwordConf" class="text-input" />
+              <input required type="password" name="passwordConf" class="text-input" />
             </div>
 
             <div>

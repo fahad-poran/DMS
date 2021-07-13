@@ -61,7 +61,7 @@
         <ul>
           <li><a href="index.php">Manage Patient</a></li>
           <li><a href="../doctors/index.php">Manage Doctor</a></li>
-          <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li>
+          <!-- <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li> -->
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -82,19 +82,19 @@
           <form action="create.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>" class="text-input" />
+              <input required type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>" class="text-input" />
             </div>
             <div>
               <label>Email</label>
-              <input type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
+              <input required type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
             </div>
             <div>
               <label>Password</label>
-              <input type="password" name="password"  class="text-input" />
+              <input required type="password" name="password"  class="text-input" />
             </div>
             <div>
               <label>Password Confirmation</label>
-              <input type="password" name="passwordConf" class="text-input" />
+              <input required type="password" name="passwordConf" class="text-input" />
             </div>
             <div>
               <button type="submit" name="submit" class="btn btn-big">Add Patient</button>

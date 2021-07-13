@@ -40,11 +40,11 @@ if(isset($_POST['update']))
       <div class="title">
         <h1>Doctor Management System</h1>
       </div>
-      <div class="navigation">
+      <div class="navigation"> 
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="../dashboard.php">Dashboard</a>
               <ul>
                 <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
@@ -61,7 +61,7 @@ if(isset($_POST['update']))
         <ul>
           <li><a href="../users/index.php">Manage Patient</a></li>
           <li><a href="index.php">Manage Doctor</a></li>
-          <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li>
+          <!-- <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li> -->
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -74,7 +74,7 @@ if(isset($_POST['update']))
         </div>
 
         <div class="content">
-          <h2 class="page-title">Add Doctor</h2>
+          <h2 class="page-title">Edit Doctor</h2>
           <?php
             $editid = $_REQUEST['editid'];
             $myrecord = $db->displayRecordById($editid,"doctors");
@@ -84,50 +84,34 @@ if(isset($_POST['update']))
           <form action="update.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" value="<?php echo $myrecord['username']; ?>"  class="text-input" />
+              <input required type="text" name="username" value="<?php echo $myrecord['username']; ?>"  class="text-input" />
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" value="<?php echo $myrecord['email']; ?>" class="text-input" readonly/>
+              <input required type="email" name="email" value="<?php echo $myrecord['email']; ?>" class="text-input" />
             </div>
             <div>
               <label>Select Specialization</label>
-              <select name="DoctorSpecialization" class="text-input">
+              <select required name="DoctorSpecialization" class="text-input">
                 <option value="NULL">--Select Specialization--</option>
-                <option value="Neurology"
-                <?php
-                  if($myrecord['specialization']=="Neurology")
-                  {
-                    echo "selected";
-                  }
-                ?>
-                >Neurology</option>
-                
-                <option value="Pathology"
-                <?php
-                  if($myrecord['specialization']=="Pathology")
-                  {
-                    echo "selected";
-                  }
-                ?>
-                >Pathology</option>
-                <option value="Pediatrics"
-                <?php
-                  if($myrecord['specialization']=="Pediatrics")
-                  {
-                    echo "selected";
-                  }
-                ?>
-                >Pediatrics</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Medicine">Medicine</option>
+                <option value="Surgery">Surgery</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="Eye">Eye</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Skin">Skin</option>
+                <option value="Pathology">Pathology</option>
+                <option value="Neurosurgion">Neurosurgion</option>
               </select>
             </div>
             <div>
               <label>Phone Number</label>
-              <input type="text" name="phone" value="<?php echo $myrecord['phone']; ?>" class="text-input" />
+              <input required type="text" name="phone" value="<?php echo $myrecord['phone']; ?>" class="text-input" />
             </div>
             <div>
               <label>Gender</label>
-              <select name="gender" class="text-input">
+              <select required name="gender" class="text-input">
                 <option value="NULL">-- Select Gender --</option>
                 <option value="Male"
                 <?php
@@ -147,9 +131,39 @@ if(isset($_POST['update']))
                 >Female</option>
               </select>
             </div>
+
+<!-- 7/12/21 -->
+
+<div>
+              <label>Patient visit Date</label>
+              <input required type="text" name="date" value="" class="text-input" />
+            </div>
+<div>
+              <label>Patient visit Day</label>
+              <input required type="text" name="day" value="" class="text-input" />
+            </div>
+<div>
+              <label>Patient visit Start Time</label>
+              <input required type="text" name="stime" value="" class="text-input" />
+            </div>
+<div>
+              <label>Patient visit End Time</label>
+              <input required type="text" name="etime" value="" class="text-input" />
+            </div>
+<div>
+<label>Status</label>
+<select name="status" class="text-input">
+                <option disabled selected value="NULL">--Select Status--</option>
+                <option value="Active">Active</option>
+                <option value="Available">Available</option>
+              </select>
+            </div>
+
+            <!-- new add -->
+
             <div>
               <label>Password</label>
-              <input type="password" name="password" value="<?php echo $myrecord['password']; ?>" class="text-input" />
+              <input required type="password" name="password" value="<?php echo $myrecord['password']; ?>" class="text-input" />
             </div>
             <div>
             <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
