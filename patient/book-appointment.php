@@ -1,7 +1,7 @@
 <?php include "../controls/Database.php" ?>
 
 <?php 
-$pending='';
+ $pending=0;
   session_start();
   $db = new Database();
   if(!isset($_SESSION['username']))
@@ -89,9 +89,11 @@ $pending='';
             $myrecord = $db->displayRecordById($editid,"doctors");
             include "../controls/errors.php";
             $req = $db->displayStatus("bookappoint",$editid,$currentUser);
-           foreach($req as $value){
+          if($req)
+            foreach($req as $value){
            if ($value['status']=='Pending'){
             $pending = $value['status'];
+            
             echo "<span style='color: tomato'>On  $pending";
            }
           }
@@ -173,7 +175,7 @@ $pending='';
               <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
 
               <!-- add a condition here -->
-    <?php          if($pending){
+    <?php          if($pending == 'Pending'){
             echo "Your previous Request Is on Pending, You can't Book Now";
               }
               else

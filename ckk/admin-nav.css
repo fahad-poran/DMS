@@ -6,6 +6,7 @@ body {
   padding: 0;
   font-size: 18px;
   font-family: 'Exo 2', sans-serif;
+  overflow-x: hidden;
 }
 textarea{
   resize: none;
@@ -19,7 +20,7 @@ textarea{
 }
 
 .navigation {
-    
+   
 background-color: #FBAB7E;
 background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
 
@@ -33,7 +34,7 @@ background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
 }
 .menu ul li {
   float: right;
-  position: relative;
+  position:relative;
 }
 .menu ul:after {
   content: "";
@@ -43,7 +44,7 @@ background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
 .menu ul li a {
   color: white;
   text-decoration: none;
-  padding: 20px 20px;
+  padding: 20px;
   display: block;
   font-size: 20px;
   text-transform: uppercase;
@@ -60,7 +61,7 @@ background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
   top: 100%;
   left: 0;
   background-image: linear-gradient(#ee9ca7 , #ffdde1);
-  width: 260px;
+  width: 200px;
   /* display: none; */
   z-index: 1;
 }

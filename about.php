@@ -12,7 +12,7 @@
 <style>
 .content{
 overflow: scroll;
-
+height: 470px;
 }
 
 table {

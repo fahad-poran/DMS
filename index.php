@@ -38,7 +38,7 @@ font-size: 1.75em;
       .thought{
          border: 1px solid none;
          border-radius: 25px;
-         overflow-y:scroll;
+         
          
       }
       #im{
@@ -161,8 +161,8 @@ font-size: 1.75em;
     <div class="container">
         <div class="row">
             <div class="col-12"> 
-               <center> <h2>Our Features</h2>
-                 <p><b>Category Wise Doctor Search</b></p></center>
+               <center> <h2>Simply Tell us</h2>
+                 <p><b>Your Disease Symtoms</b></p></center>
                         
         </div>
     </div>
@@ -209,7 +209,7 @@ font-size: 1.75em;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   font-size: 1.08em;
-' >Feed Backs</a></h4><p></p></center> 
+' >FeedBacks</a></h4><p></p></center> 
                                            
                 
                   </form> 
@@ -228,7 +228,7 @@ font-size: 1.75em;
     <div class="col-xl-8">
     <div class="section_tittle text-center">
     <h2> Experienced Doctors</h2>
-    <p>Face replenish sea good winged bearing years air divide wasHave night male also</p>
+    <p>Here You will get Phd and MBBS senior Dr, to book for an appoint simply log in to our system</p>
     </div>
     </div>
     <h2 id="glance">At a glance</h2>
@@ -311,8 +311,8 @@ font-size: 1.75em;
     <div class="container">
       <div class="row">
           <div class="col-12"> 
-             <center> <h2>Our Process</h2>
-               <p><b>Here Are Our Process</b></p> </center>              
+             <center> <h2>Our Features</h2>
+               <p><b>Here Are Our Features</b></p> </center>              
       </div>
   </div>
   
@@ -363,7 +363,9 @@ echo 'Dr.'.$value['username'].' is available From '.$value['stime'].' To '.$valu
             <div class="col-md-4 thought"> 
    <center><img src="images/icons8-speech-bubble-100.png" width="150px">
               <h4 id="feedback">Your Thoughts</h4>
-        <blockquote>     
+        <blockquote style="overflow-y: scroll;
+    height: 200px;
+    width: 350px;">     
             <?php  $myrecord = $db->displayRecord("comments");
             include "controls/errors.php"; 
             
