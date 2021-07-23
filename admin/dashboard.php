@@ -69,6 +69,70 @@ $doctor = $db->displayRecord('doctors');
         
         <div class="content">
         <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
+<div class="chart">
+<html>
+  <head>
+    <center>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Total Visited Patient', <?php 
+                $res = 0; $val=1;
+                  foreach($patient as $values){
+                  if($values['status']=='Done')
+                  $res += $val;
+
+                  }echo $res; ?>],
+          ['Approved Patient',     <?php 
+                $res = 0; $val=1;
+                  foreach($patient as $values){
+                  if($values['status']=='Approved')
+                  $res += $val;
+
+                  }echo $res; ?>],
+          ['Total Registered Doctor',   <?php 
+                $res = 0; $val=1;
+                  foreach($doctor as $values){
+                  // if($values['status']=='Done')
+                  $res += $val;
+
+                  }echo $res; ?>],
+          ['Total Active Doctor',<?php 
+                $res = 0; $val=1;
+                  foreach($doctor as $values){
+                  if($values['status']== 'Active')
+                  $res += $val;
+
+                  }echo $res; ?>],
+          ['Available Doctor',    <?php 
+                $res = 0; $val=1;
+                  foreach($doctor as $values){
+                  if($values['status']=='Available')
+                  $res += $val;
+
+                  }echo $res; ?>]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
+</div>
+
 
 <h2>Patient</h2>
 <br>

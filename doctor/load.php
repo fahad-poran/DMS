@@ -34,7 +34,11 @@ foreach($data as $value)
                 <?php } ?>
                 <td>
                 <form action="" method="post">
+                <?php
+          $day = date("l");
+          ?>
                 <input type="hidden" name="id" value="<?php echo $value['id'];?>">
+                <input type="hidden" name="day" value="<?php echo $day;?>">
                 <?php
                   if($value['status']=='Approved'){
                     print '<button type="submit" name="done" class="approve btn-update btn-big">Visited</button>';}

@@ -663,10 +663,11 @@
         public function updateDoneStatus($data,$table)
         {
             $status = "Done";
+           $date = $_POST['day'];
             // $comment = $_POST['comment'];
             $id=$_POST['id'];
 
-            $sql = "UPDATE $table SET status='$status' WHERE id='$id'";
+            $sql = "UPDATE $table SET status='$status',date ='$date' WHERE id='$id'";
 
                 $result = $this->connection->query($sql);
                 if($result)

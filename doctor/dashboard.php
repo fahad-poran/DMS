@@ -42,7 +42,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
         margin: 5%;
    
       }
-      .area{
+      .area , .area2{
        
         width: 50%;
       }
@@ -64,7 +64,31 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
           <ul>
             <li>
        
-              <a href=""><?php echo $_SESSION['username'];?></a>
+              <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['status']=='Pending')
+                {
+                  $no += $sno;
+                  
+                }
+                
+               
+              }echo '
+              <button onclick="location.href=`approve-appointment.php`" type="button" style="" class="btn position-relative">
+              Pending Request
+              <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
+              '.$no.'
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+              ';
+              
+            }
+            ?>
               <ul>
                 <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
@@ -92,8 +116,167 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
+  <!-- google chart  -->
+
+
+  <html>
+  <head><center>
+  <h5 class='text-success'>📅 On Day Patient Visit Statistics 📊</h5>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Sun',  <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='Sunday')
+                {
+                  $no += $sno;
+                  
+                }
+                
+               
+              }echo $no;
+              
+            }
+            ?>, 0,0,0],
+          ['Mon', <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='Monday')
+                {
+                  $no += $sno;
+                  
+                }
+                
+               
+              }echo $no;
+              
+            }
+            ?>, 0,0,0],
+          ['Tues', <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='Tuesday')
+                {
+                  $no += $sno;
+                  
+                }
+                
+               
+              }echo $no;
+              
+            }
+            ?>, 0,0,0],
+          ['Wed', <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='Wednesday')
+                {
+                  $no += $sno;
+                  
+                }
+                
+               
+              }echo $no;
+              
+            }
+            ?>, 0,0,0],
+          ['Thus', <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='Thursday')
+                {
+                  $no += $sno;
+                  
+                }
+                
+               
+              }echo $no;
+              
+            }
+            ?>, 0,0,0],
+          ['Fri', <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='Friday')
+                {
+                  $no += $sno;
+                  
+                }
+                
+               
+              }echo $no;
+              
+            }
+            ?>, 0,0,0],
+          ['Sat', <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='Saturday ')
+                {
+                  $no += $sno;
+                  
+                }
+                
+               
+              }echo $no;
+              
+            }
+            ?>, 0,0,0]
+          // Treat the first row as data.
+        ], true);
+
+        var options = {
+          legend: 'none',
+          bar: { groupWidth: '100%' }, // Remove space between bars.
+          candlestick: {
+            fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
+            risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
+          }
+        };
+
+        var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 720px; height: 370px;"></div>
+  </body>
+</html>
+
+
+
+<!-- google chart end  -->
 
  <div class="main">
+ 
+
  <section class='area'>
    <span>     
      <div class ="income">  
@@ -117,7 +300,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
         foreach($status as $value){
           $result = $value['income'];
           if($result)
-          echo $result;
+          echo '<h3>'.$result;
           else
           echo "<p style='color: red;'>[No Visited Patient]<p>";
         }
@@ -133,7 +316,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
  </section>
  
  <section class='area2'>
- <div class="pending">
+ <div class="pending"><center>
           <!-- <h3>Pending Request </h3> -->
             <h4>
             <?php
@@ -149,20 +332,12 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
                 }
                 
                
-              }echo '
-              <button onclick="location.href=`approve-appointment.php`" type="button" class="btn btn-primary position-relative">
-              Pending Request
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              '.$no.'
-                <span class="visually-hidden">unread messages</span>
-              </span>
-            </button>
-              ';
+              }echo '<h3>Total Pending Request <br>'.$no;
               
             }
             ?>
             </h4>
-         
+         <hr>
         </div>
  </section>
  </div>

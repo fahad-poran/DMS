@@ -42,6 +42,7 @@
       <div class="title">
         <h1>Doctor Management System</h1>
       </div>
+     
       <div class="navigation">
         <nav class="menu">
           <ul>
@@ -73,6 +74,7 @@
       <div class="admin-content"> 
          <div class="content">
           <h2 class="page-title">Apointment History</h2>
+          
           <input type="text" name="search" onkeyup="showmyuser()" class="search-bar search-input" id="uname" placeholder="Search By Patient Name">
 
           <table>
