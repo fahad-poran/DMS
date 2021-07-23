@@ -291,13 +291,13 @@
         //         return $data;
         //     }
         // }
-        public function pandingPatient($table,$name){
+        public function pandingPatient($table,$currentUser){
             $sql = "SELECT 
             *
         FROM
             bookappoint
         WHERE
-            username = '$name'";
+            d_id = '$currentUser'";
 
             $result = $this->connection->query($sql);
             if($result->num_rows>0)

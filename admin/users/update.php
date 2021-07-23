@@ -1,7 +1,8 @@
 <?php include "../../controls/Database.php" ?>
 <?php
 $db = new Database();
-if(isset($_POST['update']))
+
+if (isset($_POST['update']))
 {
   $update = $db->updateRecord($_POST,"patients");
   if($update)
@@ -67,6 +68,12 @@ if(isset($_POST['update']))
 
       <!-- Admin Content -->
       <div class="admin-content">
+     
+        <div class="button-group">
+          <a href="create.php" class="btn btn-big">Add Patient</a>
+          <a href="index.php" class="btn btn-big">Manage Patient</a>
+        </div>
+
         <div class="content">
           <h2 class="page-title">Update Profile</h2>
 
@@ -92,11 +99,11 @@ if(isset($_POST['update']))
             </div>
             <div>
               <label>Address</label>
-              <input type="text" name="address" value="<?php echo $myrecord['address']; ?>" class="text-input" />
+              <input required type="text" name="address" value="<?php echo $myrecord['address']; ?>" class="text-input" />
             </div>
             <div>
               <label>Phone Number</label>
-              <input type="text" name="phone" value="<?php echo $myrecord['phone']; ?>" class="text-input" />
+              <input required type="text" name="phone" value="<?php echo $myrecord['phone']; ?>" class="text-input" />
             </div>
             <div>
               <label>Gender</label>

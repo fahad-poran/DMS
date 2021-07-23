@@ -39,16 +39,16 @@ foreach($data as $value)
                   if($value['status']=='Approved'){
                     print '<button type="submit" name="done" class="approve btn-update btn-big">Visited</button>';}
                     else{
-                      print '<button type="submit" name="done" class="approve-link btn-update btn-big">Done</button>';
+                      print '<h4 style="color:green">Fees Added ✔</h4>';
                     }?>
                 </td>
                 </form>
                 <td>
                 <?php
                   if($value['status']=='Done'){
-                    print '<button  type="submit" name="decline" class="decline btn-delete btn-big">Remove</button>';}
+                    print '';}
                     else{
-                      print '<button type="submit" name="decline" class="decline-link btn-delete btn-big">Remove</button>';
+                      print '';
                     }?>
                 
                 </td>

@@ -8,7 +8,7 @@
 
 $name = $_SESSION['username'];
 $status = $db->displayBookAppoint('bookappoint',$currentUser);
-$panding = $db->pandingPatient('bookappoint',$name);
+$panding = $db->pandingPatient('bookappoint',$currentUser);
   if(!isset($_SESSION['username']))
   {
     header("Location:../login.php");
@@ -27,7 +27,7 @@ $panding = $db->pandingPatient('bookappoint',$name);
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Custom Styling -->
     <!-- <link rel="stylesheet" href="../../css/style.css"> -->
 
@@ -37,9 +37,14 @@ $panding = $db->pandingPatient('bookappoint',$name);
 
     <title>Admin Section - Manage Admin</title>
     <style>
-      section{
-        display: grid;
-     grid-template-columns: repeat(2,1fr);
+      .main{
+        display: flex;
+        margin: 5%;
+   
+      }
+      .area{
+       
+        width: 50%;
       }
     </style>
   </head>
@@ -58,6 +63,7 @@ $panding = $db->pandingPatient('bookappoint',$name);
         <nav class="menu">
           <ul>
             <li>
+       
               <a href=""><?php echo $_SESSION['username'];?></a>
               <ul>
                 <li><a href="../controls/logout.php">Logout</a></li>
@@ -74,6 +80,7 @@ $panding = $db->pandingPatient('bookappoint',$name);
       <div class="left-sidebar">
         <ul>
         <li><a href="dashboard.php">Dashboard</a></li>
+
           <li><a href="approve-appointment.php">Approve Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php">Update Profile</a></li>
@@ -86,12 +93,12 @@ $panding = $db->pandingPatient('bookappoint',$name);
         <div class="content">
           <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
 
-         <!-- echo json_encode($money); -->
- <section>
+ <div class="main">
+ <section class='area'>
    <span>     
      <div class ="income">  
         <h3>Net Income </h3>
-<!-- //Alhamdulillah going to the right direction -->
+
         <h4 class = "money"><?php 
         // foreach ($status as $value){
         //   $result = (int)0;
@@ -117,8 +124,17 @@ $panding = $db->pandingPatient('bookappoint',$name);
         ?></h4>
         </div>
         <hr>
-        <div class="pending">
-          <h3>Pending Request </h3>
+       
+        </span>
+
+       <span> 
+        </span>
+   
+ </section>
+ 
+ <section class='area2'>
+ <div class="pending">
+          <!-- <h3>Pending Request </h3> -->
             <h4>
             <?php
               $sno=1;
@@ -133,20 +149,25 @@ $panding = $db->pandingPatient('bookappoint',$name);
                 }
                 
                
-              }echo $no;
+              }echo '
+              <button onclick="location.href=`approve-appointment.php`" type="button" class="btn btn-primary position-relative">
+              Pending Request
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              '.$no.'
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+              ';
               
             }
             ?>
             </h4>
          
         </div>
-        </div></span>
-
-       <span> <div><h3>status
-          </h3>   </div>
-        </span>
-   
  </section>
+ </div>
+          <!-- echo json_encode($money); -->
+
       </div>
      <script>
      
