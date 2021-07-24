@@ -648,8 +648,9 @@
             $status = "Approved";
             $comment = $_POST['comment'];
             $id=$_POST['id'];
+            $date= date("F");
 
-            $sql = "UPDATE $table SET status='$status', comment='$comment' WHERE id='$id'";
+            $sql = "UPDATE $table SET status='$status', comment='$comment',date= '$date' WHERE id='$id'";
 
                 $result = $this->connection->query($sql);
                 if($result)
@@ -663,11 +664,12 @@
         public function updateDoneStatus($data,$table)
         {
             $status = "Done";
-           $date = $_POST['day'];
+           $day = $_POST['day'];
+           $date = $_POST['date'];
             // $comment = $_POST['comment'];
             $id=$_POST['id'];
 
-            $sql = "UPDATE $table SET status='$status',date ='$date' WHERE id='$id'";
+            $sql = "UPDATE $table SET status='$status',date ='$date', day='$day' WHERE id='$id'";
 
                 $result = $this->connection->query($sql);
                 if($result)

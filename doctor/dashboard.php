@@ -119,7 +119,9 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
   <!-- google chart  -->
 
 
-  <html>
+ <div class="graphs d-flex">
+   
+ <div class="graph1 col-lg-6"> <html>
   <head><center>
   <h5 class='text-success'>📅 On Day Patient Visit Statistics 📊</h5>
     
@@ -135,7 +137,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
               if($panding){
               foreach($panding as $value)  
               {
-                if($value['date']=='Sunday')
+                if($value['day']=='Sunday')
                 {
                   $no += $sno;
                   
@@ -152,7 +154,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
               if($panding){
               foreach($panding as $value)  
               {
-                if($value['date']=='Monday')
+                if($value['day']=='Monday')
                 {
                   $no += $sno;
                   
@@ -169,11 +171,11 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
               if($panding){
               foreach($panding as $value)  
               {
-                if($value['date']=='Tuesday')
+                if($value['day']=='Tuesday')
                 {
                   $no += $sno;
                   
-                }
+                } 
                 
                
               }echo $no;
@@ -186,7 +188,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
               if($panding){
               foreach($panding as $value)  
               {
-                if($value['date']=='Wednesday')
+                if($value['day']=='Wednesday')
                 {
                   $no += $sno;
                   
@@ -203,7 +205,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
               if($panding){
               foreach($panding as $value)  
               {
-                if($value['date']=='Thursday')
+                if($value['day']=='Thursday')
                 {
                   $no += $sno;
                   
@@ -220,7 +222,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
               if($panding){
               foreach($panding as $value)  
               {
-                if($value['date']=='Friday')
+                if($value['day']=='Friday')
                 {
                   $no += $sno;
                   
@@ -237,7 +239,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
               if($panding){
               foreach($panding as $value)  
               {
-                if($value['date']=='Saturday ')
+                if($value['day']=='Saturday')
                 {
                   $no += $sno;
                   
@@ -252,6 +254,7 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
         ], true);
 
         var options = {
+          title: 'Patient Visited [Person Wise]',
           legend: 'none',
           bar: { groupWidth: '100%' }, // Remove space between bars.
           candlestick: {
@@ -266,10 +269,341 @@ $panding = $db->pandingPatient('bookappoint',$currentUser);
     </script>
   </head>
   <body>
-    <div id="chart_div" style="width: 720px; height: 370px;"></div>
+    <div id="chart_div" style="width: 620px; height: 370px;"></div>
   </body>
 </html>
+</div>
 
+   <div class="graph2 col-lg-6"><center>
+   <h5 class='text-success'>📆On Month Patient Visit Statistics 📈</h5>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Approved Request', 'Visited Patient'],
+          ['Jan',  <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='January' && $value['status']== 'Approved')
+                {
+                  $no += $sno;          
+                }
+              }echo $no;
+            }
+            ?>,      <?php
+            $sno=1;
+            $no = 0;
+            if($panding){
+            foreach($panding as $value)  
+            {
+              if($value['date']=='January' && $value['status']== 'Done')
+              {
+                $no += $sno;          
+              }
+            }echo $no;
+          }
+          ?>],
+          ['Feb',  <?php
+            $sno=1;
+            $no = 0;
+            if($panding){
+            foreach($panding as $value)  
+            {
+              if($value['date']=='February' && $value['status']== 'Approved')
+              {
+                $no += $sno;          
+              }
+            }echo $no;
+          }
+          ?>,       <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='February' && $value['status']== 'Done')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>],
+          ['Mar',   <?php
+            $sno=1;
+            $no = 0;
+            if($panding){
+            foreach($panding as $value)  
+            {
+              if($value['date']=='March' && $value['status']== 'Approved')
+              {
+                $no += $sno;          
+              }
+            }echo $no;
+          }
+          ?>,        <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='February' && $value['status']== 'Done')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>],
+          ['Apr',   <?php
+            $sno=1;
+            $no = 0;
+            if($panding){
+            foreach($panding as $value)  
+            {
+              if($value['date']=='April' && $value['status']== 'Approved')
+              {
+                $no += $sno;          
+              }
+            }echo $no;
+          }
+          ?>,       <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='April' && $value['status']== 'Done')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>],
+          ['May',   <?php
+            $sno=1;
+            $no = 0;
+            if($panding){
+            foreach($panding as $value)  
+            {
+              if($value['date']=='May' && $value['status']== 'Approved')
+              {
+                $no += $sno;          
+              }
+            }echo $no;
+          }
+          ?>,       <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='May' && $value['status']== 'Done')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>],
+          ['Jun',   <?php
+            $sno=1;
+            $no = 0;
+            if($panding){
+            foreach($panding as $value)  
+            {
+              if($value['date']=='June' && $value['status']== 'Approved')
+              {
+                $no += $sno;          
+              }
+            }echo $no;
+          }
+          ?>,       <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='June' && $value['status']== 'Done')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>],
+          ['Jul',   <?php
+              $sno=1;
+              $no = 0;
+              if($panding){
+              foreach($panding as $value)  
+              {
+                if($value['date']=='July' && $value['status']== 'Approved')
+                {
+                  $no += $sno;          
+                }
+              }echo $no;
+            }
+            ?>,       <?php
+            $sno=1;
+            $no = 0;
+            if($panding){
+            foreach($panding as $value)  
+            {
+              if($value['date']=='July' && $value['status']== 'Done')
+              {
+                $no += $sno;          
+              }
+            }echo $no;
+          }
+          ?>],
+          ['Aug',    <?php
+            $sno=1;
+            $no = 0;
+            if($panding){
+            foreach($panding as $value)  
+            {
+              if($value['date']=='August' && $value['status']== 'Approved')
+              {
+                $no += $sno;          
+              }
+            }echo $no;
+          }
+          ?>,    <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='August' && $value['status']== 'Done')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>   ],
+          ['Sep',    <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='September' && $value['status']== 'Approved')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>,       <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='September' && $value['status']== 'Done')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?> ],
+          ['Oct',    <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='October' && $value['status']== 'Approved')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>,       <?php
+        $sno=1;
+        $no = 0;
+        if($panding){
+        foreach($panding as $value)  
+        {
+          if($value['date']=='October' && $value['status']== 'Done')
+          {
+            $no += $sno;          
+          }
+        }echo $no;
+      }
+      ?>],
+          ['Nov',   <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='November' && $value['status']== 'Approved')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>,       <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='November' && $value['status']== 'Done')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>],
+          ['Dec',   <?php
+          $sno=1;
+          $no = 0;
+          if($panding){
+          foreach($panding as $value)  
+          {
+            if($value['date']=='December' && $value['status']== 'Approved')
+            {
+              $no += $sno;          
+            }
+          }echo $no;
+        }
+        ?>,      <?php
+        $sno=1;
+        $no = 0;
+        if($panding){
+        foreach($panding as $value)  
+        {
+          if($value['date']=='December' && $value['status']== 'Done')
+          {
+            $no += $sno;          
+          }
+        }echo $no;
+      }
+      ?>]
+        ]);
+
+        var options = {
+          title: 'Approved & Visited Patient Comparison [Person Wise]',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 620px; height: 370px"></div>
+
+
+   </div>
+ </div>
 
 
 <!-- google chart end  -->
