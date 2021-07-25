@@ -332,7 +332,7 @@
 
         public function displaySingleRecord($table,$currentUser)
         {
-            if($table=="patients" || $table=="pharmacists")
+            if($table=="patients" || $table=="pharmacists" || $table == "admin")
             {
                 $sql = "SELECT * FROM $table WHERE id='$currentUser'";
             }
@@ -455,6 +455,54 @@
                 }
             }
         }
+
+        // 7/25/21 
+
+        public function updateAdminRecord($data,$table,$currentUser){
+            $uName = $_POST['username'];
+            $password = $_POST['password'];
+
+
+            if(empty($uName)||empty($password))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+            else
+            {
+                if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
+                    array_push($this->errors," Username: Only letter allowed");
+                }
+                else if((strlen($uName)<4)){
+                    array_push($this->errors," Username: Name is too short");
+                }
+    
+                if(strlen($password)<6){
+                    array_push($this->errors," Password: Password is too short");
+                }
+                else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
+                    array_push($this->errors," Password: the password does not meet the requirements");
+                }
+
+            }  
+
+           // var_dump($data);
+
+            if(count($this->errors)==0)
+            {
+                //$password = md5($password);//
+                    $sql = "UPDATE $table SET username='$uName',password='$password' WHERE id='$currentUser'";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+
         public function updateSingleRecord($data,$table,$currentUser)
         {
             $uName = $_POST['username'];

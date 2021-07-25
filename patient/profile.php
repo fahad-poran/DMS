@@ -103,43 +103,9 @@ $activity = $db->displayAppointment('bookappoint',$currentUser);
       <div class="admin-content">
         <div class="content">
 
-          <h2 class="page-title">Dashboard Of Patient <?php echo $_SESSION['username'];?></h2>
+          <h2 class="page-title">Profile Of Patient <?php echo $_SESSION['username'];?></h2>
  <section>
 
-<div class="doctors">  <h2>Emergency Unit</h2>
-<div class="doctor">
-<?php 
-$myrecord = $db->displayRecord("doctors");
-// include "controls/errors.php"; 
-            
-foreach ($myrecord as $value)
-if($value['status']=='Active')
-echo 'Dr.'.$value['username'].' is available now'.'<br><br>'.'Contact number: '.$value['phone'].'<br><br>'.'Or Send Email At: '.$value['email'].'<br> <hr><br>'; 
-  
-?>
-</div>
-</div>
-<div class="appoint"><h2>Your Last Activity</h2>
-
-<?php 
-$name = ''; $stat=''; $cate='';
-if($activity){
-print "<h4>You Request for an appoint To- </h4>";
-foreach($activity as $value){
-  $name = $value['username'];
-  $stat = $value['status'];
-  $cate = $value['specialization'];
-}
-if($value)
-echo "<center>Dr. $name <strong style='color: tometo'>[$cate]<br><p style='color: black'>
-Appointment Status:<strong style='color: indianred'><br> $stat";
-}
-else
-echo "You have no Activity, To place An appoint Request Go to Book Appoint at Left Conor of Menu Bar ";
-?>
-
-
-</div>
  </section>      
         
 

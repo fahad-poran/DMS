@@ -62,6 +62,7 @@
         <ul>
           <li><a href="../users/index.php">Manage Patient</a></li>
           <li><a href="index.php">Manage Doctor</a></li>
+          <li><a href="../updateProfile.php">Update Profile</a></li>
           <!-- <li><a href="../home/index.php">Manage Home Page</a></li> -->
         </ul>
       </div>

@@ -61,6 +61,7 @@ if (isset($_POST['update']))
         <ul>
           <li><a href="index.php">Manage Patient</a></li>
           <li><a href="../doctors/index.php">Manage Doctor</a></li>
+          <li><a href="../updateProfile.php">Update Profile</a></li>
           <!-- <li><a href="../pharmacist/index.php">Manage Pharmacist</a></li> -->
         </ul>
       </div>
