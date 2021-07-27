@@ -570,6 +570,32 @@
                 }
             }
         }
+        public function updateProfile($data,$table,$currentUser)
+        {
+            $bpm = $_POST['bpm'];
+            $pox = $_POST['pox'];
+            $ws = $_POST['ws'];
+            $gk = $_POST['gk'];
+            $it = $_POST['it'];
+            $date = $_POST['date'];
+         
+            // 27-7-21
+            
+            
+      $sql = "UPDATE $table SET bpm='$bpm',pox='$pox',ws='$ws',gk='$gk',it='$it',date='$date' WHERE id='$currentUser'";
+                
+               
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            
+        }
 
         ////////Delete Record/////
         public function delete($deleteid,$table)

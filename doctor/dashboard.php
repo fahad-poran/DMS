@@ -9,6 +9,9 @@
 $name = $_SESSION['username'];
 $status = $db->displayBookAppoint('bookappoint',$currentUser);
 $panding = $db->pandingPatient('bookappoint',$currentUser);
+if(!$panding){
+  header("Location:approve-appointment.php");
+}
   if(!isset($_SESSION['username']))
   {
     header("Location:../login.php");

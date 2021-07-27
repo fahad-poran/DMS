@@ -48,6 +48,28 @@ td {
       </div>
       <div class="modal-body">
         We Are At Your Service. <br> Our main Abmission is To Ensure Good Services with Care . <br> You are Free To contact With Us <br> We Hope To see you Good .
+        <p>DOM <br>
+Doctor Management System is a tertiary care hospital and the leading contributor of private healthcare services in Bangladesh. This has been achieved only through consistent commitment to improve the lives of people through utmost service excellence since its inception on 16th December, 2006. Square Hospital is one of the ventures of Square Group which is the top business group of the country.
+
+The reputation of Square Hospital is the result of quality clinical outcome and comprehensive care, made achievable through world class integrated healthcare facilities by highly trained professionals. Thus, Square Hospitals strives to meet patients’ standards through quality healthcare and making a difference in their lives.
+
+Affiliate partners
+About Square GroupAbout Square GroupAbout Square GroupAbout Square Group
+Square Hospital has almost all departments of medical service under one roof which enable us to deliver proper integrated services to our patients.
+
+The outpatient department (OPD) of the hospital can serve	Up to 2500 patients daily
+Open daily, except Friday
+The inpatient department (IPD) of the hospital can serve	Up to 500 patients at a time
+ER (Emergency department)	Operational 24/7 round the year
+Square Hospital aims to provide unparalleled service to the people of Bangladesh by delivering the highest possible level of care. For this, huge investment has been made on equipment and technology.
+
+MISSION
+Deliver QUALITY health care within 5 CORE standards
+Adhering to high ethical and moral standards at all times
+Making service quality top priority in all we do
+Training staff to work within a quality care environment
+Providing quality health care service in all processes
+Delivering customer satisfaction through quality service</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

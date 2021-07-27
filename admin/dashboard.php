@@ -18,6 +18,9 @@ $doctor = $db->displayRecord('doctors');
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
@@ -71,9 +74,13 @@ $doctor = $db->displayRecord('doctors');
         <div class="content">
         <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
 <div class="chart">
-<html>
+
+<div class="graph1"><html>
   <head>
     <center>
+    
+
+      
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -129,12 +136,45 @@ $doctor = $db->displayRecord('doctors');
     </script>
   </head>
   <body>
-    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+    <div id="donutchart" style="width: 540px; height: 250px;"></div>
   </body>
-</html>
+ 
+    </div>
 </div>
+    </div><center>
+<div class="graph2 m-5">Total Active Doctor
+  <div class="progress col-lg-4" style="height:1.7rem">
+  <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"  role="progressbar" style="width: <?php 
+                $res = 0; $val=1; $act=0; $num=1;
+                  foreach($doctor as $values){
+                  if($values['status']=='Active')
+                  $res += $val;
+                 
+                  $act += $num;
 
+                  }echo (($res/$act)*100).'%'; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <?php 
+                $res = 0; $val=1; $act=0; $num=1;
+                  foreach($doctor as $values){
+                  if($values['status']=='Active')
+                  $res += $val;
+                 
+                  $act += $num;
 
+                  }echo ceil((($res/$act)*100)).'%'; ?>
+</div>
+                </div>
+    </div>
+    <?php 
+                // $res = 0; $val=1; $act=0; $num=1;
+                //   foreach($doctor as $values){
+                //   if($values['status']=='Active')
+                //   $res += $val;
+                  
+                //   $act += $num;
+
+                //   }echo (($res/$act)*100); ?>
+              
 <h2>Patient</h2>
 <br>
           <table>
