@@ -580,7 +580,7 @@
             $date = $_POST['date'];
          
             // 27-7-21
-            
+             
             
       $sql = "UPDATE $table SET bpm='$bpm',pox='$pox',ws='$ws',gk='$gk',it='$it',date='$date' WHERE id='$currentUser'";
                 
@@ -705,7 +705,7 @@
 
         public function displayApproved($currentUser)
         {
-            $sql = "SELECT b.id,p.username,p.gender,p.email,b.date,b.day,b.reason,b.comment,b.status FROM bookappoint b INNER JOIN patients p ON b.uid = p.id WHERE b.d_id='$currentUser'";
+            $sql = "SELECT b.id,p.username,p.gender,p.email,b.date,b.day,b.reason,b.comment,b.status,b.uid FROM bookappoint b INNER JOIN patients p ON b.uid = p.id WHERE b.d_id='$currentUser'";
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
             {

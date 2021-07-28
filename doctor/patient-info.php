@@ -11,10 +11,10 @@
   $currentUser=$_SESSION['id'];
   if(isset($_POST['update']))
   {
-      $update=$db->updateProfile($_POST,"patients",$currentUser);
+      $update=$db->updateProfile($_POST,"patients",$_REQUEST['patientId']);
       if($update)
       {
-          // echo "<script>alert('Updated succesfully');</script>";
+          echo "<script>alert('Updated succesfully');</script>";
   
           // echo "<script>window.location.href = 'update-profile.php';</script>";
       }
@@ -39,8 +39,8 @@
     <!-- <link rel="stylesheet" href="../../css/style.css"> -->
 
     <!-- Admin Styling -->
-    <link rel="stylesheet" href="../css/admin-nav.css" />
-    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../ckk/admin-nav.css" />
+    <link rel="stylesheet" href="../ckk/admin.css" />
 
     <title>Admin Section - Manage Admin</title>
   </head>
@@ -69,10 +69,9 @@
       <div class="left-sidebar">
         <ul>
         <li><a href="dashboard.php">Dashboard</a></li>
-          <li><a href="filter.php">Book Apointment</a></li>
-          <li><a href="appointment-history.php">Apointment History</a></li> 
-          <li><a href="update-profile.php?editid=<?php echo $currentUser; ?>">Update Profile</a></li>
-          <li><a href="feedback.php">Feedback</a></li> 
+        <li><a class="approve" href="approve-appointment.php">Approve Apointment</a></li>
+          <li><a href="appointment-history.php">Apointment History</a></li>
+          <li><a href="update-profile.php">Update Profile</a></li>
           <li><a href="profile.php">Profile</a></li> 
         </ul>
       </div>
@@ -85,7 +84,9 @@
 
 
         <?php  
-              $data = $db->displaySingleRecord("patients",$currentUser);
+         $editid = $_REQUEST['patientId'];
+
+              $data = $db->displaySingleRecord("patients",$editid);
               if($data)
               {
                 foreach($data as $value)
@@ -93,13 +94,20 @@
             ?>
 
         <form action="" method="post"> 
-           <?php $date = date("h:i:s A l jS \of F Y"); ?>
-           <input type="text" name="date" value="<?php echo $date;?>">
+           <?php $date = date("h:i:s A l jS \of F Y"); 
+           echo "<center><h2>Medical History Of Patient <strong>".$value['username']."</strong>";
+           ?>
+           
+           <input type="hidden" name="date" value="<?php echo $date;?>">
+
+           <?php 
+           echo "<h4 style='color: #0066CC'>Last Updated On <strong>".$value['date']."</strong></h4>";
+           ?>
          
        <div class="meters d-flex flex-wrap">
 
           <div class="card m-4 " style="width: 18rem;">
-        <img class="card-img-top" src="images/m1.png" alt="Card image cap">
+        <img class="card-img-top" src="../patient/images/m1.png" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Oximeter</h5>
           <p class="card-text">A normal level of oxygen is usually 95% or higher. Some people with chronic lung disease or sleep apnea can have normal levels around 90%. The “SpO2” reading on a pulse oximeter shows the percentage of oxygen in someone's blood</p>

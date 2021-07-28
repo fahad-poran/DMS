@@ -137,7 +137,7 @@ $data = $db->displayApproved($currentUser);
              <form action="" method="post"> 
                  <tr>
                 <td><?php echo $sno++ ?></td>  
-                <td><a href="patient-info.php" class="btn"><?php echo $value['username'] ?></a></td>
+                <td><a href="patient-info.php?patientId=<?php echo $value['uid'];?>" class="btn"><?php echo $value['username'] ?></a></td>
                 <td><?php echo $value['gender'] ?></td>
                 <td><?php echo $value['email']; ?></td>
                 <!-- <td><?php echo $value['date'] ?></td> -->
