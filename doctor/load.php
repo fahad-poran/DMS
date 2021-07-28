@@ -51,8 +51,8 @@ foreach($data as $value)
                 </td>
                 <td>
                   <?php
-                    if($value['status']=='Approved'){
-                      print '<a class="btn-delete btn-big disabled-link">Delete</a>';}
+                    if($value['status']=='Done'){
+                      print '<a style="pointer-events:none;background: grey;" class="btn-delete btn-big disabled-link">Delete</a>';}
                 else{
                   // $_SESSION['id'] = $value['id'];
                   // echo $_SESSION['id'];

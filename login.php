@@ -54,9 +54,10 @@ $db = new Database();
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Patient Login</title>
   </head>
   <body>
+  <?php include "about.php";?>
     <header class="header-area">
       <div class="title">
         <h1>Doctor Management System</h1>
@@ -65,9 +66,9 @@ $db = new Database();
         <nav class="menu">
           <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Service</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a data-toggle="modal" data-target="#exampleModalLongAbout" href="#">About Us</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#service">Service</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#contact">Contact Us</a></li>
             <!-- <li>
               <a href="#">Login As></a>
               <ul>
@@ -112,7 +113,13 @@ $db = new Database();
     <input type="password" name="password" class="text-input" required="Must be Filled">
 
     <?php 
-      $bookid = $_REQUEST['bookid'];
+try {
+  $bookid = $_REQUEST['bookid'];
+ 
+} catch (Exception $e) {
+  echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+     
      
     ?>
     <input type="hidden" name='bookid' value="<?php  echo $bookid;?>">

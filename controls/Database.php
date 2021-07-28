@@ -640,7 +640,7 @@
 
         public function displayAppointment($table,$currentUser)
         {
-            $sql = "SELECT * FROM $table WHERE uid = '$currentUser'";
+            $sql = "SELECT * FROM $table WHERE uid = '$currentUser' ORDER BY id DESC";
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
             {
@@ -705,7 +705,7 @@
 
         public function displayApproved($currentUser)
         {
-            $sql = "SELECT b.id,p.username,p.gender,p.email,b.date,b.day,b.reason,b.comment,b.status,b.uid FROM bookappoint b INNER JOIN patients p ON b.uid = p.id WHERE b.d_id='$currentUser'";
+            $sql = "SELECT b.id,p.username,p.gender,p.email,b.date,b.day,b.reason,b.comment,b.status,b.uid FROM bookappoint b INNER JOIN patients p ON b.uid = p.id WHERE b.d_id='$currentUser' ORDER BY id DESC";
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
             {
