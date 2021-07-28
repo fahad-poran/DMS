@@ -8,6 +8,6 @@
     if($delete)
     {
         //echo "<script>alert('Deleted succesfully');</script>";
-        echo "<script>window.location.href = 'appointment-history.php';</script>";
+        echo "<script>window.location.href = '../doctor/appointment-history.php';</script>";
     }
 ?>

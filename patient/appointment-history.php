@@ -108,17 +108,14 @@
                 <td class="status-2"><?php echo $value['status'] ?></td>
                 <?php } ?>
                 <td class="status"><?php echo $value['comment']?></td>
-                <td>
-                  <?php
-                    if($value['status']=='Approved'){
-                      print '<a class="btn-delete btn-big disabled-link">Delete</a>';}
-                else{
-                  // $_SESSION['id'] = $value['id'];
-                  // echo $_SESSION['id'];
-                  // print '<a href="echo.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>';
+              
+              
+              
+                <!-- delete button was here  -->
 
-                   echo '<a onclick="return confirm(`Are You Sure Want to delete?`)" href="delete.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>';
-                  } ?></td>
+
+
+
                 <td>
                   <?php if($value['status']=='Approved' || $value['status']=='Done'){ 
                    print '<a href="invoice.php?printid='.$value['id'].'" class="btn-update btn-big">Print</a>'; }

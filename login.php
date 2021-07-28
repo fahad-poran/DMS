@@ -2,13 +2,20 @@
 <?php 
 session_start();
 $db = new Database();
+
+
   if(isset($_POST['submit']))
   {
     $login = $db->loginRecord($_POST,"patients");
     if($login) //if login successfull
     {
-      echo "<script>alert('Login succesful');</script>";
-      echo "<script>window.location.href = 'patient/dashboard.php';</script>";  //it could also be done by using header!
+     
+      
+      // echo "<script>window.location.href = 'patient/book-appointment.php?bookid=$bookid';</script>"; 
+      $bid= $_POST['bookid'];
+      header("location: patient/book-appointment.php?bookid=$bid");
+      // echo "<script>window.location.href = 'patient/book-appointment.php?bookid=$bid';</script>";
+      
     }
     else{
       echo "<script>alert('Worng Username or password!');</script>";
@@ -102,14 +109,13 @@ $db = new Database();
   
   <div>
     <label>Password</label>
-    <input type="password" name="password" class="text-input" required="Khali Rakha Jabena">
+    <input type="password" name="password" class="text-input" required="Must be Filled">
 
     <?php 
-      // if(isset($error_msg['password']))
-      // {
-      //   echo"<span class='error'>".$error_msg['password']."</span>";
-      // }
+      $bookid = $_REQUEST['bookid'];
+     
     ?>
+    <input type="hidden" name='bookid' value="<?php  echo $bookid;?>">
   </div>
  
   <div>

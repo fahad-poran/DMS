@@ -1,6 +1,7 @@
 <?php include "../controls/Database.php" ?>
 
 <?php 
+
  $pending=0;
   session_start();
   $db = new Database();

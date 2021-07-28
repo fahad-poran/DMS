@@ -49,6 +49,18 @@ foreach($data as $value)
                       print '<h4 style="color:green">Fees Added ✔</h4>';
                     }?>
                 </td>
+                <td>
+                  <?php
+                    if($value['status']=='Approved'){
+                      print '<a class="btn-delete btn-big disabled-link">Delete</a>';}
+                else{
+                  // $_SESSION['id'] = $value['id'];
+                  // echo $_SESSION['id'];
+                  // print '<a href="echo.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>';
+
+                   echo '<a onclick="return confirm(`Are You Sure Want to delete?`)" href="../patient/delete.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>';
+                  } ?></td>
+
                 </form>
                 <td>
                 <?php
