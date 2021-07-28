@@ -1,16 +1,19 @@
-<?php include '../controls/Database.php'; ?>
+<?php include "../controls/Database.php" ?>
 <?php
-    session_start();
-    $db = new Database();
-    $currentUser = $_SESSION['id'];
-    $data=$db->displayApproved($currentUser);
-
-    $sno=1;
-//$output="";
-if($data)
+session_start();
+$db = new Database();
+$currentUser = $_SESSION['id'];
+$user = $_POST['uname'];
+// $data = $db->ajaxSearchSingleRecord("bookappointment",$user);
+$sql = "SELECT b.id,p.username,p.gender,b.date,b.day,b.reason,b.status,b.comment,b.uid FROM bookappoint b INNER JOIN patients p ON b.uid = p.id WHERE b.d_id='$currentUser' AND p.username LIKE '%$user%'";
+$result = $db->connection->query($sql);
+if($result->num_rows>0)
 {
 
-foreach($data as $value)
+
+$sno=1;
+
+foreach($result as $value)
               {
                   if($value['status']=='Approved'||$value['status']=='Done')
                   {
@@ -68,6 +71,3 @@ else{
   ?>
   <td colspan="8" class="no-record">No records found</td>
 <?php } ?>
-
-
-    

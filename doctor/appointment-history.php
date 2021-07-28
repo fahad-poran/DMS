@@ -130,7 +130,7 @@
             document.getElementById("table-data").innerHTML = this.status;
           }
           };
-          xhttp.open("POST", "/HospitalManagementSystem/doctor/search.php", true);
+          xhttp.open("POST", "/DMS/doctor/search.php", true);
           xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xhttp.send("uname="+uname);
 }
