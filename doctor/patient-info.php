@@ -96,6 +96,7 @@
 
         <form action="" method="post"> 
            <?php $date = date("h:i:s A l jS \of F Y"); 
+           echo date("h:i:sa");
            echo "<center><h2>Medical History Of Patient <strong>".$value['username']."</strong>";
            ?>
            

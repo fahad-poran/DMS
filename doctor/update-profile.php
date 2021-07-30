@@ -144,8 +144,8 @@
               <input readonly type="text" name="DoctorSpecialization" class="text-input" value="<?php echo $value['specialization']; ?>">
             </div>
             <div>
-              <label>Phone Number</label>
-              <input type="text" name="phone" value="<?php echo $value['phone']; ?>" class="text-input" />
+            <label>Phone Number <small>[Should be 11 Digits]</small></label>
+              <input type="tel" id="phone" name="phone" pattern="[01]{2}[0-9]{9}" required value="<?php echo $value['phone']; ?>" class="text-input" />
             </div>
             <div>
               <label>Gender</label>

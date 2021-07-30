@@ -103,8 +103,8 @@ if (isset($_POST['update']))
               <input required type="text" name="address" value="<?php echo $myrecord['address']; ?>" class="text-input" />
             </div>
             <div>
-              <label>Phone Number</label>
-              <input required type="text" name="phone" value="<?php echo $myrecord['phone']; ?>" class="text-input" />
+            <label>Phone Number <small>[Should be 11 Digits]</small></label>
+              <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" required value="<?php echo $myrecord['phone']; ?>" class="text-input" />
             </div>
             <div>
               <label>Gender</label>
@@ -130,7 +130,7 @@ if (isset($_POST['update']))
             </div>
             <div>
               <label>Password</label>
-              <input required type="password" name="password" value="<?php echo $myrecord['password']; ?>" class="text-input" />
+              <input required type="text" name="password" value="<?php echo $myrecord['password']; ?>" class="text-input" />
             </div>
             <div>
                 <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">

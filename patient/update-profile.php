@@ -121,8 +121,8 @@
               ?>
             </div>
             <div>
-              <label>Phone Number</label>
-              <input type="text" name="phone" class="text-input" value="<?php echo $value['phone']; ?>"/>
+            <label>Phone Number <small>[Should be 11 Digits]</small></label>
+              <input type="tel" id="phone" name="phone" pattern="[01]{2}[0-9]{9}" required value="<?php echo $value['phone']; ?>" class="text-input" />
               <?php 
                 // if(isset($error_msg['phone']))
                 // {

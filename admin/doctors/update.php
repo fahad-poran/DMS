@@ -100,7 +100,7 @@ if(isset($_POST['update']))
                 <option value="Medicine">Medicine</option>
                 <option value="Surgery">Surgery</option>
                 <option value="Pediatrics">Pediatrics</option>
-                <option value="Eye">Eye</option>
+                <option value="Eye Specialist">Eye Specialist</option>
                 <option value="Orthopedics">Orthopedics</option>
                 <option value="Skin">Skin</option>
                 <option value="Pathology">Pathology</option>
@@ -170,6 +170,7 @@ if(isset($_POST['update']))
             <div>
             <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
               <button type="submit" name="update" class="btn btn-big">Update</button>
+           <article>Please Fill all the Field with Valid information.</article>
             </div>
           </form>
         </div>

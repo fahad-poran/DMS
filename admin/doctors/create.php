@@ -96,7 +96,7 @@
                 <option value="Medicine">Medicine</option>
                 <option value="Surgery">Surgery</option>
                 <option value="Pediatrics">Pediatrics</option>
-                <option value="Eye">Eye</option>
+                <option value="Eye Specialist">Eye Specialist</option>
                 <option value="Orthopedics">Orthopedics</option>
                 <option value="Skin">Skin</option>
                 <option value="Pathology">Pathology</option>
@@ -132,6 +132,7 @@
             <div>
               <button type="submit" name="submit" class="btn btn-big">Add Doctor</button>
             </div>
+            <article>Please Fill all the Field with Valid information.</article>
           </form>
         </div>
       </div>

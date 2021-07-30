@@ -89,6 +89,13 @@
               <input required type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
             </div>
             <div>
+            <label>Address</label>
+              <input required type="text" name="address" value="<?php echo $myrecord['address']; ?>" class="text-input" />
+            </div>
+            <div>
+              <label>Phone Number</label>
+              <input type="tel" id="phone" name="phone" pattern="[+]{1}[0-9]{11,14}" required value="<?php echo $myrecord['phone']; ?>" class="text-input" />
+            </div>
               <label>Password</label>
               <input required type="password" name="password"  class="text-input" />
             </div>
@@ -99,6 +106,7 @@
             <div>
               <button type="submit" name="submit" class="btn btn-big">Add Patient</button>
             </div>
+            <article>Must fill all the input fields with valid information</article>
           </form>
         </div>
       </div>

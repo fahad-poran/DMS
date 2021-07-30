@@ -9,7 +9,7 @@
 $name = $_SESSION['username'];
 $status = $db->displayBookAppoint('bookappoint',$currentUser);
 $panding = $db->pandingPatient('bookappoint',$currentUser);
-if(!$panding){
+if(!$panding){ //if this doctor naver engaged with patitient he cant go to dash board
   header("Location:approve-appointment.php");
 }
   if(!isset($_SESSION['username']))

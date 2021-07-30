@@ -110,7 +110,7 @@ header {
 }
 
 .admin-wrapper .left-sidebar {
-  flex: 2;
+  flex: 1.5;
   height: 100%;
 background-color: #FF3CAC;
 background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
@@ -140,7 +140,7 @@ background-image: linear-gradient(90deg, #1a9c84 0%, #2643c9 100%);
 .admin-wrapper .admin-content {
   flex: 8;
   height: 100%;
-  padding: 40px 0px 100px;
+  padding: 40px 40px 100px;
   overflow-y: scroll;
 }
 .admin-content .page-title {
