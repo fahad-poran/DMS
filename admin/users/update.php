@@ -104,7 +104,7 @@ if (isset($_POST['update']))
             </div>
             <div>
             <label>Phone Number <small>[Should be 11 Digits]</small></label>
-              <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" required value="<?php echo $myrecord['phone']; ?>" class="text-input" />
+              <input type="tel" id="phone" name="phone" pattern="[01]{2}[0-9]{9}" required value="<?php echo $myrecord['phone']; ?>" class="text-input" />
             </div>
             <div>
               <label>Gender</label>

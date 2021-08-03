@@ -115,6 +115,105 @@
                 // echo "<script>window.location.href = 'login.php';</script>";
             }
         }
+        public function insertAdminRecord($data,$table)
+        {
+            $uName = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $cpassword = $_POST['passwordConf'];
+            
+            $address = $_POST['address'];
+            $phone = $_POST['phone'];
+
+            if($table=="doctors"){
+            $gender = $_POST['gender'];
+            $phone = $_POST['phone'];
+            $specialization = $_POST['DoctorSpecialization'];
+            $fees = $_POST['fees'];
+            }
+
+            
+            if(empty($uName)||empty($email)||empty($password)||empty($cpassword))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+            else
+            {
+                
+                if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
+                    array_push($this->errors," Username: Only letter allowed");
+                }
+                else if((strlen($uName)<4)){
+                    array_push($this->errors," Username: Name is too short");
+                }
+    
+                if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
+                    array_push($this->errors," Email: Invalid email format");
+                }
+
+                if($table=="doctors")
+                {
+                    if(empty($fees))
+                    {
+                        array_push($this->errors,"Fees must not be empty");
+                    }
+                    if(empty($specialization))
+                    {
+                        array_push($this->errors,"Specialization must not be empty");
+                    }
+                }
+                
+    
+                if(strlen($password)<6){
+                    array_push($this->errors," Password: Password is too short");
+                }
+                else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
+                    array_push($this->errors," Password: the password does not meet the requirements");
+                }
+            
+                else if(!($cpassword==$password))
+                {
+                    array_push($this->errors," Password: Password didn't match");
+                }
+
+            }
+
+            if(count($this->errors)==0)
+            {
+                $sql = "SELECT * FROM $table WHERE email='$email' ";
+                $logged = $this->connection->query($sql);
+                $email_count = $logged->num_rows;
+                if($email_count>0)
+                {
+                    array_push($this->errors,"Email already exits");
+                }
+                else{
+                    //$password = md5($password);//encript password
+                    if($table=="doctors")
+                    {
+                        $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization,fees) VALUES('$uName','$email','$password','$phone','$gender','$specialization','$fees')";
+                    }
+                    else{
+                        $sql = "INSERT INTO $table(username,email,password,address,phone) VALUES('$uName','$email','$password','$address','$phone')";
+                    }
+
+                    $create = $this->connection->query($sql);
+                    if($create)
+                    {
+                        //session_start();
+                        //$_SESSION['email'] = $email;
+                        //$_SESSION['password'] = $password;
+                    return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+                
+                // echo "<script>alert('Registration succesful');</script>";
+                // echo "<script>window.location.href = 'login.php';</script>";
+            }
+        }
         public function insertComment($data,$table){
             
             $id = $_POST['uid'];

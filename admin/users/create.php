@@ -2,11 +2,14 @@
 <?php
   $db = new Database();
   if(isset($_POST['submit'])){
-  $create = $db->insertRecord($_POST,"patients");
+  $create = $db->insertAdminRecord($_POST,"patients");
     if($create)
     {
       echo "<script>alert('Patient Added succesfully');</script>";
       echo "<script>window.location.href = 'index.php';</script>";
+    }
+    else{
+      echo "<script>alert('worng input');</script>";
     }
   }
 ?>
@@ -24,6 +27,7 @@
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    
 
     <!-- Custom Styling -->
     <!-- <link rel="stylesheet" href="../../css/style.css"> -->
@@ -73,14 +77,14 @@
           <a href="index.php" class="btn btn-big">Manage Patient</a>
         </div>
 
-        <div class="content">
+        <div class="content ">
           <h2 class="page-title">Add Patient</h2>
           <?php
             include "../../controls/errors.php";
             $db = new Database();
           ?>
           <form action="create.php" method="post">
-            <div>
+            <div class="sec1"><div>
               <label>Username</label>
               <input required type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>" class="text-input" />
             </div>
@@ -90,11 +94,13 @@
             </div>
             <div>
             <label>Address</label>
-              <input required type="text" name="address" value="<?php echo $myrecord['address']; ?>" class="text-input" />
+              <input required type="text" name="address" value="<?php echo isset($post['address']); ?>" class="text-input" />
             </div>
+          </div>
+            <div class="sec2">
             <div>
               <label>Phone Number</label>
-              <input type="tel" id="phone" name="phone" pattern="[+]{1}[0-9]{11,14}" required value="<?php echo $myrecord['phone']; ?>" class="text-input" />
+              <input type="tel" id="phone" name="phone" pattern="[01]{2}[0-9]{9}" required value="<?php echo isset($post['phone']); ?>" class="text-input" />
             </div>
               <label>Password</label>
               <input required type="password" name="password"  class="text-input" />
@@ -104,6 +110,7 @@
               <input required type="password" name="passwordConf" class="text-input" />
             </div>
             <div>
+            </div>
               <button type="submit" name="submit" class="btn btn-big">Add Patient</button>
             </div>
             <article>Must fill all the input fields with valid information</article>

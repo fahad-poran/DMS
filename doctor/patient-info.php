@@ -42,6 +42,21 @@
     <!-- Admin Styling -->
     <link rel="stylesheet" href="../ckk/admin-nav.css" />
     <link rel="stylesheet" href="../ckk/admin.css" />
+    <style>
+      .card-body{
+        height: 200px;
+        overflow-y: scroll;
+      }
+      .u{
+        height: 536px;
+      }
+      .u img{
+        display: flex;
+        
+        height: 200px;
+        width: 200px;
+      }
+    </style>
 
     <title>Admin Section - Manage Admin</title>
   </head>
@@ -117,7 +132,7 @@
 
 
 <div class="d-flex flex-wrap row row-cols-1 row-cols-md-3 g-4">
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <div class="card h-100">
       <img src="../patient/images/m1.png" class="card-img-top" alt="...">
       <div class="card-body">
@@ -126,11 +141,11 @@
       </div>
       <div class="card-footer">
         <small class="text-muted"> <input placeholder="SpO2 of 90%" type="text" name="pox" value="<?php echo $value['pox'];?>">
-            <button type="submit" name="update" class="btn btn-big">Update</button></small>
+           </small>
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <div class="card h-100">
       <img src="../patient/images/m2.png" class="card-img-top" alt="...">
       <div class="card-body">
@@ -139,11 +154,11 @@
       </div>
       <div class="card-footer">
         <small class="text-muted">  <input placeholder="H-100 L-80" type="text" name="bpm" value="<?php echo $value['bpm'];?>">
-            <button type="submit" name="update" class="btn btn-big">Update</button></small>
+           </small>
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <div class="card h-100">
       <img src="../patient/images/m3.png" class="card-img-top" alt="...">
       <div class="card-body">
@@ -152,11 +167,11 @@
       </div>
       <div class="card-footer">
         <small class="text-muted"><input placeholder="18.5" type="text" name="ws" value="<?php echo $value['ws'];?>">
-            <button type="submit" name="update" class="btn btn-big">Update</button></small>
+          </small>
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <div class="card h-100">
       <img src="../patient/images/m4.png" class="card-img-top" alt="...">
       <div class="card-body">
@@ -165,11 +180,11 @@
       </div>
       <div class="card-footer">
         <small class="text-muted"> <input placeholder="141mg/dl" type="text" name="gk" value="<?php echo $value['gk'];?>">
-            <button type="submit" name="update" class="btn btn-big">Update</button></small>
+           </small>
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <div class="card h-100">
       <img src="../patient/images/m5.png" class="card-img-top" alt="...">
       <div class="card-body">
@@ -178,7 +193,21 @@
       </div>
       <div class="card-footer">
         <small class="text-muted"> <input placeholder="98°F" type="text" name="it" value="<?php echo $value['it'];?>">
-            <button type="submit" name="update" class="btn btn-big">Update</button></small>
+           </small>
+      </div>
+    </div>
+  </div>
+  <div class="u col-lg-6">
+    <div class="card h-100">
+    <center>  <img src="../patient/images/update.png" class="img-fluid  card-img-top justify-content-center" alt="..."></center>
+      <div class="card-body">
+        <h5 class="card-title">Update</h5>
+        <p class="card-text">*Please Check All the input before You press update. All the value should be upto date at a time, Filling all input is not require. <br><br>
+        <button type="submit" name="update" class="btn btn-big">Update</button>
+        </p>
+      </div>
+      <div class="card-footer">
+       
       </div>
     </div>
   </div>
